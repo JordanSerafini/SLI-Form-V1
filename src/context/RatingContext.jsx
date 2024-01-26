@@ -9,7 +9,7 @@ export const RatingProvider = ({ children }) => {
 
   const updateRating = (id, score) => {
     setRatings(prev => ({ ...prev, [id]: score }));
-    console.log(ratings);
+    //console.log(ratings);
 
   };
 

@@ -24,7 +24,7 @@ function FormLine2() {
       </h3>
       <input
         type="number"
-        className="border-2 rounded-lg p-2 text-brownperso font-playfair w-full"
+        className="border border-blue-strong rounded-lg p-2 text-brownperso font-playfair w-full"
         placeholder="Entrez une note entre 0 et 10"
         min={0}
         max={10}
@@ -69,7 +69,7 @@ function FormLine2() {
           4.Quelles sont vos suggestions pour les améliorations à apporter ?
         </h3>
         <textarea
-          className="border border-brownperso flex-1 p-2 w-full"
+          className="border border-blue-strong flex-1 p-2 w-full"
           placeholder="Vos commentaires..."
           rows="3"
         ></textarea>

@@ -12,7 +12,7 @@ function App() {
 
     <div className="">
     <Header />
-    <div className="flex flex-col items-center justify-center w-full bg-cream text-blue-strong">
+    <div className="flex flex-col items-center justify-center w-full bg-cream text-blue-light">
 
       {/*---------- Formulaire d'identification ------------ */}
 
