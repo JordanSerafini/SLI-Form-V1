@@ -12,7 +12,7 @@ function FormLine({ title, children }) {
         </h3>
 
         {childrenArray.map((child, index) => (
-          <section key={index} className="text-base md:text-xl lg:text-2xl lg:gap-6 flex flex-col items-center justify-center gap-2">
+          <section key={index} className="text-base md:text-xl lg:text-2xl lg:gap-6 flex flex-col items-center justify-center gap-2 font-semibold text-blue-light">
             <p className="">
               {child}
             </p>

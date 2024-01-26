@@ -39,7 +39,7 @@ const RatingSmiley = () => {
         </li>
         <li>
           <span
-            className="text-[#03a9f4] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
+            className="text-[#e0e04bdc] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
             data-te-rating-icon-ref
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -59,7 +59,7 @@ const RatingSmiley = () => {
         </li>
         <li>
           <span
-            className="text-[#0e720eec] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
+            className="text-[#0ebd0ebe] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
             data-te-rating-icon-ref
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
