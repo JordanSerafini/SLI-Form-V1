@@ -11,6 +11,7 @@ function FormLine({ title, children }) {
 
   };
 
+  
   return (
     <div className="bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-col gap-8 font-playfair ">
       <h3 className="text-lg md:text-xl lg:text-2xl font-bold border-b-4 pb-4 border-brownperso p-2">
