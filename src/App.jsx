@@ -3,8 +3,13 @@ import FormLine from "./components/Form-Line";
 import FormLine2 from "./components/FormLine2";
 import FormId from "./components/Form-Id";
 
+import { RatingProvider } from './context/RatingContext';
+
+
 function App() {
   return (
+    <RatingProvider>
+
     <div className="">
     <Header />
     <div className="flex flex-col items-center justify-center w-full bg-cream text-blue-strong">
@@ -44,6 +49,7 @@ function App() {
       <FormLine2 />
     </div>
     </div>
+    </RatingProvider>
   );
 }
 
