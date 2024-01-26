@@ -32,8 +32,8 @@ function FormLine2() {
         onChange={(e) => setFinalGrade(e.target.value)}
       />
 
-      <div className="flex flex-row gap-4">
-        <h3 className="text-base font-bold mb-3 w-7/10">
+      <div className="flex flex-col gap-0">
+        <h3 className="text-base font-bold mb-3 ">
           3. D&apos;une manière générale, est-ce que la Solution Logique répond
           à vos attentes ?
         </h3>
@@ -74,8 +74,8 @@ function FormLine2() {
           rows="3"
         ></textarea>
       </div>
-      <div className="flex flex-row gap-4">
-        <h3 className="text-base font-bold mb-3 w-7/10">
+      <div className="flex flex-col gap-0">
+        <h3 className="text-base font-bold mb-3">
           5. Recommanderiez-vous Solution Logique auprès de vos connaissances ?
         </h3>
         <div className="flex justify-center space-x-8">
