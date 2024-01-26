@@ -21,11 +21,11 @@ export default {
       },
 
       colors: {
-        'blue-strong': '#18534F',
+        'blue-strong': '#344D59',
         'blue-light': '#226D68',
         'whiteperso': '#ECF8F6',
-        'cream': '#FEEAA1',
-        'brownperso': '#D6955B',
+        'cream': '#709CA7',
+        'brownperso': '#B8CBD0',
       },
       fontFamily: {
         'lato': ['Lato', 'sans-serif'],

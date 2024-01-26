@@ -1,9 +1,12 @@
+import Header from "./components/Header";
 import FormLine from "./components/Form-Line";
 import FormLine2 from "./components/FormLine2";
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center w-full bg-cream text-gray-800">
+    <div className="h-full w-full">
+    <Header />
+    <div className="flex flex-col items-center justify-center w-full bg-cream text-blue-strong">
       {/*---------- 1er Form ------------ */}
       <FormLine title="1ère Phase: qualification de vos besoins et proposition d'une solution">
         {"1. Compréhension de vos besoins par notre service commercial."}
@@ -33,6 +36,7 @@ function App() {
       {/*---------- 4eme Form ------------ */}
       
       <FormLine2 />
+    </div>
     </div>
   );
 }
