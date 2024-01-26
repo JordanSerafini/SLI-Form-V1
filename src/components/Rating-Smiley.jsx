@@ -9,7 +9,7 @@ const RatingSmiley = () => {
   return (
     <div className="text-center">
       <ul
-        className="flex list-none gap-2 md:gap-6 test:gap-4 lg:gap-10 p-0 justify-center items-center"
+        className="flex list-none gap-6 md:gap-10 test:gap-8 lg:gap-14 p-0 justify-center items-center"
         data-te-rating-init
         data-te-dynamic="true"
         data-te-active="bg-current rounded-full !fill-black"
