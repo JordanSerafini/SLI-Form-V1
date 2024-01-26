@@ -41,7 +41,7 @@ function App() {
       <FormLine title="3ème Phase: Installation de la solution">
         {"1. Satisfaction sur le délai de la livraison."}
         {"2. Satisfaction sur la qualité de l'installation."}
-        {"3. 3. Installation terminée"}
+        {"3. Installation terminée"}
       </FormLine>
 
       {/*---------- 4eme Form ------------ */}
