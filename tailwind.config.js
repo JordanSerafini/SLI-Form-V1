@@ -25,11 +25,14 @@ export default {
         'blue-light': '#226D68',
         'whiteperso': '#ECF8F6',
         'cream': '#FEEAA1',
-        'brown': '#D6955B',
+        'brownperso': '#D6955B',
       },
       fontFamily: {
         'lato': ['Lato', 'sans-serif'],
         'playfair': ['Playfair Display', 'serif'],
+      },
+      screens: {
+        'sm': '600px',
       },
       
     },
