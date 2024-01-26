@@ -1,12 +1,18 @@
 import Header from "./components/Header";
 import FormLine from "./components/Form-Line";
 import FormLine2 from "./components/FormLine2";
+import FormId from "./components/Form-Id";
 
 function App() {
   return (
-    <div className="h-full w-full">
+    <div className="">
     <Header />
     <div className="flex flex-col items-center justify-center w-full bg-cream text-blue-strong">
+
+      {/*---------- Formulaire d'identification ------------ */}
+
+      <FormId />
+
       {/*---------- 1er Form ------------ */}
       <FormLine title="1ère Phase: qualification de vos besoins et proposition d'une solution">
         {"1. Compréhension de vos besoins par notre service commercial."}
