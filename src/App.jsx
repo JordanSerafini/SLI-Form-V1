@@ -10,7 +10,7 @@ function App() {
   return (
     <RatingProvider>
 
-    <div className="">
+    <div className="bg-red-300">
     <Header />
     <div className="flex flex-col items-center justify-center w-full bg-cream text-blue-light">
 

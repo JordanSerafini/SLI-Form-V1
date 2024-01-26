@@ -7,19 +7,19 @@ function FormLine2() {
   const [recommendation, setRecommendation] = useState("");
 
   return (
-    <div className="bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-col gap-6 font-playfair">
+    <div className="bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-col gap-6 font-playfair ">
       <h2 className="text-lg md:text-xl lg:text-2xl font-bold border-b-4 pb-4 border-brownperso p-2">
         4ème phase: Satisfaction globale
       </h2>
       <div className="flex flex-col gap-4 w-full">
-        <h3 className="text-xl font-bold w-9/10">
+        <h3 className="text-base font-bold w-9/10">
           1. D&apos;une manière générale, vous êtes:
         </h3>
         <RatingSmiley  />
       </div>
 
 
-      <h3 className="text-xl font-bold mb-3">
+      <h3 className="text-base font-bold mb-3">
         2. Note finale de Solution Logique sur 10
       </h3>
       <input
@@ -33,7 +33,7 @@ function FormLine2() {
       />
 
       <div className="flex flex-row gap-4">
-        <h3 className="text-xl font-bold mb-3 w-7/10">
+        <h3 className="text-base font-bold mb-3 w-7/10">
           3. D&apos;une manière générale, est-ce que la Solution Logique répond
           à vos attentes ?
         </h3>
@@ -65,7 +65,7 @@ function FormLine2() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold mb-3">
+        <h3 className="text-base font-bold mb-3">
           4.Quelles sont vos suggestions pour les améliorations à apporter ?
         </h3>
         <textarea
@@ -75,7 +75,7 @@ function FormLine2() {
         ></textarea>
       </div>
       <div className="flex flex-row gap-4">
-        <h3 className="text-xl font-bold mb-3 w-7/10">
+        <h3 className="text-base font-bold mb-3 w-7/10">
           5. Recommanderiez-vous Solution Logique auprès de vos connaissances ?
         </h3>
         <div className="flex justify-center space-x-8">
