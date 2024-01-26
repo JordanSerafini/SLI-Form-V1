@@ -13,7 +13,7 @@ function App() {
 
                       {/*---------- 2eme Form ------------ */}
 
-      <FormLine title="{`2ème Phase: Information sur le suivi de la livraison`}">
+      <FormLine title="2ème Phase: Information sur le suivi de la livraison">
         {"1. Délai du traitement de la demande."}
         { "2. Qualité des renseignements communiqués lors de la prise de rendez-vous."}
         {"3. Qualité relationnelle globale avec notre équipe technique (disponibilité, ponctualité)"}
