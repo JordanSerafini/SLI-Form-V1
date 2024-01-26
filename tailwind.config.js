@@ -29,6 +29,7 @@ export default {
       },
       fontFamily: {
         'lato': ['Lato', 'sans-serif'],
+        'playfair': ['Playfair Display', 'serif'],
       },
       
     },

@@ -8,7 +8,7 @@ const RatingSmiley = () => {
 
   return (
     <ul
-    className="flex list-none gap-2 p-0 w-full justify-center items-center "
+    className="flex list-none gap-6 p-0 w-full justify-center items-center "
     data-te-rating-init
     data-te-dynamic="true"
     data-te-active="bg-current rounded-full !fill-black"

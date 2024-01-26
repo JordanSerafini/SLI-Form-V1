@@ -2,7 +2,7 @@ import FormLine from "./components/Form-Line";
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center w-full bg-cream ">
+    <div className="flex flex-col items-center justify-center w-full bg-cream text-">
       
                       {/*---------- 1er Form ------------ */}
       <FormLine title="1ère Phase: qualification de vos besoins et proposition d'une solution">
