@@ -18,12 +18,11 @@ function FormLine({ title, children }) {
       </h3>
 
       {childrenArray.map((child, index) => (
-        <section key={index} className="text-base md:text-xl lg:text-2xl lg:gap-6 flex flex-col items-center justify-center gap-6 font-semibold text-blue-light">
+        <section key={index} className="text-base md:text-base lg:text-2xl lg:gap-6 flex flex-col items-center justify-center gap-6 font-semibold text-blue-light">
           <p>{child}</p>
           <div>
             <RatingSmiley 
-              score={ratings[index] || 0} 
-              onRatingChange={(value) => handleRatingChange(index, value)} 
+              value={index}
             />
           </div>
         </section>

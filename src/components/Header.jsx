@@ -6,7 +6,7 @@ function Header() {
         
         <img src={logoSLI} alt="" className=' w-1/10 rounded-full'/>
         
-          Questionnaire satisfaction</div>
+          - Questionnaire satisfaction</div>
   )
 }
 

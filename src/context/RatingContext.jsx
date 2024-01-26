@@ -5,16 +5,15 @@ const RatingContext = createContext();
 
 // Composant fournisseur
 export const RatingProvider = ({ children }) => {
-  const [ratings, setRatings] = useState({});
-
-  const updateRating = (id, score) => {
-    setRatings(prev => ({ ...prev, [id]: score }));
-    //console.log(ratings);
-
+  const [ratings, setRatings] = useState([]);
+  
+  const handleRatingSubmit = (ratingData) => {
+    setRatings([...ratings, ratingData]);
   };
 
+
   return (
-    <RatingContext.Provider value={{ ratings, setRatings, updateRating }}>
+    <RatingContext.Provider value={{ ratings, setRatings }}>
       {children}
     </RatingContext.Provider>
   );

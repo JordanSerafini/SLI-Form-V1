@@ -23,7 +23,7 @@ function FormId() {
             />
           </label>
           <label className="font-semibold text-blue-light">
-            Date:
+            Date du jour:
             <input
               type="date"
               name="date"

@@ -3,15 +3,14 @@ import { Rating, initTE } from "tw-elements";
 import { useContext } from "react";
 import RatingContext from "../context/RatingContext";
 
-const RatingSmiley = ({ score, onRatingChange }) => {
-  const { updateRating } = useContext(RatingContext);
+const RatingSmiley = ({ score }) => {
 
   useEffect(() => {
     initTE({ Rating });
   }, []);
 
   const handleClick = (value) => {
-    updateRating(score, value); 
+    console.log(value);
   };
 
   return (
