@@ -32,7 +32,10 @@ export default {
         'playfair': ['Playfair Display', 'serif'],
       },
       screens: {
-        'sm': '600px',
+        'sm': '400px',
+        'test': '500px',
+        'md': '600px',
+
       },
       
     },
