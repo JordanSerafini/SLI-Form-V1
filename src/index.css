@@ -12,4 +12,7 @@
   .shadow-custom {
     box-shadow: 0 0 10px #344D59; 
   }
+  .shadow-header {
+    box-shadow: 0 0 10px #226D68; 
+  }
 }
