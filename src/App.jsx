@@ -31,9 +31,7 @@ function App() {
       </FormLine>
 
       {/*---------- 4eme Form ------------ */}
-      <FormLine title="4ème Phase: Finalité du projet">
-        {"1. D'une manière générale, vous êtes:"}
-      </FormLine>
+      
       <FormLine2 />
     </div>
   );

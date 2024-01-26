@@ -13,7 +13,7 @@ const RatingSmiley = () => {
     data-te-dynamic="true"
     data-te-active="bg-current rounded-full !fill-black"
     >
-      <li className="flex justify-center items-center w-9/10">
+      <li className="flex justify-center items-center">
         <span
           className="text-[#FF0000] [&>svg]:h-10 [&>svg]:w-10 [&>svg]:fill-current w-full"
           data-te-rating-icon-ref
