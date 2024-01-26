@@ -11,7 +11,7 @@ function FormLine2() {
       <h2 className="text-lg md:text-xl lg:text-2xl font-bold border-b-4 pb-4 border-brownperso p-2">
         4ème phase: Satisfaction globale
       </h2>
-      <div className="flex w-full">
+      <div className="flex flex-col gap-4 w-full">
         <h3 className="text-xl font-bold w-9/10">
           1. D&apos;une manière générale, vous êtes:
         </h3>

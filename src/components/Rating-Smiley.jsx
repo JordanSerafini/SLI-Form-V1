@@ -7,12 +7,13 @@ const RatingSmiley = () => {
   }, []);
 
   return (
-    <ul
-    className="flex list-none gap-6 p-0 w-full justify-center items-center "
-    data-te-rating-init
-    data-te-dynamic="true"
-    data-te-active="bg-current rounded-full !fill-black"
-    >
+    <div className="text-center">
+      <ul
+        className="flex list-none gap-6 p-0 justify-center items-center"
+        data-te-rating-init
+        data-te-dynamic="true"
+        data-te-active="bg-current rounded-full !fill-black"
+      >
       <li className="flex justify-center items-center">
         <span
           className="text-[#FF0000] [&>svg]:h-10 [&>svg]:w-10 [&>svg]:fill-current w-full"
@@ -66,6 +67,7 @@ const RatingSmiley = () => {
         </span>
       </li>
     </ul>
+    </div>
   );
 };
 
