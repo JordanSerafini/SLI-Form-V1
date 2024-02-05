@@ -53,7 +53,7 @@ export const RatingProvider = ({ children }) => {
   
     // Mettez à jour l'état avec le nouveau tableau de commentaires
     setCommentArray(newCommentArray);
-    console.log(newCommentArray);
+    //console.log(newCommentArray);
   };
 
   const handleUserSubmit = (userData) => {

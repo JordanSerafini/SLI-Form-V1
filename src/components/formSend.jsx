@@ -9,7 +9,7 @@ function FormSend() {
   const { user, commentArray, rateArray } = useContext(RatingContext);
 
   const handleFormSubmit = async () => {
-    console.log(user, rateArray, commentArray);
+    //console.log(user, rateArray, commentArray);
     try {
       const response = await axios.post(`${apiUrl}/insertData`, {
         user,
