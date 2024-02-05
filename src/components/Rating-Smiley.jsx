@@ -4,7 +4,7 @@ import RatingContext from "../context/RatingContext";
 
 const RatingSmiley = ({value, formID}) => {
  
-  const { rateArray, setRateArray, handleRatingSubmit } = useContext(RatingContext);
+  const { rateArray, setRateArray, handleRatingSubmit, averageRating } = useContext(RatingContext);
 
   const questionID = value;
 
@@ -21,6 +21,7 @@ const RatingSmiley = ({value, formID}) => {
     handleRatingSubmit(ratingData);
     
   };
+
 
   
   return (

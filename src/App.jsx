@@ -3,9 +3,18 @@ import FormLine from "./components/Form-Line";
 import FormLine2 from "./components/FormLine2";
 import FormId from "./components/Form-Id";
 
+import { useContext } from "react";
+import RatingContext from "./context/RatingContext";
+
 import { RatingProvider } from "./context/RatingContext";
 
 function App() {
+  function TotalDisplay() {
+    const { averageRating } = useContext(RatingContext);
+
+    return <p>Avis général: {averageRating}</p>;
+  }
+
   return (
     <RatingProvider>
       <div className="bg-cream">
@@ -50,7 +59,10 @@ function App() {
 
           <FormLine2 formID="4" />
         </div>
-        <p>Total {}</p>
+
+        <div className="bg-cream">
+          <TotalDisplay />
+        </div>
       </div>
     </RatingProvider>
   );

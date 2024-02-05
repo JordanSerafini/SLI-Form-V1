@@ -34,7 +34,13 @@ export const RatingProvider = ({ children }) => {
 
     const totalRating = rateArray.reduce((acc, current) => acc + current.rating, 0);
     const average = totalRating / rateArray.length; 
-    return Math.ceil(average); 
+    if (average > 0 && average < 1.5) return "Très insatisfait";
+    if (average >= 1.5 && average < 2.5) return "Insatisfait";
+    if (average >= 2.5 && average < 3) return "Moyen";
+    if (average >= 3 && average < 4.2) return "Satisfait";
+    if (average >= 4.2 && average <= 5) return "Très satisfait";
+
+    //return Math.ceil(average); 
   }, [rateArray]);
 
   return (
