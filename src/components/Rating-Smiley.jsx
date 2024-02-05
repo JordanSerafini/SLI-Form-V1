@@ -22,6 +22,7 @@ const RatingSmiley = ({value, formID}) => {
     
   };
 
+  
   return (
     <div className="text-center">
       <ul

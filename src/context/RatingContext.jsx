@@ -1,12 +1,9 @@
 import React, { createContext, useState, useMemo } from 'react';
 
-// Création du contexte
 const RatingContext = createContext();
 
-// Composant fournisseur
 export const RatingProvider = ({ children }) => {
   const [rateArray, setRateArray] = useState([]);
-  //console.log(rateArray);
 
 
   const handleRatingSubmit = (ratingData) => {
@@ -30,13 +27,18 @@ export const RatingProvider = ({ children }) => {
     // Mettez à jour l'état avec le nouveau tableau
     setRateArray(newArray);
   };
+
   
-  const totalRating = useMemo(() => {
-    return rateArray.reduce((acc, current) => acc + current.rating, 0);
+  const averageRating = useMemo(() => {
+    if (rateArray.length === 0) return 0; 
+
+    const totalRating = rateArray.reduce((acc, current) => acc + current.rating, 0);
+    const average = totalRating / rateArray.length; 
+    return Math.ceil(average); 
   }, [rateArray]);
 
   return (
-    <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit }}>
+    <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit, averageRating }}>
       {children}
     </RatingContext.Provider>
   );
