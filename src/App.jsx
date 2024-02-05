@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import FormLine from "./components/Form-Line";
 import FormLine2 from "./components/FormLine2";
 import FormId from "./components/Form-Id";
+import FormSend from "./components/formSend";
 
 import { useContext } from "react";
 import RatingContext from "./context/RatingContext";
@@ -69,6 +70,7 @@ function App() {
 
         <div className="bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-row font-playfair ">
           <TotalDisplay />
+          <FormSend />
         </div>
       </div>
     </RatingProvider>

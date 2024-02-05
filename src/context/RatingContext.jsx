@@ -4,7 +4,7 @@ const RatingContext = createContext();
 
 export const RatingProvider = ({ children }) => {
   const [rateArray, setRateArray] = useState([]);
-
+  const [commentArray, setCommentArray] = useState([]);
 
   const handleRatingSubmit = (ratingData) => {
     // Vérifiez si l'objet avec le même questionID et formID existe déjà
@@ -29,6 +29,29 @@ export const RatingProvider = ({ children }) => {
   };
 
   
+  const handleCommentSubmit = (commentData) => {
+    // Vérifiez si l'objet avec le même questionID et formID existe déjà
+    const existingIndex = commentArray.findIndex(item =>
+      item.questionID === commentData.questionID && item.formID === commentData.formID
+    );
+  
+    let newCommentArray = [];
+  
+    if (existingIndex !== -1) {
+      // Remplacez le commentaire existant par le nouveau
+      newCommentArray = commentArray.map((item, index) =>
+        index === existingIndex ? commentData : item
+      );
+    } else {
+      // Ajoutez le nouveau commentaire à la fin du tableau
+      newCommentArray = [...commentArray, commentData];
+    }
+  
+    // Mettez à jour l'état avec le nouveau tableau de commentaires
+    setCommentArray(newCommentArray);
+  };
+  
+  
   const averageRating = useMemo(() => {
     if (rateArray.length === 0) return { average: 0, comment: "Aucune note" };
 
@@ -47,7 +70,7 @@ export const RatingProvider = ({ children }) => {
 
 
   return (
-    <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit, averageRating }}>
+    <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, handleCommentSubmit }}>
       {children}
     </RatingContext.Provider>
   );
