@@ -68,7 +68,7 @@ function App() {
 
         {/*---------- Total Display ------------ */}
 
-        <div className="bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-row font-playfair ">
+        <div className=" gap-4 bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-col font-playfair ">
           <TotalDisplay />
           <FormSend />
         </div>

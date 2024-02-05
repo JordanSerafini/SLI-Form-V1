@@ -58,7 +58,7 @@ export const RatingProvider = ({ children }) => {
 
   const handleUserSubmit = (userData) => {
     setUser(userData);
-    console.log(user)
+    //console.log(user)
   };
   
   
@@ -81,7 +81,7 @@ export const RatingProvider = ({ children }) => {
 
 
   return (
-    <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, handleCommentSubmit, handleUserSubmit }}>
+    <RatingContext.Provider value={{ user, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, handleCommentSubmit, handleUserSubmit }}>
       {children}
     </RatingContext.Provider>
   );
