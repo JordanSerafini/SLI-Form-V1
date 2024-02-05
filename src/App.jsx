@@ -12,7 +12,12 @@ function App() {
   function TotalDisplay() {
     const { averageRating } = useContext(RatingContext);
 
-    return <p>Avis général: {averageRating}</p>;
+    return (
+      <div>
+        <p>Avis général: {averageRating.comment}</p>
+        <p>Note générale: {averageRating.average}</p>
+      </div>
+    );
   }
 
   return (
@@ -60,7 +65,9 @@ function App() {
           <FormLine2 formID="4" />
         </div>
 
-        <div className="bg-cream">
+        {/*---------- Total Display ------------ */}
+
+        <div className="bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-row font-playfair ">
           <TotalDisplay />
         </div>
       </div>

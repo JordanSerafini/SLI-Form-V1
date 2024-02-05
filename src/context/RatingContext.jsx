@@ -30,18 +30,21 @@ export const RatingProvider = ({ children }) => {
 
   
   const averageRating = useMemo(() => {
-    if (rateArray.length === 0) return 0; 
+    if (rateArray.length === 0) return { average: 0, comment: "Aucune note" };
 
     const totalRating = rateArray.reduce((acc, current) => acc + current.rating, 0);
     const average = totalRating / rateArray.length; 
-    if (average > 0 && average < 1.5) return "Très insatisfait";
-    if (average >= 1.5 && average < 2.5) return "Insatisfait";
-    if (average >= 2.5 && average < 3) return "Moyen";
-    if (average >= 3 && average < 4.2) return "Satisfait";
-    if (average >= 4.2 && average <= 5) return "Très satisfait";
+    let comment = "";
 
-    //return Math.ceil(average); 
+    if (average > 0 && average < 1.5) comment = "Très insatisfait";
+    else if (average >= 1.5 && average < 2.5) comment = "Insatisfait";
+    else if (average >= 2.5 && average < 3) comment = "Moyen";
+    else if (average >= 3 && average < 4.2) comment = "Satisfait";
+    else if (average >= 4.2 && average <= 5) comment = "Très satisfait";
+
+    return { average: Math.ceil(average), comment };
   }, [rateArray]);
+
 
   return (
     <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit, averageRating }}>
