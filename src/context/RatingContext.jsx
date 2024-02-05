@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 
 // Création du contexte
 const RatingContext = createContext();
@@ -6,6 +6,7 @@ const RatingContext = createContext();
 // Composant fournisseur
 export const RatingProvider = ({ children }) => {
   const [rateArray, setRateArray] = useState([]);
+  //console.log(rateArray);
 
 
   const handleRatingSubmit = (ratingData) => {
@@ -30,7 +31,9 @@ export const RatingProvider = ({ children }) => {
     setRateArray(newArray);
   };
   
-
+  const totalRating = useMemo(() => {
+    return rateArray.reduce((acc, current) => acc + current.rating, 0);
+  }, [rateArray]);
 
   return (
     <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit }}>
