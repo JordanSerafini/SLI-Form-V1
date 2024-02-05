@@ -1,11 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import RatingContext from "../context/RatingContext";
 
 
 function FormId() {
-
   const { handleUserSubmit } = useContext(RatingContext);
-  
   const [userInfo, setUserInfo] = useState({
     name: '',
     function: '',
@@ -14,13 +12,13 @@ function FormId() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserInfo(prevInfo => {
-      const newUserInfo = { ...prevInfo, [name]: value };
-      handleUserSubmit(newUserInfo);
-      return newUserInfo;
-    });
+    setUserInfo({ ...userInfo, [name]: value });
   };
-  
+
+  useEffect(() => {
+      handleUserSubmit(userInfo);
+    
+  }, [userInfo, handleUserSubmit]);
 
   return (
     <>
