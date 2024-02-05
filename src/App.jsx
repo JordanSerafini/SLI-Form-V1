@@ -19,7 +19,7 @@ function App() {
       <FormId />
 
       {/*---------- 1er Form ------------ */}
-      <FormLine title="1ère Phase: qualification de vos besoins et proposition d'une solution">
+      <FormLine title="1ère Phase: qualification de vos besoins et proposition d'une solution" formID="1">
         {"1. Compréhension de vos besoins par notre service commercial."}
         {"2. Solution proposée et clarté des explications."}
         {
@@ -29,7 +29,7 @@ function App() {
 
       {/*---------- 2eme Form ------------ */}
 
-      <FormLine title="2ème Phase: Information sur le suivi de la livraison">
+      <FormLine title="2ème Phase: Information sur le suivi de la livraison" formID="2">
         {"1. Délai du traitement de la demande."}
         {
           "2. Qualité des renseignements communiqués lors de la prise de rendez-vous."
@@ -38,7 +38,7 @@ function App() {
       </FormLine>
 
       {/*---------- 3eme Form ------------ */}
-      <FormLine title="3ème Phase: Installation de la solution">
+      <FormLine title="3ème Phase: Installation de la solution" formID="3">
         {"1. Satisfaction sur le délai de la livraison."}
         {"2. Satisfaction sur la qualité de l'installation."}
         {"3. Installation terminée"}
@@ -46,7 +46,7 @@ function App() {
 
       {/*---------- 4eme Form ------------ */}
       
-      <FormLine2 />
+      <FormLine2 formID="4"/>
     </div>
     </div>
     </RatingProvider>

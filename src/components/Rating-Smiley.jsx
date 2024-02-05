@@ -1,16 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Rating, initTE } from "tw-elements";
-import { useContext } from "react";
 import RatingContext from "../context/RatingContext";
 
-const RatingSmiley = ({ score }) => {
+const RatingSmiley = ({value, formID}) => {
+ 
+  const { rateArray, setRateArray, handleRatingSubmit } = useContext(RatingContext);
+
+  const questionID = value;
 
   useEffect(() => {
     initTE({ Rating });
   }, []);
 
-  const handleClick = (value) => {
-    console.log(value);
+  const handleClick = (note) => {
+    const ratingData = {
+      rating: note,
+      formID: formID,
+      questionID: questionID,
+    };
+    handleRatingSubmit(ratingData);
+    
   };
 
   return (
@@ -21,8 +30,12 @@ const RatingSmiley = ({ score }) => {
         data-te-dynamic="true"
         data-te-active="bg-current rounded-full !fill-black"
       >
-        <li className="flex justify-center items-center">
+        <li 
+        className="flex justify-center items-center"
+        >
+      
           <span
+            
             className="w-full text-[#FF0000] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
             data-te-rating-icon-ref
             onClick={() => handleClick(1)} 
