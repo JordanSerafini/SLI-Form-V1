@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import RatingSmiley from "./Rating-Smiley";
+
+import RatingContext from "../context/RatingContext";
 
 function FormLine({ title, children, formID }) {
   const childrenArray = React.Children.toArray(children);
+  const { handleCommentSubmit } = useContext(RatingContext);
   
+  const handleComment = (comment) => {
+    const commentData = {
+    comment: comment,
+    formID: formID,
+    };
+    handleCommentSubmit(commentData);
+
+  };
+
   return (
     <div 
     className="bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-col gap-8 font-playfair ">
@@ -27,6 +39,7 @@ function FormLine({ title, children, formID }) {
         className="border border-blue-strong flex-1 p-2"
         placeholder="Vos commentaires..."
         rows="3"
+        onChange={(e) => handleComment(e.target.value)}
       ></textarea>
     </div>
   );

@@ -30,26 +30,31 @@ export const RatingProvider = ({ children }) => {
 
   
   const handleCommentSubmit = (commentData) => {
-    // Vérifiez si l'objet avec le même questionID et formID existe déjà
-    const existingIndex = commentArray.findIndex(item =>
-      item.questionID === commentData.questionID && item.formID === commentData.formID
-    );
+    // Trouver l'index existant du commentaire avec le même formID
+    const existingIndex = commentArray.findIndex(item => item.formID === commentData.formID);
   
-    let newCommentArray = [];
+    let newCommentArray = [...commentArray]; // Faire une copie de l'array actuel pour les manipulations
   
-    if (existingIndex !== -1) {
-      // Remplacez le commentaire existant par le nouveau
-      newCommentArray = commentArray.map((item, index) =>
-        index === existingIndex ? commentData : item
-      );
+    if (commentData.comment.trim() === "") {
+      // Si le commentaire est vide, supprimez l'élément du tableau
+      if (existingIndex !== -1) {
+        newCommentArray.splice(existingIndex, 1);
+      } // Si le commentaire n'existe pas encore, ne faites rien
     } else {
-      // Ajoutez le nouveau commentaire à la fin du tableau
-      newCommentArray = [...commentArray, commentData];
+      if (existingIndex !== -1) {
+        // Remplacez le commentaire existant par le nouveau
+        newCommentArray[existingIndex] = commentData;
+      } else {
+        // Ajoutez le nouveau commentaire à la fin du tableau
+        newCommentArray.push(commentData);
+      }
     }
   
     // Mettez à jour l'état avec le nouveau tableau de commentaires
     setCommentArray(newCommentArray);
+    console.log(newCommentArray);
   };
+  
   
   
   const averageRating = useMemo(() => {
