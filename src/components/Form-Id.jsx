@@ -1,4 +1,22 @@
+import { useContext } from "react";
+import RatingContext from "../context/RatingContext";
+
+
 function FormId() {
+
+  const { handleUserSubmit } = useContext(RatingContext);
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo(prevInfo => {
+      const newUserInfo = { ...prevInfo, [name]: value };
+      handleUserSubmit(newUserInfo);
+      return newUserInfo;
+    });
+  };
+  
+
   return (
     <>
       <div className="bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-col gap-6 font-playfair">
@@ -11,6 +29,7 @@ function FormId() {
             <input
               type="text"
               name="name"
+              onChange={handleChange}
               className="form-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
           </label>
@@ -19,6 +38,7 @@ function FormId() {
             <input
               type="text"
               name="function"
+              onChange={handleChange}
               className="form-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
           </label>
@@ -27,6 +47,7 @@ function FormId() {
             <input
               type="date"
               name="date"
+              onChange={handleChange}
               className="form-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
           </label>

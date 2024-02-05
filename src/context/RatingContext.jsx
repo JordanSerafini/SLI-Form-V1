@@ -5,6 +5,7 @@ const RatingContext = createContext();
 export const RatingProvider = ({ children }) => {
   const [rateArray, setRateArray] = useState([]);
   const [commentArray, setCommentArray] = useState([]);
+  const [user , setUser] = useState({});
 
   const handleRatingSubmit = (ratingData) => {
     // Vérifiez si l'objet avec le même questionID et formID existe déjà
@@ -54,6 +55,11 @@ export const RatingProvider = ({ children }) => {
     setCommentArray(newCommentArray);
     console.log(newCommentArray);
   };
+
+  const handleUserSubmit = (userData) => {
+    setUser(userData);
+    console.log(user)
+  };
   
   
   
@@ -75,7 +81,7 @@ export const RatingProvider = ({ children }) => {
 
 
   return (
-    <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, handleCommentSubmit }}>
+    <RatingContext.Provider value={{ rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, handleCommentSubmit, handleUserSubmit }}>
       {children}
     </RatingContext.Provider>
   );
