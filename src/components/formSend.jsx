@@ -1,19 +1,37 @@
-import { useContext } from 'react'
+import { useContext } from 'react';
+import axios from 'axios';
 
-import RatingContext from '../context/RatingContext'
+import RatingContext from '../context/RatingContext';
 
-function formSend() {
+const apiUrl = 'http://localhost:5000';
+
+function FormSend() {
   const { user, commentArray, rateArray } = useContext(RatingContext);
-  
-  console.log(user);
-  console.log(commentArray);
-  console.log(rateArray);
-  
+
+  const handleFormSubmit = async () => {
+    console.log(user, rateArray, commentArray);
+    try {
+      const response = await axios.post(`${apiUrl}/insertData`, {
+        user,
+        questions: rateArray,
+        comments: commentArray,
+      });
+
+      if (response.status === 200) {
+        console.log(response.data.message);
+      } else {
+        console.error('Erreur lors de la requête POST :', response.statusText);
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi des données :', error.message);
+    }
+  };
+
   return (
     <div>
-      
+      <button onClick={handleFormSubmit}>Envoyer les données</button>
     </div>
-  )
+  );
 }
 
-export default formSend
+export default FormSend;

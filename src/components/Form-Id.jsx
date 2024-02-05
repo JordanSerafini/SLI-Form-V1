@@ -6,7 +6,7 @@ function FormId() {
   const { handleUserSubmit } = useContext(RatingContext);
   const [userInfo, setUserInfo] = useState({
     name: '',
-    function: '',
+    fonction: '',
     date: ''
   });
 
@@ -40,7 +40,7 @@ function FormId() {
             Fonction:
             <input
               type="text"
-              name="function"
+              name="fonction"
               onChange={handleChange}
               className="form-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
