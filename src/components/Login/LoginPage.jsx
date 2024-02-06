@@ -31,7 +31,7 @@ function LoginPage() {
         //console.log('Token:', token);   
         localStorage.setItem('token', token);
 
-        navigate('/form-satisfaction'); 
+        navigate('/home'); 
 
       } catch (error) {
         console.error('Échec de la connexion:', error);
