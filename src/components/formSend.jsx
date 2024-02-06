@@ -9,21 +9,25 @@ function FormSend() {
   const { user, commentArray, rateArray } = useContext(RatingContext);
 
   const handleFormSubmit = async () => {
-    //console.log(user, rateArray, commentArray);
-    try {
-      const response = await axios.post(`${apiUrl}/insertData`, {
-        user,
-        questions: rateArray,
-        comments: commentArray,
-      });
+    const confirmation = window.confirm('Souhaitez-vous valider ce formulaire ?');
 
-      if (response.status === 200) {
-        console.log(response.data.message);
-      } else {
-        console.error('Erreur lors de la requête POST :', response.statusText);
+    if (confirmation) {
+      try {
+        const response = await axios.post(`${apiUrl}/insertData`, {
+          user,
+          questions: rateArray,
+          comments: commentArray,
+        });
+
+        if (response.status === 200) {
+          alert('Données envoyées avec succès.');
+          window.location.reload(); 
+        } else {
+          console.error('Erreur lors de la requête POST :', response.statusText);
+        }
+      } catch (error) {
+        console.error('Erreur lors de l\'envoi des données :', error.message);
       }
-    } catch (error) {
-      console.error('Erreur lors de l\'envoi des données :', error.message);
     }
   };
 
@@ -37,3 +41,5 @@ function FormSend() {
 export default FormSend;
 
 
+
+// https://localhost:5000     https://serene-tundra-37919-d1478ece3cff.herokuapp.com
