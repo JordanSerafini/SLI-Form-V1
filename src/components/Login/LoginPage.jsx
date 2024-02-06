@@ -1,6 +1,6 @@
 import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LogoSLI from '../../assets/LogoSLI.png';
+import LogoSLI from '../../assets/logoSLI.png';
 
 const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com';
 
