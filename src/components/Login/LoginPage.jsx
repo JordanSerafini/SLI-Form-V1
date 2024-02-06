@@ -30,6 +30,7 @@ function LoginPage() {
         const { token } = await response.json();
         //console.log('Token:', token);   
         localStorage.setItem('token', token);
+        localStorage.setItem('email', email);
 
         navigate('/home'); 
 
