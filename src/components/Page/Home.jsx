@@ -5,11 +5,11 @@ const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com';
 
 function Home() {
   const [userData, setUserData] = useState(null);
+  const token = localStorage.getItem('token');
+  console.log('Token:', token);
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const token = localStorage.getItem('token');
-      console.log('Token:', token);
 
       if (!token) {
         console.error('Token non trouvé dans le localStorage');
@@ -19,7 +19,7 @@ function Home() {
       try {
         const response = await axios.get(`${apiUrl}/getUtilisateurInfo`, {
           headers: {
-            Authorization: `Bearer ${token}`, // Ajoutez le token JWT dans l'en-tête de la requête
+            Authorization: `Bearer ${token}`,
           },
         });
         console.log(response);
