@@ -9,9 +9,10 @@ function Home() {
   useEffect(() => {
     // Utilisez useEffect pour effectuer la requête lorsque le composant est monté
     const fetchUserData = async () => {
+        const email = localStorage.getItem('email');
       try {
         const response = await axios.post(`${apiUrl}/getUtilisateurInfo`, {
-          // Ajoutez ici les headers si nécessaire
+          email: email
         });
 
         if (response.data) {
@@ -25,7 +26,7 @@ function Home() {
 
     // Appelez la fonction pour récupérer les données de l'utilisateur
     fetchUserData();
-  }, []); // Le tableau vide [] garantit que cette opération est effectuée une seule fois lors du montage
+  }, []); 
 
   return (
     <div>
