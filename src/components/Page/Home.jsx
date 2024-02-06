@@ -41,9 +41,16 @@ function Home() {
     <div className="bg-cream h-screen flex flex-col items-center ">
         <Header />
     {userData && (
-        <div className=" bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom mt-8 flex flex-col font-playfair w-8/10 h-8/10 ">
-            <h2 className="">Bonjour <span className="font-bold"> {userData.name} </span></h2>
+         <div className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-8 flex flex-col font-playfair w-9.5/10 h-8/10">
+         <h2 className="border-b-2 pb-4 border-blue-strong">Bonjour <span className="font-bold">{userData.name},</span></h2>
             
+            <ul className="flex-col p-4 flex gap-2">
+              Evenement de la semaine
+
+              <li>premier evenement</li>
+              <li>deuxieme evenement</li>
+              <li>Troisieme evenement</li>
+            </ul>
         </div>
       )}
     </div>
