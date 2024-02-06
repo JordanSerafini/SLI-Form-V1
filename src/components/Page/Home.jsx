@@ -41,7 +41,7 @@ function Home() {
     <div className="bg-cream h-screen flex flex-col items-center ">
         <Header />
     {userData && (
-        <div className=" bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom mt-8 flex flex-col font-playfair ">
+        <div className=" bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom mt-8 flex flex-col font-playfair w-8/10 h-8/10 ">
             <h2 className="">Bonjour <span className="font-bold"> {userData.name} </span></h2>
             
         </div>
