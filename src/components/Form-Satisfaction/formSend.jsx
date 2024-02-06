@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import axios from 'axios';
 
-import RatingContext from '../context/RatingContext';
+import RatingContext from '../../context/RatingContext';
 
 const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com';
 
@@ -21,7 +21,6 @@ function FormSend() {
 
         if (response.status === 200) {
           alert('Données envoyées avec succès.');
-          window.location.reload(); 
         } else {
           console.error('Erreur lors de la requête POST :', response.statusText);
         }

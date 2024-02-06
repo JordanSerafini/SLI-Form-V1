@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import RatingContext from "../context/RatingContext";
+import RatingContext from "../../context/RatingContext";
 
 
 function FormId() {

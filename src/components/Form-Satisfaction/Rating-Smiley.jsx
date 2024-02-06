@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import { Rating, initTE } from "tw-elements";
-import RatingContext from "../context/RatingContext";
+import RatingContext from "../../context/RatingContext";
 
 const RatingSmiley = ({value, formID}) => {
  

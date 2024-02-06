@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import RatingSmiley from "./Rating-Smiley";
 
-import RatingContext from "../context/RatingContext";
+import RatingContext from "../../context/RatingContext";
 
 function FormLine({ title, children, formID }) {
   const childrenArray = React.Children.toArray(children);
