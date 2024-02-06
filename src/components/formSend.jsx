@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import RatingContext from '../context/RatingContext';
 
-const apiUrl = 'https://back-form.vercel.app';
+const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com/';
 
 function FormSend() {
   const { user, commentArray, rateArray } = useContext(RatingContext);
