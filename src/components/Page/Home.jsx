@@ -5,21 +5,21 @@ const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com';
 
 function Home() {
   const [userData, setUserData] = useState(null);
-  const email = localStorage.getItem('email');
-  console.log('email:', email);
+  const token = localStorage.getItem('token');
+  console.log('Token:', token);
 
   useEffect(() => {
     const fetchUserData = async () => {
 
-      if (!email) {
-        console.error('email non trouvé dans le localStorage');
+      if (!token) {
+        console.error('Token non trouvé dans le localStorage');
         return;
       }
 
       try {
         const response = await axios.get(`${apiUrl}/getUtilisateurInfo`, {
           headers: {
-            Authorization: `Bearer ${email}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         console.log(response);
