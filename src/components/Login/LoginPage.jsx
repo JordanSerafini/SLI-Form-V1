@@ -9,7 +9,7 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const navigate = useNavigate(); // Hook pour la redirection
+    const navigate = useNavigate(); 
   
     const handleLogin = async (event) => {
       event.preventDefault();
