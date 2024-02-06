@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+import Header from "../Header/Header";
+
 const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com';
 
 function Home() {
   const [userData, setUserData] = useState(null);
   const token = localStorage.getItem('token');
-  console.log('Token:', token);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -22,8 +23,8 @@ function Home() {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(response);
-        console.log(response.data);
+        //console.log(response);
+        //console.log(response.data);
 
         if (response.data) {
           setUserData(response.data);
@@ -34,16 +35,15 @@ function Home() {
     };
 
     fetchUserData();
-  }, []);
+  }, [token]);
 
   return (
-    <div>
-      <h1>Home</h1>
-      {userData && (
+    <div className="bg-cream h-screen flex flex-col  items-center ">
+        <Header />
+    {userData && (
         <div>
-          <h2>Informations de l&apos;utilisateur :</h2>
-          <p>Nom : {userData.name}</p>
-          <p>Email : {userData.email}</p>
+            <h2>Bonjour {userData.name} !</h2>
+            
         </div>
       )}
     </div>

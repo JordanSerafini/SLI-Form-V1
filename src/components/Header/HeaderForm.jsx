@@ -1,4 +1,4 @@
-import logoSLI from '../assets/logoSLI.png'
+import logoSLI from '../../assets/logoSLI.png'
 
 function Header() {
   
