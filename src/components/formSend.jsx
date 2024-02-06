@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import RatingContext from '../context/RatingContext';
 
-const apiUrl = 'http://localhost:5000';
+const apiUrl = 'https://back-form.vercel.app';
 
 function FormSend() {
   const { user, commentArray, rateArray } = useContext(RatingContext);
