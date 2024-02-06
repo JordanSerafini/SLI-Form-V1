@@ -8,7 +8,8 @@ function Home() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const token = localStorage.getItem('token'); // Récupérez le token JWT depuis le localStorage
+      const token = localStorage.getItem('token');
+      console.log('Token:', token);
 
       if (!token) {
         console.error('Token non trouvé dans le localStorage');
