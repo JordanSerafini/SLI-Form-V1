@@ -38,12 +38,10 @@ function Home() {
   }, [token]);
 
   return (
-    <div className="bg-cream h-screen flex flex-col  items-center ">
+    <div className="bg-cream h-screen flex flex-col items-center ">
         <Header />
     {userData && (
-        <div className="pt-4 bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom mt-8 flex flex-col font-playfair "
-        style={{width: "90%" , height: "100%"}} id="home
-        ">
+        <div className=" bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom mt-8 flex flex-col font-playfair ">
             <h2 className="">Bonjour <span className="font-bold"> {userData.name} </span></h2>
             
         </div>
