@@ -8,18 +8,24 @@ function Home() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-        const email = localStorage.getItem('email');
+      const token = localStorage.getItem('token'); // Récupérez le token JWT depuis le localStorage
+
+      if (!token) {
+        console.error('Token non trouvé dans le localStorage');
+        return;
+      }
+
       try {
-        const response = await axios.post(`${apiUrl}/getUtilisateurInfo`, {
-          email: email
+        const response = await axios.get(`${apiUrl}/getUtilisateurInfo`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Ajoutez le token JWT dans l'en-tête de la requête
+          },
         });
         console.log(response);
         console.log(response.data);
 
-
         if (response.data) {
           setUserData(response.data);
-          
         }
       } catch (error) {
         console.error('Erreur lors de la récupération des données de l\'utilisateur:', error);
@@ -27,7 +33,7 @@ function Home() {
     };
 
     fetchUserData();
-  }, []); 
+  }, []);
 
   return (
     <div>
