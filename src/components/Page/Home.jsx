@@ -53,7 +53,7 @@ function Home() {
 
   // Envoi du formulaire de satisfaction
   const sendForm = async () => {
-    if (!emailToSend) {
+    if (!emailToSend || emailToSend === "") {
       showToast("Veuillez entrer une adresse e-mail.", {
         position: "bottom-center",
         autoClose: 3000,
@@ -76,9 +76,12 @@ function Home() {
       );
 
       showToast(response.data.message, {
-        position: "top-center",
+        position: "bottom-center",
         autoClose: 3000,
       });
+      
+      setShowEmailInput(false);
+      setEmailToSend("");
     } catch (error) {
       console.error(
         "Erreur lors de l'envoi du formulaire de satisfaction:",
