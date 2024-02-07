@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
+import LogoDeco from '../../assets/logoDeco.png';
 
 import RatingContext from "../../context/RatingContext";
 
@@ -19,7 +20,7 @@ const LogoutBtn = () => {
     };
 
     return (
-        <button className="bg-blue-500 text-white rounded-md px-4 py-2 " onClick={handleLogout}>Déconnexion</button>
+        <img src={LogoDeco} alt="Déconnexion" className="fixed bottom-0 right-0 m-4 cursor-pointer" onClick={handleLogout} />
     );
 };
 
