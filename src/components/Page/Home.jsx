@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import Header from "../Header/Header";
 
-const apiUrl = 'http://localhost:5000'; // http://localhost:5000  // https://serene-tundra-37919-d1478ece3cff.herokuapp.com
+const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com'; // http://localhost:5000  // https://serene-tundra-37919-d1478ece3cff.herokuapp.com
 
 function Home() {
   const [userData, setUserData] = useState(null);
