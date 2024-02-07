@@ -2,7 +2,7 @@ import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogoSLI from '../../assets/logoSLI.png';
 
-const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com';
+const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com'; // http://localhost:5000 https://serene-tundra-37919-d1478ece3cff.herokuapp.com
 
 
 function LoginPage() {

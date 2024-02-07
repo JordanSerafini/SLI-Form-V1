@@ -3,13 +3,50 @@ import FormLine from "./Form-Line";
 import FormLine2 from "./FormLine2";
 import FormId from "./Form-Id";
 import FormSend from "./formSend";
+import axios from "axios";
 
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import RatingContext from "../../context/RatingContext";
 
 import { RatingProvider } from "../../context/RatingContext";
 
 function FormPage() {
+
+    const [isValidToken, setIsValidToken] = useState(false);
+  
+    useEffect(() => {
+      const fetchTokenValidity = async () => {
+        const searchParams = new URLSearchParams(window.location.search);
+        const token = searchParams.get('token');
+        if (token) {
+          try {
+            // Valider le token côté serveur
+            const response = await axios.get(`http://localhost:5000/validateToken?token=${token}`);
+            if (response.data.isValid) {
+              setIsValidToken(true);
+            } else {
+              setIsValidToken(false);
+            }
+          } catch (error) {
+            console.error("Erreur lors de la validation du token:", error);
+            setIsValidToken(false);
+          }
+        } else {
+          setIsValidToken(false);
+        }
+      };
+  
+      fetchTokenValidity();
+    }, []);
+  
+    if (!isValidToken) {
+      return (
+        <div>
+          <p>Le token est invalide. Veuillez vérifier le lien.</p>
+        </div>
+      );
+    }
+
   function TotalDisplay() {
     const { averageRating } = useContext(RatingContext);
 
