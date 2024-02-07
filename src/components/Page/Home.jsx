@@ -14,6 +14,7 @@ function Home() {
   const [userData, setUserData] = useState(null);
   const [showEmailInput, setShowEmailInput] = useState(false);
   const [emailToSend, setEmailToSend] = useState("");
+  const [currentDate, setCurrentDate] = useState(""); 
   const token = localStorage.getItem("token");
 
   // Récupération des données de l'utilisateur
@@ -90,11 +91,20 @@ function Home() {
     }
   };
 
+  useEffect(() => {
+    if (userData) {
+      const currentDate = new Date().toLocaleDateString("fr-FR"); // Obtenir la date du jour au format français
+      setCurrentDate(currentDate);
+
+    }
+  }, [userData]);
+
   return (
     <div className="bg-cream h-screen flex flex-col items-center">
       <Header />
 
-      <div className="bg-white  text-center shadow-custom pt-8 pb-8 flex flex-col font-playfair w-10/10 gap-4 ">
+      <div className="bg-white  text-center shadow-custom pt-4 pb-8 flex flex-col font-playfair w-10/10 gap-4 ">
+        <div className="font-bold self-end pr-2 ">{currentDate}</div>
         <div className="text-sm">
           Bienvenue sur votre espace personnel{" "}
           <span className="font-bold">{userData && userData.name}</span>

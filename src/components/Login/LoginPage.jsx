@@ -44,12 +44,12 @@ function LoginPage() {
   };
 
   return (
-    <div className="bg-cream h-screen flex justify-center items-center ">
-      <div className="flex flex-col gap-14">
+    <div className="bg-cream h-screen flex justify-center pt-36">
+      <div className="flex flex-col gap-16">
         <img
           src={LogoSLI}
           alt="Logo SLI"
-          className="w-30 h-25 mx-auto border rounded-full"
+          className="w-8.5/10  mx-auto border rounded-full"
         />
         <form onSubmit={handleLogin}>
           <div className="mb-4">
