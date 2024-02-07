@@ -77,8 +77,8 @@ function Home() {
   
     try {
       const response = await axios.post(
-        //`${apiUrl}/sendForm`,
-        `https://sli-form.netlify.app/sendForm`,
+        `${apiUrl}/sendForm`,
+        //`https://sli-form.netlify.app/sendForm`,
         { email: emailToSend }, 
         {
           headers: {
