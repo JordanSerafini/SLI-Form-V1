@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 function PrivateRoute({ element }) {
   const jwt = localStorage.getItem('token');
+  //console.log(jwt);
 
   //const isAuthenticated = true;
 
