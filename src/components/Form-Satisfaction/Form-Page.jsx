@@ -68,13 +68,14 @@ function FormPage() {
           {/*---------- 4eme Form ------------ */}
 
           <FormLine2 formID="4" />
-        </div>
+        
 
         {/*---------- Total Display ------------ */}
 
         <div className=" gap-4 bg-white rounded-xl border-brownperso border-4 p-4 shadow-custom w-9/10 mt-10 flex flex-col font-playfair ">
           <TotalDisplay />
           <FormSend />
+        </div>
         </div>
       </div>
     </RatingProvider>
