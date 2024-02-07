@@ -12,7 +12,7 @@ const LogoutBtn = () => {
         localStorage.removeItem('token');
 
         // Affichez un message de déconnexion
-        showToast('Vous avez été déconnecté avec succès' , { position: "bottom-right" });
+        showToast('Vous avez été déconnecté avec succès' , { position: "bottom-right", autoClose: 1500});
 
         // Redirigez l'utilisateur vers la page de connexion
         navigate('/login');
