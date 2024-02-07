@@ -28,6 +28,7 @@ function PrivateRoute({ element }) {
   if (jwt || tokenFromURL) {
     return element;
   } else {
+    
     return <Navigate to="/login" />;
   }
 }

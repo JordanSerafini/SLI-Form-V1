@@ -3,18 +3,14 @@ import FormLine from "./Form-Line";
 import FormLine2 from "./FormLine2";
 import FormId from "./Form-Id";
 import FormSend from "./formSend";
-import axios from "axios";
 
-import BackUrl from "../../Axios/backUrl";
 
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import RatingContext from "../../context/RatingContext";
 
 import { RatingProvider } from "../../context/RatingContext";
 
 function FormPage() {
-
-  
 
   function TotalDisplay() {
     const { averageRating } = useContext(RatingContext);
