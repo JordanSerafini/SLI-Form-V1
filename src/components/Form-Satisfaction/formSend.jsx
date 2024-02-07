@@ -19,7 +19,7 @@ function FormSend() {
         });
 
         if (response.status === 200) {
-          showToast('Données envoyées avec succès.', { position: 'bottom-center', autoClose: 3000 });
+          showToast('Merci, vos données ont été envoyées avec succès.', { position: 'bottom-center', autoClose: 3000 });
           setTimeout(() => {
             window.location.href = '/login';
           }, 2500); 
