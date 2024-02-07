@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import LogoSLI from '../../assets/logoSLI.png';
 import BackUrl from '../../Axios/backUrl';
 
-const apiUrl = BackUrl.local; 
+const apiUrl = BackUrl; 
 
 
 function LoginPage() {

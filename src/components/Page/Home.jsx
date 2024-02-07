@@ -7,7 +7,7 @@ import backUrl from "../../Axios/backUrl";
 import Header from "../Header/Header";
 import LogoutBtn from "../Login/LogoutBtn";
 
-const apiUrl = backUrl.local; 
+const apiUrl = backUrl; 
 
 function Home() {
 
@@ -77,7 +77,8 @@ function Home() {
   
     try {
       const response = await axios.post(
-        `${apiUrl}/sendForm`,
+        //`${apiUrl}/sendForm`,
+        `https://sli-form.netlify.app/sendForm`,
         { email: emailToSend }, 
         {
           headers: {

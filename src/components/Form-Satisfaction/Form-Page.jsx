@@ -23,7 +23,7 @@ function FormPage() {
         if (token) {
           try {
             // Valider le token côté serveur
-            const response = await axios.get(`${BackUrl.local}/validateToken?token=${token}`);
+            const response = await axios.get(`${BackUrl}/validateToken?token=${token}`);
             if (response.data.isValid) {
               setIsValidToken(true);
             } else {
