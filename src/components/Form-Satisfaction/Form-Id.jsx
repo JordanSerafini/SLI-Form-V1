@@ -10,15 +10,31 @@ function FormId() {
     date: ''
   });
 
+  useEffect(() => {
+    handleUserSubmit(userInfo);
+  }, [userInfo, handleUserSubmit]);
+
+  // Fonction pour obtenir la date actuelle au format YYYY-MM-DD
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  useEffect(() => {
+    // Auto-compléter la date au chargement du composant
+    setUserInfo(prevState => ({
+      ...prevState,
+      date: getCurrentDate()
+    }));
+  }, []); // Utilisez une dépendance vide pour que cela se produise uniquement lors du premier rendu
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
-
-  useEffect(() => {
-      handleUserSubmit(userInfo);
-    
-  }, [userInfo, handleUserSubmit]);
 
   return (
     <>
@@ -32,6 +48,7 @@ function FormId() {
             <input
               type="text"
               name="name"
+              value={userInfo.name}
               onChange={handleChange}
               className="form-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
@@ -41,6 +58,7 @@ function FormId() {
             <input
               type="text"
               name="fonction"
+              value={userInfo.fonction}
               onChange={handleChange}
               className="form-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
@@ -50,6 +68,7 @@ function FormId() {
             <input
               type="date"
               name="date"
+              value={userInfo.date}
               onChange={handleChange}
               className="form-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
