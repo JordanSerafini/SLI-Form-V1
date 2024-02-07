@@ -140,7 +140,7 @@ function Home() {
         {/*------------------------ Encard Planing ----------------------------- */}
         <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 ">
           <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
-          Consulter mes rendez vous
+          Programmer une action
         </div>
       </div>
 
