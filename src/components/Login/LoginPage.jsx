@@ -46,7 +46,7 @@ function LoginPage() {
 
   return (
     <div className="bg-cream h-screen flex justify-center pt-36">
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-24">
         <img
           src={LogoSLI}
           alt="Logo SLI"
