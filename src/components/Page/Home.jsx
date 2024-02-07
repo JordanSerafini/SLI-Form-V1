@@ -51,7 +51,7 @@ function Home() {
   // Gestion Toast de bienvenue
   useEffect(() => {
     if (userData) {
-      showToast(`Bienvenue ${userData.name}`);
+      showToast(`Bienvenue ${userData.name}`, { position: "top-center" });
     }
   }, [userData, showToast]);
 

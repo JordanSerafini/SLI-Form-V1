@@ -86,14 +86,14 @@ export const RatingProvider = ({ children }) => {
   }, [rateArray]);
 
   
-  const showToast = (msg) => {
-    toast(msg); 
+  const showToast = (msg, options = {}) => {
+    toast(msg, options); 
   };
 
   return (
     <RatingContext.Provider value={{ user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast }}>
       {children}
-      <ToastContainer position="bottom-right" />
+      <ToastContainer />
     </RatingContext.Provider>
   );
 };
