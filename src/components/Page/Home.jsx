@@ -91,7 +91,7 @@ function Home() {
     <div className="bg-cream h-screen flex flex-col items-center">
       <Header />
 
-      <div className="bg-white  p-2 shadow-custom pt-8 pb-8 flex flex-col font-playfair w-10/10 gap-2 ">
+      <div className="bg-white  text-center shadow-custom pt-8 pb-8 flex flex-col font-playfair w-10/10 gap-4 ">
         <div className="text-sm">
           Bienvenue sur votre espace personnel{" "}
           <span className="font-bold">{userData && userData.name}</span>
@@ -99,10 +99,10 @@ function Home() {
         <div className="text-sm">Que souhaitez vous faire?</div>
       </div>
 
-      <div className="flex flex-col flex-wrap gap-4 items-center justify-center">
+      <div className="flex flex-row flex-wrap gap-4 justify-center">
         {/*------------------------ Encard envoi formsend ----------------------------- */}
         {userData && (
-          <div className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair w-full ">
+          <div className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair w-9.5/10">
             <div
               className="text-sm flex items-center"
               onClick={() => setShowEmailInput(!showEmailInput)}
@@ -128,13 +128,14 @@ function Home() {
             )}
           </div>
         )}
-        {/*------------------------ Encard envoi formsend ----------------------------- */}
-        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-full ">
-        <img
-                src={logoTodo}
-                alt="Logo Formulaire"
-                className="w-6 h-6 mr-2"
-              />{" "}
+        {/*------------------------ Encard Planing ----------------------------- */}
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 ">
+          <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
+          Consulter mes rendez vous
+        </div>
+        {/*------------------------ Encard Planing ----------------------------- */}
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 ">
+          <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
           Consulter mes rendez vous
         </div>
       </div>
