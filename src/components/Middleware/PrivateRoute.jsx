@@ -1,7 +1,6 @@
 import { Navigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import RatingContext from "../../context/RatingContext";
-import { useEffect } from 'react'; 
 import PropTypes from 'prop-types';
 
 function PrivateRoute({ element }) {
@@ -9,29 +8,31 @@ function PrivateRoute({ element }) {
   const jwt = localStorage.getItem('token');
 
   useEffect(() => {
-    // Vérifier si le token est présent dans l'URL en tant que paramètre
-    const queryParams = new URLSearchParams(window.location.search);
-    const tokenFromURL = queryParams.get('token');
+    // Vérifier si le token est présent dans le header Authorization
+    const tokenFromHeader = getTokenFromHeader();
 
-    // Si le token est présent dans l'URL, afficher un message
-    if (tokenFromURL) {
+    // Si le token est présent dans le header, afficher un message
+    if (tokenFromHeader) {
       showToast("Vous avez été redirigé vers cette page avec un token.");
-    }
-
-    // Vérifier si l'utilisateur est connecté
-    if (!jwt && !tokenFromURL) {
+    } else {
+      // Si aucun token n'est présent dans le header, rediriger vers la page de connexion
       showToast("Vous devez vous connecter pour accéder à cette page.");
+      return <Navigate to="/login" />;
     }
-  }, [jwt, showToast]);
+  }, [showToast]);
 
-  // eslint-disable-next-line no-undef
-  if (jwt || tokenFromURL) {
-    return element;
-  } else {
-    
-    return <Navigate to="/login" />;
-  }
+  // Rend le composant cible si le token est présent
+  return element;
 }
+
+// Fonction utilitaire pour extraire le token du header Authorization
+const getTokenFromHeader = () => {
+  const authHeader = localStorage.getItem('Authorization');
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    return authHeader.substring(7);
+  }
+  return null;
+};
 
 PrivateRoute.propTypes = {
   element: PropTypes.element.isRequired,

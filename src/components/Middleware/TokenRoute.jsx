@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
-import { useToasts } from 'react-toast-notifications';
 
 const TokenRoute = ({ element: Component, ...rest }) => {
   const [isValid, setIsValid] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
   const location = useLocation();
-  const { addToast } = useToasts(); // Utilisation de react-toast-notifications
 
   useEffect(() => {
     const token = new URLSearchParams(location.search).get('token');
@@ -25,10 +23,11 @@ const TokenRoute = ({ element: Component, ...rest }) => {
 
   useEffect(() => {
     if (!isValid && !isChecking) {
-      // Affiche un toast si le token est invalide
-      addToast('Token invalide. Veuillez contacter votre commercial.', { appearance: 'error' });
+      // Affiche un message d'erreur dans la console si le token est invalide
+      alert('Token invalide. Veuillez contacter votre commercial.');
+      console.error('Token invalide. Veuillez contacter votre commercial.');
     }
-  }, [isValid, isChecking, addToast]);
+  }, [isValid, isChecking]);
 
   if (isChecking) {
     // Vous pouvez afficher un loader ici ou simplement null pendant la vérification
