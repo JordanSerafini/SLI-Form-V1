@@ -6,39 +6,36 @@ const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com';
 
 
 function LoginPage() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const navigate = useNavigate(); 
-  
-    const handleLogin = async (event) => {
+  const navigate = useNavigate();
+
+  const handleLogin = async (event) => {
       event.preventDefault();
-  
+
       try {
-        const response = await fetch(`${apiUrl}/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        });
-  
-        if (!response.ok) {
-          throw new Error(`Erreur HTTP : ${response.status}`);
-        }
-  
-        const { token } = await response.json();
-        //console.log('Token:', token);   
-        localStorage.setItem('token', token);
-        localStorage.setItem('email', email);
+          const response = await fetch(`${apiUrl}/login`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email, password }),
+          });
 
-        navigate('/home'); 
+          if (!response.ok) {
+              throw new Error(`Erreur HTTP : ${response.status}`);
+          }
 
+          const { token } = await response.json();
+          localStorage.setItem('token', token);
+          localStorage.setItem('email', email);
+          navigate('/home');
       } catch (error) {
-        console.error('Échec de la connexion:', error);
-        alert('Échec de la connexion');
-      }
-    };
+          console.error('Échec de la connexion:', error);
+  }
+}
+
     return (
         <div className="bg-cream h-screen flex justify-center items-center ">
             <div className='flex flex-col gap-14'>
@@ -76,7 +73,7 @@ function LoginPage() {
                         Connexion
                     </button>
                 </form>
-            </div>
+            </div>           
         </div>
     );
 }

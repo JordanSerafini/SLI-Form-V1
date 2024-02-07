@@ -1,11 +1,17 @@
 import  { createContext, useState, useMemo } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const RatingContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const RatingProvider = ({ children }) => {
   const [rateArray, setRateArray] = useState([]);
   const [commentArray, setCommentArray] = useState([]);
   const [user , setUser] = useState({});
+  // eslint-disable-next-line no-unused-vars
+
 
   const handleRatingSubmit = (ratingData) => {
     // Vérifiez si l'objet avec le même questionID et formID existe déjà
@@ -79,10 +85,15 @@ export const RatingProvider = ({ children }) => {
     return { average: Math.ceil(average), comment };
   }, [rateArray]);
 
+  
+  const showToast = (msg) => {
+    toast(msg); 
+  };
 
   return (
-    <RatingContext.Provider value={{ user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit }}>
+    <RatingContext.Provider value={{ user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast }}>
       {children}
+      <ToastContainer position="bottom-right" />
     </RatingContext.Provider>
   );
 };
