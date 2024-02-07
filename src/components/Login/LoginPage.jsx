@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import LogoSLI from "../../assets/logoSLI.png";
 import BackUrl from "../../Axios/backUrl";
@@ -36,7 +36,7 @@ function LoginPage() {
       localStorage.setItem("email", email);
       navigate("/home");
     } catch (error) {
-        showToast(`Erreur: ${error}`, {
+        showToast(`Identifiant ou mot de passe incorrect`, {
             position: "bottom-center",
             autoClose: 3000,
           });
