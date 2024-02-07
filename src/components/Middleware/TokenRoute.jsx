@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 
+// eslint-disable-next-line react/prop-types
 const TokenRoute = ({ element: Component, ...rest }) => {
   const [isValid, setIsValid] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
