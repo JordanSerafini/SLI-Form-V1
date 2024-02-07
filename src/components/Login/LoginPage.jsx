@@ -28,7 +28,8 @@ function LoginPage() {
       });
 
       if (!response.ok) {
-        throw new Error(`Erreur HTTP : ${response.status}`);
+        const errorMessage = await response.json();
+        throw new Error(errorMessage.message);
       }
 
       const { token } = await response.json();
@@ -36,10 +37,10 @@ function LoginPage() {
       localStorage.setItem("email", email);
       navigate("/home");
     } catch (error) {
-        showToast(`Identifiant ou mot de passe incorrect`, {
-            position: "bottom-center",
-            autoClose: 3000,
-          });
+      showToast(error.message , {
+        position: "bottom-center",
+        autoClose: 3000,
+      });
     }
   };
 
