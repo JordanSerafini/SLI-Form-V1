@@ -16,14 +16,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
-        
         <Route path="/form-satisfaction" element={<TokenRoute element={FormPage} />} />
-
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />
       </Routes>
-
-
-     
+ 
     </Router>
     </RatingProvider>
   );
