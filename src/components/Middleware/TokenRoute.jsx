@@ -1,41 +1,59 @@
 import { useEffect, useState } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
+import axios from 'axios'; // Assurez-vous d'avoir installé axios
+import { useToasts } from 'react-toast-notifications'; // Assurez-vous d'avoir installé react-toast-notifications
+import BackUrl from '../../Axios/backUrl';
+
+// Remplacez par l'URL de votre API
+const API_URL = `${BackUrl}/validateToken`;
 
 // eslint-disable-next-line react/prop-types
 const TokenRoute = ({ element: Component, ...rest }) => {
   const [isValid, setIsValid] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
   const location = useLocation();
+  const { addToast } = useToasts();
 
   useEffect(() => {
     const token = new URLSearchParams(location.search).get('token');
-    
-    // Ici, vous pourriez ajouter une logique pour valider le token côté serveur
-    // Pour cet exemple, nous considérons simplement la présence du token comme suffisante
-    if (token) {
-      // Validez le token ici (par exemple, en vérifiant son format ou en faisant une requête au serveur)
-      setIsValid(true);
-      console.log("TokenRoute: token is valid");
-    } else {
-      setIsValid(false);
-      console.log("TokenRoute: token is invalid");
-    }
 
-    setIsChecking(false);
-  }, [location]);
+    if (token) {
+      // Valider le token côté serveur
+      axios.get(API_URL, { params: { token } })
+        .then(response => {
+          // Suppose que l'API renvoie { isValid: true } pour un token valide
+          if (response.data.isValid) {
+            setIsValid(true);
+            console.log("TokenRoute: token is valid");
+          } else {
+            setIsValid(false);
+            console.log("TokenRoute: token is invalid or expired");
+            addToast('Token invalide. Veuillez contacter votre commercial.', { appearance: 'error' });
+          }
+        })
+        .catch(error => {
+          console.error("Error during token validation:", error);
+          setIsValid(false);
+        })
+        .finally(() => setIsChecking(false));
+    } else {
+      console.log("TokenRoute: no token provided");
+      setIsValid(false);
+      setIsChecking(false);
+    }
+  }, [location, addToast]);
 
   if (isChecking) {
-    // Vous pouvez afficher un loader ici ou simplement null pendant la vérification
+    // Afficher un loader ou null pendant la vérification
     return <div>Chargement...</div>;
   }
 
   if (!isValid) {
-    // Redirige l'utilisateur si le token est invalide ou manquant
-    
+    // Rediriger si le token est invalide ou manquant
     return <Navigate to="/login" />;
   }
 
-  // Rend le composant cible si le token est valide
+  // Rendre le composant cible si le token est valide
   return <Component {...rest} />;
 };
 
