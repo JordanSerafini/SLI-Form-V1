@@ -9,7 +9,7 @@ function PrivateRoute({ element }) {
   // Vérifie si le token est présent
   useEffect(() => {
     if (!jwt) {
-      showToast("Vous devez être connecté pour accéder à cette page", { position: "top-center", autoClose: 3000 });
+      showToast("Vous devez être connecté pour accéder à cette page", { position: "top-center", autoClose: 5000 });
       navigateToLogin(); // Redirection vers la page de connexion
     }
   }, [jwt, showToast]);
