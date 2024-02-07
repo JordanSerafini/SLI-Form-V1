@@ -17,9 +17,14 @@ function PrivateRoute({ element }) {
     } else {
       // Si aucun token n'est présent dans le header, rediriger vers la page de connexion
       showToast("Vous devez vous connecter pour accéder à cette page.");
-      return <Navigate to="/login" />;
+      navigateToLogin(); // Redirection vers la page de connexion
     }
-  }, []);
+  }, [showToast]);
+
+  // Fonction pour effectuer la redirection vers la page de connexion
+  const navigateToLogin = () => {
+    return <Navigate to="/login" />;
+  };
 
   // Rend le composant cible si le token est présent
   return element;
