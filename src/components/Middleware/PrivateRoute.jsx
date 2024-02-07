@@ -19,7 +19,7 @@ function PrivateRoute({ element }) {
       showToast("Vous devez vous connecter pour accéder à cette page.");
       return <Navigate to="/login" />;
     }
-  }, [showToast]);
+  }, []);
 
   // Rend le composant cible si le token est présent
   return element;
