@@ -20,7 +20,9 @@ function FormSend() {
 
         if (response.status === 200) {
           showToast('Données envoyées avec succès.', { position: 'bottom-center', autoClose: 3000 });
-          window.location.href = '/login'; // Redirection vers la page de connexion après l'envoi réussi
+          setTimeout(() => {
+            window.location.href = '/login';
+          }, 2500); 
         } else {
           console.error('Erreur lors de la requête POST :', response.statusText);
           showToast('Une erreur est survenue lors de l\'envoi des données.', { position: 'bottom-center', autoClose: 3000 });
