@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 import Header from "../Header/Header";
+import LogoutBtn from "../Login/LogoutBtn";
 
 const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com'; // http://localhost:5000  // https://serene-tundra-37919-d1478ece3cff.herokuapp.com
 
@@ -53,6 +54,7 @@ function Home() {
             </ul>
         </div>
       )}
+      <LogoutBtn />
     </div>
   );
 }
