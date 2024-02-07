@@ -8,7 +8,6 @@ import FormSend from "./formSend";
 import { useContext } from "react";
 import RatingContext from "../../context/RatingContext";
 
-import { RatingProvider } from "../../context/RatingContext";
 
 function FormPage() {
 
@@ -24,7 +23,6 @@ function FormPage() {
   }
 
   return (
-    <RatingProvider>
       <div className="bg-cream">
         <Header />
         <div className="flex flex-col items-center justify-center w-full  text-blue-light">
@@ -78,7 +76,6 @@ function FormPage() {
         </div>
         </div>
       </div>
-    </RatingProvider>
   );
 }
 
