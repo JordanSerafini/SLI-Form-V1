@@ -79,7 +79,7 @@ function Home() {
         position: "bottom-center",
         autoClose: 3000,
       });
-      
+
       setShowEmailInput(false);
       setEmailToSend("");
     } catch (error) {
@@ -121,6 +121,7 @@ function Home() {
             {showEmailInput && (
               <div>
                 <input
+                  className="border-brownperso border-2 rounded-md p-1 mt-2 mr-4"
                   type="email"
                   placeholder="Adresse e-mail"
                   value={emailToSend}

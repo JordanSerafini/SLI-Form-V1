@@ -20,7 +20,7 @@ const LogoutBtn = () => {
     };
 
     return (
-        <img src={LogoDeco} alt="Déconnexion" className="fixed bottom-0 right-0 m-4 cursor-pointer" onClick={handleLogout} />
+        <img src={LogoDeco} alt="Déconnexion" className="fixed z-50 bottom-0 right-0 m-4 cursor-pointer" onClick={handleLogout} />
     );
 };
 
