@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import RatingContext from "../../context/RatingContext";
+import backUrl from "../../Axios/backUrl";
 
 
 import Header from "../Header/Header";
 import LogoutBtn from "../Login/LogoutBtn";
 
-const apiUrl = 'https://serene-tundra-37919-d1478ece3cff.herokuapp.com'; // http://localhost:5000 https://serene-tundra-37919-d1478ece3cff.herokuapp.com
+const apiUrl = backUrl.local; 
 
 function Home() {
 
@@ -66,7 +67,6 @@ function Home() {
       });
       return;
     }
-  
     if (!token) {
       showToast("Vous devez vous connecter pour envoyer le formulaire.", {
         position: "top-center",
@@ -78,7 +78,7 @@ function Home() {
     try {
       const response = await axios.post(
         `${apiUrl}/sendForm`,
-        { email: emailToSend }, // Correction de la clé ici
+        { email: emailToSend }, 
         {
           headers: {
             Authorization: `Bearer ${token}`,

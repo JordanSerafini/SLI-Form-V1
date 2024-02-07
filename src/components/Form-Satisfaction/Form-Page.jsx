@@ -5,6 +5,8 @@ import FormId from "./Form-Id";
 import FormSend from "./formSend";
 import axios from "axios";
 
+import BackUrl from "../../Axios/backUrl";
+
 import { useContext, useState, useEffect } from "react";
 import RatingContext from "../../context/RatingContext";
 
@@ -21,7 +23,7 @@ function FormPage() {
         if (token) {
           try {
             // Valider le token côté serveur
-            const response = await axios.get(`http://localhost:5000/validateToken?token=${token}`);
+            const response = await axios.get(`${BackUrl.local}/validateToken?token=${token}`);
             if (response.data.isValid) {
               setIsValidToken(true);
             } else {
