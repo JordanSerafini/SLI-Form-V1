@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import RatingContext from "../../context/RatingContext";
 import backUrl from "../../Axios/backUrl";
+import { useNavigate } from "react-router-dom";
 
 import Header from "../Header/Header";
 import LogoutBtn from "../Login/LogoutBtn";
@@ -14,8 +15,10 @@ function Home() {
   const [userData, setUserData] = useState(null);
   const [showEmailInput, setShowEmailInput] = useState(false);
   const [emailToSend, setEmailToSend] = useState("");
-  const [currentDate, setCurrentDate] = useState(""); 
+  const [currentDate, setCurrentDate] = useState("");
   const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
 
   // Récupération des données de l'utilisateur
   useEffect(() => {
@@ -53,6 +56,14 @@ function Home() {
   }, [userData, showToast]);
 
   // Envoi du formulaire de satisfaction
+  
+  useEffect(() => {
+    if (userData) {
+      const currentDate = new Date().toLocaleDateString("fr-FR");
+      setCurrentDate(currentDate);
+    }
+  }, [userData]);
+  
   const sendForm = async () => {
     if (!emailToSend || emailToSend === "") {
       showToast("Veuillez entrer une adresse e-mail.", {
@@ -91,13 +102,9 @@ function Home() {
     }
   };
 
-  useEffect(() => {
-    if (userData) {
-      const currentDate = new Date().toLocaleDateString("fr-FR"); 
-      setCurrentDate(currentDate);
-
-    }
-  }, [userData]);
+  const handleRedirect = () => {
+    navigate("/client-list");
+  };
 
   return (
     <div className="bg-cream h-screen flex flex-col items-center">
@@ -142,10 +149,13 @@ function Home() {
             )}
           </div>
         )}
-        {/*------------------------ Encard Planing ----------------------------- */}
-        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 ">
-          <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
-          Consulter mes rendez vous
+        {/*------------------------ Encard Clients ----------------------------- */}
+        <div
+          className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10"
+          onClick={handleRedirect}
+        >
+          <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />
+          Consulter mes clients
         </div>
         {/*------------------------ Encard Planing ----------------------------- */}
         <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 ">

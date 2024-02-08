@@ -5,6 +5,7 @@ import { RatingProvider } from "./context/RatingContext";
 import FormPage from "./components/Form-Satisfaction/Form-Page";
 import LoginPage from "./components/Login/LoginPage";
 import Home from "./components/Page/Home";
+import ClientList from "./components/Page/clientList";
 import TokenRoute from "./components/Middleware/TokenRoute";
 //import { Link } from "react-router-dom";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/form-satisfaction" element={<TokenRoute element={FormPage} />} />
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />
+        <Route path="/client-list" element={<PrivateRoute element={<ClientList />} />} />
       </Routes>
  
     </Router>
