@@ -93,7 +93,7 @@ function Home() {
 
   useEffect(() => {
     if (userData) {
-      const currentDate = new Date().toLocaleDateString("fr-FR"); // Obtenir la date du jour au format français
+      const currentDate = new Date().toLocaleDateString("fr-FR"); 
       setCurrentDate(currentDate);
 
     }
