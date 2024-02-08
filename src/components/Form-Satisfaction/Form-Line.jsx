@@ -3,7 +3,15 @@ import RatingSmiley from "./Rating-Smiley";
 
 import RatingContext from "../../context/RatingContext";
 
+import PropTypes from "prop-types";
+
 function FormLine({ title, children, formID }) {
+// Add prop validation for 'title'
+FormLine.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  formID: PropTypes.string.isRequired,
+};
   const childrenArray = React.Children.toArray(children);
   const { handleCommentSubmit } = useContext(RatingContext);
   
