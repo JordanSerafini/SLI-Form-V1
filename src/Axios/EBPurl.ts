@@ -1,3 +1,3 @@
-const EBPurl = "localhost:5000";
+const EBPurl = "http://localhost:5000";
 
-  export default EBPurl;
+export default EBPurl;
