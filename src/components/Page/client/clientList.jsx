@@ -1,5 +1,5 @@
 import axios from "axios";
-import EBPurl from "../../../Axios/EBPurl";
+import backUrl from "../../../Axios/backUrl";
 import RatingContext from "../../../context/RatingContext";
 import { useContext, useEffect, useState } from "react";
 
@@ -22,7 +22,7 @@ function ClientList() {
   // Fonction pour mettre à jour la liste filtrée à chaque fois que la recherche change
   useEffect(() => {
     const filtered = clientList.filter((client) =>
-      client.Name.toLowerCase().includes(search.toLowerCase())
+      client.name.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredClients(filtered);
   }, [search, clientList]);
@@ -32,8 +32,9 @@ function ClientList() {
   useEffect(() => {
     const fetchClientList = async () => {
       try {
-        const response = await axios.get(`${EBPurl}/getAllCustomer`);
-        setClientList(response.data);
+        const response = await axios.get(`${backUrl}/customerPG`);
+        //console.log("Liste des clients :", response.data.rows);
+        setClientList(response.data.rows);
         setLoading(false);
       } catch (error) {
         console.error(
@@ -105,32 +106,32 @@ return (
 
           >
             <p>
-              <strong>Nom :</strong> {client.Name} / {client.MainInvoicingContact_Name} {client.MainInvoicingContact_FirstName} {client.Id}
+              <strong>Nom :</strong> {client.name} / {client.MainInvoicingContact_Name} {client.MainInvoicingContact_FirstName} {client.Id}
             </p>
-            {(client.MainInvoicingContact_Phone || client.MainInvoicingContact_CellPhone) && (
+            {(client.maininvoicingcontact_phone || client.maininvoicingcontact_cellphone) && (
               <div className="flex flex-col">
                 <strong>Téléphone :</strong>
                 <div className="flex flex-col flex-wrap gap-2">
-                  {client.MainInvoicingContact_Phone && (
+                  {client.maininvoicingcontact_phone && (
                     <div className="flex flex-row gap-2">
                       <img
                         src={logoTel}
                         alt="logoTel"
                         className="h-6 w-6"
-                        onClick={() => callPhoneNumber(client.MainInvoicingContact_Phone)}
+                        onClick={() => callPhoneNumber(client.maininvoicingcontact_phone)}
                       />
-                      {client.MainInvoicingContact_Phone}
+                      {client.maininvoicingcontact_phone}
                     </div>
                   )}
-                  {client.MainInvoicingContact_CellPhone && (
+                  {client.maininvoicingcontact_cellphone && (
                     <div className="flex flex-row gap-2 ">
                       <img
                         src={logoTel}
                         alt="logoTel"
                         className="h-6 w-6"
-                        onClick={() => callPhoneNumber(client.MainInvoicingContact_CellPhone)}
+                        onClick={() => callPhoneNumber(client.maininvoicingcontact_cellphone)}
                       />
-                      {client.MainInvoicingContact_CellPhone}
+                      {client.maininvoicingcontact_cellphone}
                     </div>
                   )}
                 </div>
