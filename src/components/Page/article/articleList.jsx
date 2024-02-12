@@ -1,4 +1,4 @@
-import EBPurl from "../../../Axios/EBPurl";
+import BackUrl from "../../../Axios/BackUrl";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -14,8 +14,9 @@ function ArticleList() {
   useEffect(() => {
     const fetchItemList = async () => {
       try {
-        const response = await axios.get(`${EBPurl}/item`);
-        setItemList(response.data); // Supposer que response.data est un tableau d'articles
+        const response = await axios.get(`${BackUrl}/articlePG`);
+        //console.log(response.data.rows[10].caption);
+        setItemList(response.data.rows); // Supposer que response.data est un tableau d'articles
         setLoading(false);
       } catch (error) {
         console.error("Erreur lors de la récupération de la liste des articles :", error);
@@ -38,12 +39,12 @@ function ArticleList() {
     <div>
       {itemList.length > 0 ? (
         <ul>
-          {itemList.map((item) => (
-            <li key={item.Id}> 
-              {item.Caption} - {item.SalePriceVatIncluded}e 
-            </li>
-          ))}
-        </ul>
+        {itemList.map((item, index) => (
+          <li key={index}>
+            <h3>{item.caption}</h3>
+          </li>
+        ))}
+      </ul>
       ) : (
         <div>Aucun article trouvé.</div>
       )}
