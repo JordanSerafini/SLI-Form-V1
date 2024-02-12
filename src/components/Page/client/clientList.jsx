@@ -3,7 +3,7 @@ import EBPurl from "../../../Axios/EBPurl";
 import RatingContext from "../../../context/RatingContext";
 import { useContext, useEffect, useState } from "react";
 
-import LogoutBtn from "../../Login/LogoutBtn"
+import HomeBtn from "../../Button/HomeBtn"
 
 import logoTel from "../../../assets/logoTel.png";
 
@@ -165,7 +165,7 @@ return (
         ))}
       </ul>
     )}
-    <LogoutBtn />
+    <HomeBtn />
   </div>
 );
 

@@ -35,7 +35,6 @@ export const RatingProvider = ({ children }) => {
     // Mettez à jour l'état avec le nouveau tableau
     setRateArray(newArray);
   };
-
   
   const handleCommentSubmit = (commentData) => {
     // Trouver l'index existant du commentaire avec le même formID
