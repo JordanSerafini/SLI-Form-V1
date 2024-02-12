@@ -3,7 +3,7 @@ import EBPurl from "../../../Axios/EBPurl";
 import RatingContext from "../../../context/RatingContext";
 import { useContext, useEffect, useState } from "react";
 
-import LogoutBtn from "../../../assets/logoDeco.png";
+import LogoutBtn from "../../Login/LogoutBtn"
 
 import logoTel from "../../../assets/logoTel.png";
 
@@ -97,9 +97,9 @@ return (
           <div
             key={index}
             className="
-            bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2  overflow-y-auto h-72 
-            lg:w-2/10  
-            sm:w-4/10 sm:h-52 
+            bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2  overflow-y-auto h-72 w-9/10
+            md:w-4.5/10
+            sm:0 sm:h-52
 
             "
 
