@@ -14,6 +14,21 @@ function ClientList() {
   const [currentPage, setCurrentPage] = useState(1);
   const clientsPerPage = 25;
 
+  const [search, setSearch] = useState(""); 
+  const [filteredClients, setFilteredClients] = useState([]); 
+
+
+
+  // Fonction pour mettre à jour la liste filtrée à chaque fois que la recherche change
+  useEffect(() => {
+    const filtered = clientList.filter((client) =>
+      client.Name.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredClients(filtered);
+  }, [search, clientList]);
+
+
+// ------------------------------------- Fetch les listes des clients au chargement de la page --------------------------------------------------------
   useEffect(() => {
     const fetchClientList = async () => {
       try {
@@ -51,6 +66,19 @@ function ClientList() {
     window.open(`tel:${phoneNumber}`);
   };
 
+  // Calculez le nombre total de pages
+const totalPages = Math.ceil(clientList.length / clientsPerPage);
+
+// Calculez les numéros de pages à afficher
+const pageNumbers = [];
+for (
+  let i = Math.max(1, currentPage - 5);
+  i <= Math.min(totalPages, currentPage + 5);
+  i++
+) {
+  pageNumbers.push(i);
+}
+
   return (
     <div className="bg-cream h-full flex flex-col items-center">
       <h2>Liste des clients</h2>
@@ -63,7 +91,7 @@ function ClientList() {
           {currentClients.map((client, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair w-1/10 h-96 items-center justify-start gap-2"
+              className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair w-2/10 h-96 items-center justify-start gap-2"
             >
               <p>
                 <strong>Nom :</strong> {client.Name} /{" "}
@@ -126,19 +154,21 @@ function ClientList() {
 
     { /*-------------------------------------------------------------------------------------- Pagination -----------------------------------------------------------------------------------------  */ }
     <ul className="flex flex-row gap-2">
-      {Array.from({
-        length: Math.ceil(clientList.length / clientsPerPage),
-      }).map((_, index) => (
-        <li
-          key={index}
-          className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
-        >
-          <button onClick={() => paginate(index + 1)} className="page-link">
-            {index + 1}
-          </button>
-        </li>
-      ))}
-    </ul>
+  {pageNumbers.map((number) => (
+    <li
+      key={number}
+      className={`page-item ${currentPage === number ? "active font-bold" : ""}`}
+    >
+      <button
+        onClick={() => paginate(number)}
+        className={`page-link ${currentPage === number ? "font-bold" : ""}`}
+      >
+        {number}
+      </button>
+    </li>
+  ))}
+</ul>
+
     <LogoutBtn />
   </div>
 );
