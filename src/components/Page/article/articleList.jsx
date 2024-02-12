@@ -1,4 +1,4 @@
-import BackUrl from "../../../Axios/BackUrl";
+import backUrl from "../../../Axios/backUrl";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ function ArticleList() {
   useEffect(() => {
     const fetchItemList = async () => {
       try {
-        const response = await axios.get(`${BackUrl}/articlePG`);
+        const response = await axios.get(`${backUrl}/articlePG`);
         //console.log(response.data.rows[10].caption);
         setItemList(response.data.rows); // Supposer que response.data est un tableau d'articles
         setLoading(false);
