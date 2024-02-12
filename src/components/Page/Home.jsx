@@ -48,7 +48,7 @@ function Home() {
   // Message de bienvenue
   useEffect(() => {
     if (userData) {
-      showToast(`Bienvenue ${userData.name} ,`, {
+      showToast(`Bonjour ${userData.name} ,`, {
         position: "bottom-center",
         autoClose: 3000,
       });
