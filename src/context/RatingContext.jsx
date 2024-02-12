@@ -11,7 +11,7 @@ export const RatingProvider = ({ children }) => {
   const [commentArray, setCommentArray] = useState([]);
   const [user , setUser] = useState({});
   const [clientList, setClientList] = useState([]);
-  // eslint-disable-next-line no-unused-vars
+  const [itemList, setItemList] = useState([]);
 
 
   const handleRatingSubmit = (ratingData) => {
@@ -91,7 +91,7 @@ export const RatingProvider = ({ children }) => {
   };
 
   return (
-    <RatingContext.Provider value={{ user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList }}>
+    <RatingContext.Provider value={{ user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList }}>
       {children}
       <ToastContainer />
     </RatingContext.Provider>

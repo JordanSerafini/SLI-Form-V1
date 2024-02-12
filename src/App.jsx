@@ -7,6 +7,7 @@ import LoginPage from "./components/Login/LoginPage";
 import Home from "./components/Page/Home";
 import ClientList from "./components/Page/client/clientList";
 import TokenRoute from "./components/Middleware/TokenRoute";
+import ArticleList from "./components/Page/article/articleList";
 //import { Link } from "react-router-dom";
 
 function App() {
