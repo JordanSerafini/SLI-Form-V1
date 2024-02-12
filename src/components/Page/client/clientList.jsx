@@ -3,9 +3,9 @@ import EBPurl from "../../../Axios/EBPurl";
 import RatingContext from "../../../context/RatingContext";
 import { useContext, useEffect, useState } from "react";
 
-import LogoutBtn from "../../Login/LogoutBtn";
+import LogoutBtn from "../../../assets/logoDeco.png";
 
-import logoTel from "../../assets/logoTel.png";
+import logoTel from "../../../assets/logoTel.png";
 
 function ClientList() {
   const { showToast } = useContext(RatingContext);
