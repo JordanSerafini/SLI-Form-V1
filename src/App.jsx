@@ -21,6 +21,7 @@ function App() {
         <Route path="/form-satisfaction" element={<TokenRoute element={FormPage} />} />
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />
         <Route path="/client-list" element={<PrivateRoute element={<ClientList />} />} />
+        <Route path="/article-list" element={<ArticleList />} />
       </Routes>
  
     </Router>

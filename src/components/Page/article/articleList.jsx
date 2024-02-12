@@ -4,6 +4,8 @@ import axios from "axios";
 
 import RatingContext from "../../../context/RatingContext";
 
+import HomeBtn from "../../Button/HomeBtn";
+
 function ArticleList() {
   const { showToast } = useContext(RatingContext);
   const [loading, setLoading] = useState(true);
@@ -28,24 +30,27 @@ function ArticleList() {
   }, [showToast]);
 
   if (loading) {
-    return <div>Chargement...</div>; // Ou toute autre indication de chargement que vous préférez
+    return <div>Chargement...</div>; 
   }
+
 
   return (
     <div>
       {itemList.length > 0 ? (
         <ul>
-          {itemList.map(item => (
-            <li key={item.id}> 
-              {item.name} 
+          {itemList.map((item) => (
+            <li key={item.Id}> 
+              {item.Caption} - {item.SalePriceVatIncluded}e 
             </li>
           ))}
         </ul>
       ) : (
         <div>Aucun article trouvé.</div>
       )}
+      <HomeBtn />
     </div>
   );
+  
 }
 
 export default ArticleList;

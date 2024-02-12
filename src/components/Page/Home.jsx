@@ -106,6 +106,10 @@ function Home() {
     navigate("/client-list");
   };
 
+  const articleRedirect = () => {
+    navigate("/article-list");
+  };
+
   return (
     <div className="bg-cream h-screen flex flex-col items-center">
       <Header />
@@ -158,9 +162,11 @@ function Home() {
           Consulter mes clients
         </div>
         {/*------------------------ Encard Planing ----------------------------- */}
-        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 ">
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10" 
+        onClick={articleRedirect}
+        >
           <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
-          Programmer une action
+          Accéder aux articles
         </div>
       </div>
 
