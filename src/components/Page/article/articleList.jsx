@@ -26,10 +26,7 @@ function ArticleList() {
     );
   }, [search, itemList]);
 
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-    setCurrentPage(1); // Réinitialisation à la première page lors d'une nouvelle recherche
-  };
+
 
   // Pagination des articles après filtrage
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -63,43 +60,68 @@ function ArticleList() {
 
   return (
     <div className="bg-cream h-full overflow-x-hidden flex flex-col items-center">
-      <input
-        type="text"
-        placeholder="Rechercher un article..."
-        value={search}
-        onChange={handleSearchChange}
-        className="border-2 border-gray-300 rounded-lg p-2 m-4"
-      />
+      <div
+        className="fixed top-0 bg-gradient-to-r from-blue-light to-blue-strong w-full flex justify-center box-shadow z-50"
+        style={{
+          boxShadow:
+            "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Rechercher un article..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className=" border-4 border-gray-300 rounded-lg p-2 m-4 z-10 bg-white"
+        />
+      </div>
       {currentItems.length > 0 ? (
         <>
-          <ul className="flex flex-col md:flex-row md:flex-wrap">
+          <ul className="flex flex-col md:flex-row md:flex-wrap mt-20">
             {currentItems.map((item, index) => (
-              <li key={index} className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-28 md:w-4.5/10 w-9/10  mx-auto">
-                <h3>{item.caption}</h3>
-                <p>Prix: HT <span className="font-bold">{item.salepricevatexcluded}</span> TTC: <span className="font-bold">{item.salepricevatincluded}</span></p>
-                <button
-                className="text-blue-light font-bold border-b-2 border-blue-light "
-                onClick={() => handleDetail(item.id)}
+              <li
+                key={index}
+                className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-28 md:w-4.5/10 w-9/10  mx-auto"
               >
-                Accéder au Détail
-              </button>
+                <h3>{item.caption}</h3>
+                <p>
+                  Prix: HT{" "}
+                  <span className="font-bold">{item.salepricevatexcluded}</span>{" "}
+                  TTC:{" "}
+                  <span className="font-bold">{item.salepricevatincluded}</span>
+                </p>
+                <button
+                  className="text-blue-light font-bold border-b-2 border-blue-light "
+                  onClick={() => handleDetail(item.id)}
+                >
+                  Accéder au Détail
+                </button>
               </li>
             ))}
-            
           </ul>
-          
+
           {totalPages > 1 && (
-        <ul className="flex flex-row gap-2">
-          {pageNumbers.map((number) => (
-            <li key={number} className={`page-item ${currentPage === number ? "font-bold" : ""}`}>
-              <button onClick={() => setCurrentPage(number)} className={`page-link ${currentPage === number ? "font-bold" : ""}`}>
-                {number}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-      <HomeBtn />
+            <ul className="flex flex-row gap-2">
+              {pageNumbers.map((number) => (
+                <li
+                  key={number}
+                  className={`page-item ${
+                    currentPage === number ? "font-bold" : ""
+                  }`}
+                >
+                  <button
+                    onClick={() => setCurrentPage(number)}
+                    className={`page-link ${
+                      currentPage === number ? "font-bold" : ""
+                    }`}
+                  >
+                    {number}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+          <HomeBtn />
         </>
       ) : (
         <div>Aucun article trouvé</div>

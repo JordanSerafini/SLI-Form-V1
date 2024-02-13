@@ -61,7 +61,7 @@ function ClientList() {
   return (
     <div className="bg-cream h-full overflow-x-hidden flex flex-col items-center">
       <div
-        className="fixed top-0 bg-blue-strong w-full flex justify-center box-shadow z-50"
+        className="fixed top-0 bg-gradient-to-r from-blue-light to-blue-strong w-full flex justify-center box-shadow z-50"
         style={{
           boxShadow:
             "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
