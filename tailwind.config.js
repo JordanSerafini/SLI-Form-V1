@@ -51,6 +51,7 @@ export default {
       },
       screens: {
         'sm': '330px',
+        'w600': '600px',
 
       },
       

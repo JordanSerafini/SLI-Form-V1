@@ -1,16 +1,16 @@
-import  { useContext, useState, useMemo } from 'react';
+import { useContext, useState, useMemo } from 'react';
 import RatingContext from '../../../context/RatingContext';
 import useDebounce from '../../../hooks/useDebounce';
 import HomeBtn from '../../Button/HomeBtn';
 import logoTel from '../../../assets/logoTel.png';
 
 function ClientList() {
-  const { clientList, loading } = useContext(RatingContext); // Assurez-vous que clientList est bien initialisé dans votre contexte
+  const { clientList, loading } = useContext(RatingContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce(search, 500); // Utilisation du hook personnalisé pour le délai de recherche
+  const debouncedSearch = useDebounce(search, 500);
 
-  const clientsPerPage = 25; // Nombre de clients par page
+  const clientsPerPage = 15;
 
   // Filtrage des clients basé sur la recherche délaiée
   const filteredClients = useMemo(() => clientList.filter(client =>
@@ -28,17 +28,21 @@ function ClientList() {
 
   // Génération des numéros de page pour la pagination
   const pageNumbers = useMemo(() => {
-    let pages = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(i);
+    const pageWindow = 5;
+    let startPage = Math.max(currentPage - Math.floor(pageWindow / 2), 1);
+    let endPage = Math.min(startPage + pageWindow - 1, totalPages);
+
+    if (endPage - startPage + 1 < pageWindow) {
+      startPage = Math.max(endPage - pageWindow + 1, 1);
     }
-    return pages;
-  }, [totalPages]);
+
+    return Array.from({ length: (endPage - startPage) + 1 }, (_, index) => startPage + index);
+  }, [currentPage, totalPages]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="bg-cream h-full flex flex-col items-center">
+    <div className="bg-cream h-full overflow-x-hidden flex flex-col items-center">
       <h2>Liste des clients</h2>
       <input
         type="text"
@@ -104,9 +108,9 @@ function ClientList() {
         <p>Aucun client trouvé.</p>
       )}
       {totalPages > 1 && (
-        <ul className="flex flex-row gap-2">
+        <ul className="flex flex-row gap-2 pagination">
           {pageNumbers.map(number => (
-            <li key={number} className={`page-item ${currentPage === number ? 'active font-bold' : ''}`}>
+            <li key={number} className={`page-item ${currentPage === number ? 'font-bold' : ''}`}>
               <button onClick={() => paginate(number)} className={`page-link ${currentPage === number ? 'font-bold' : ''}`}>
                 {number}
               </button>
