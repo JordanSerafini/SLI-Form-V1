@@ -5,6 +5,15 @@ import 'leaflet/dist/leaflet.css';
 // eslint-disable-next-line react/prop-types
 function LeafletMap({ address }) {
   useEffect(() => {
+    // Initialisation de la carte
+    const map = L.map('map').setView([0, 0], 13); // Coordonnées par défaut
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Géocodage de l'adresse
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
 
     fetch(url)
@@ -14,28 +23,21 @@ function LeafletMap({ address }) {
           const lat = parseFloat(data[0].lat);
           const lon = parseFloat(data[0].lon);
 
-          // Créer la carte et la centrer sur les coordonnées
-          const map = L.map('map').setView([lat, lon], 12);
-
-          // Ajouter une couche de tuiles à la carte (ici, OpenStreetMap)
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap contributors'
-          }).addTo(map);
-
-          // Ajouter un marqueur à la carte aux coordonnées obtenues
-          const marker = L.marker([lat, lon]).addTo(map);
-
-          // Vous pouvez également ajouter un popup au marqueur si vous le souhaitez
-          marker.bindPopup(address).openPopup();
+          // Mise à jour de la vue de la carte et ajout du marqueur
+          map.setView([lat, lon], 13);
+          L.marker([lat, lon]).addTo(map).bindPopup(address).openPopup();
         } else {
           console.error('Adresse non trouvée');
         }
       })
       .catch(error => console.error('Erreur lors du géocodage', error));
-  }, [address]); // Le useEffect s'exécutera lorsque l'adresse changera
 
-  // Assurez-vous que l'élément div a un ID qui correspond à celui utilisé par L.map('map')
+    // Nettoyage : cette fonction sera appelée lorsque le composant sera démonté
+    return () => {
+      map.remove();
+    };
+  }, [address]); // Assurez-vous de réexécuter cet effet si l'adresse change
+
   return <div id="map" style={{ height: '400px', width: '100%' }}></div>;
 }
 
