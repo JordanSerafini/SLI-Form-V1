@@ -1,47 +1,31 @@
-import backUrl from "../../../Axios/backUrl";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-
+import { useContext, useState, useEffect } from "react";
 import RatingContext from "../../../context/RatingContext";
-
 import HomeBtn from "../../Button/HomeBtn";
 
 function ArticleList() {
-  const { showToast } = useContext(RatingContext);
-  const [loading, setLoading] = useState(true);
-  const [itemList, setItemList] = useState([]);
+  const { loading, itemList, setItemList } = useContext(RatingContext);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 25;
   const [search, setSearch] = useState("");
+  const [filteredItems, setFilteredItems] = useState(itemList); // État local pour les éléments filtrés
 
   useEffect(() => {
-    const fetchItemList = async () => {
-      try {
-        const response = await axios.get(`${backUrl}/articlePG`);
-        setItemList(response.data.rows);
-        setLoading(false);
-      } catch (error) {
-        console.error("Erreur lors de la récupération de la liste des articles :", error);
-        showToast("Erreur lors de la récupération de la liste des articles", {
-          type: "error",
-        });
-        setLoading(false);
-      }
+    const filterItems = () => {
+      const tempItems = itemList.filter((item) =>
+        item.caption.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredItems(tempItems);
     };
 
-    fetchItemList();
-  }, [showToast]);
+    filterItems();
+  }, [search, itemList]); // Dépendances : se relance si search ou itemList change
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    setCurrentPage(1); // Reset current page when search changes
+    setCurrentPage(1);
   };
 
-  const filteredItems = itemList.filter((item) =>
-    item.caption.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Pagination logic
+  // La logique de pagination utilisera `filteredItems` pour afficher les éléments
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
@@ -68,12 +52,7 @@ function ArticleList() {
         <>
           <ul>
             {currentItems.map((item, index) => (
-              <li
-                key={index}
-                className="
-                  bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-32 w-9/10 md:w-4.5/10 sm:0 mx-auto
-                "
-              >
+              <li key={index} className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-32 w-9/10 md:w-4.5/10 sm:0 mx-auto">
                 <h3>{item.caption}</h3>
                 <p>Prix: HT <span className="font-bold">{item.salepricevatexcluded}</span> TTC: <span className="font-bold">{item.salepricevatincluded}</span></p>
               </li>
@@ -81,14 +60,8 @@ function ArticleList() {
           </ul>
           <ul className="flex flex-row gap-2">
             {pageNumbers.map((number) => (
-              <li
-                key={number}
-                className={`page-item ${currentPage === number ? "font-bold" : ""}`}
-              >
-                <button
-                  onClick={() => setCurrentPage(number)}
-                  className={`page-link ${currentPage === number ? "font-bold" : ""}`}
-                >
+              <li key={number} className={`page-item ${currentPage === number ? "font-bold" : ""}`}>
+                <button onClick={() => setCurrentPage(number)} className={`page-link ${currentPage === number ? "font-bold" : ""}`}>
                   {number}
                 </button>
               </li>
@@ -98,7 +71,7 @@ function ArticleList() {
       ) : (
         <div>Aucun article trouvé.</div>
       )}
-      <HomeBtn /> {/* Ajout du composant HomeBtn ici */}
+      <HomeBtn />
     </div>
   );
 }
