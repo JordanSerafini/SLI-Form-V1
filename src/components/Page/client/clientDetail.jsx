@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 import logoTel from "../../../assets/logoTel.png";
-import { useLocation } from "react-router-dom";
+import LeafletMap from "./leaflet";
 
 //import BackBtn from '../../Button/BackBtn';
 
@@ -10,15 +10,20 @@ function ClientDetail() {
   const { clientList } = useContext(RatingContext);
   const { clientId } = useContext(RatingContext);
 
-  const location = useLocation();
-  const { updateLastPath } = useContext(RatingContext);
 
-  useEffect(() => {
-    updateLastPath(location.pathname);
-  }, [location, updateLastPath]);
+
+
   // Trouver le client dans la liste par son ID
   const client = clientList.find((client) => client.id === clientId);
-
+  const addressParts = [
+    client.maininvoicingaddress_address1,
+    client.maininvoicingaddress_zipCode,
+    client.maininvoicingaddress_city,
+    client.maininvoicingaddress_state
+  ];
+  
+  const address = addressParts.filter(part => part != null && part !== '').join(' ');  
+  
   if (!client) {
     return <p>Client non trouvé.</p>;
   }
@@ -48,10 +53,11 @@ function ClientDetail() {
           {client.maininvoicingaddress_city} {client.maininvoicingaddress_state}
         </p>
         {client.maininvoicingcontact_email && (
-          <p>
+          <p className="pb-8">
             <strong>Email :</strong> {client.maininvoicingcontact_email}
           </p>
         )}
+        < LeafletMap address={address} />
       </div>
       <HomeBtn />
     </div>
