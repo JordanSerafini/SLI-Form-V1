@@ -3,11 +3,11 @@ import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 
 function ArticleList() {
-  const { loading, itemList, setItemList } = useContext(RatingContext);
+  const { loading, itemList } = useContext(RatingContext);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 25;
   const [search, setSearch] = useState("");
-  const [filteredItems, setFilteredItems] = useState(itemList); // État local pour les éléments filtrés
+  const [filteredItems, setFilteredItems] = useState(itemList); 
 
   useEffect(() => {
     const filterItems = () => {
@@ -18,14 +18,13 @@ function ArticleList() {
     };
 
     filterItems();
-  }, [search, itemList]); // Dépendances : se relance si search ou itemList change
+  }, [search, itemList]); 
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setCurrentPage(1);
   };
 
-  // La logique de pagination utilisera `filteredItems` pour afficher les éléments
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);

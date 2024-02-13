@@ -1,44 +1,41 @@
-// Importations nécessaires
-import { useContext, useEffect, useState, useMemo } from 'react';
+import  { useContext, useState, useMemo } from 'react';
 import RatingContext from '../../../context/RatingContext';
-import useDebounce from '../../../hooks/useDebounce'; 
+import useDebounce from '../../../hooks/useDebounce';
 import HomeBtn from '../../Button/HomeBtn';
 import logoTel from '../../../assets/logoTel.png';
 
 function ClientList() {
-  const { clientList, loading } = useContext(RatingContext);
+  const { clientList, loading } = useContext(RatingContext); // Assurez-vous que clientList est bien initialisé dans votre contexte
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce(search, 500); // Delai de 500ms
+  const debouncedSearch = useDebounce(search, 500); // Utilisation du hook personnalisé pour le délai de recherche
 
-  const clientsPerPage = 25;
+  const clientsPerPage = 25; // Nombre de clients par page
 
   // Filtrage des clients basé sur la recherche délaiée
-  const filteredClients = useMemo(() => {
-    return clientList.filter(client =>
-      client.name.toLowerCase().includes(debouncedSearch.toLowerCase())
-    );
-  }, [debouncedSearch, clientList]);
+  const filteredClients = useMemo(() => clientList.filter(client =>
+    client.name.toLowerCase().includes(debouncedSearch.toLowerCase())
+  ), [debouncedSearch, clientList]);
 
-  // Pagination des clients
+  // Pagination des clients après filtrage
   const indexOfLastClient = currentPage * clientsPerPage;
   const indexOfFirstClient = indexOfLastClient - clientsPerPage;
-  const currentClients = useMemo(() => {
-    return (search.length > 0 ? filteredClients : clientList).slice(indexOfFirstClient, indexOfLastClient);
-  }, [search.length, filteredClients, clientList, indexOfFirstClient, indexOfLastClient]);
+  const currentClients = useMemo(() => filteredClients.slice(indexOfFirstClient, indexOfLastClient),
+    [indexOfFirstClient, indexOfLastClient, filteredClients]);
 
-  const totalPages = Math.ceil(clientList.length / clientsPerPage);
-
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  // Calcul du nombre total de pages
+  const totalPages = Math.ceil(filteredClients.length / clientsPerPage);
 
   // Génération des numéros de page pour la pagination
   const pageNumbers = useMemo(() => {
     let pages = [];
-    for (let i = Math.max(1, currentPage - 5); i <= Math.min(totalPages, currentPage + 5); i++) {
+    for (let i = 1; i <= totalPages; i++) {
       pages.push(i);
     }
     return pages;
-  }, [currentPage, totalPages]);
+  }, [totalPages]);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="bg-cream h-full flex flex-col items-center">
@@ -47,15 +44,16 @@ function ClientList() {
         type="text"
         placeholder="Rechercher un client..."
         value={search}
-        onChange={e => setSearch(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
         className="border-2 border-gray-300 rounded-lg p-2 m-4"
       />
       {loading ? (
         <p>Chargement...</p>
-      ) : (
+      ) : currentClients.length > 0 ? (
         <div className="justify-center items-center text-center shadow-custom pt-4 pb-8 flex flex-row flex-wrap font-playfair w-full gap-4">
           {currentClients.map((client, index) => (
-            <div
+            
+             <div
               key={index}
               className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-72 w-9/10 md:w-4.5/10 sm:0 sm:h-52"
             >
@@ -102,8 +100,10 @@ function ClientList() {
             </div>
           ))}
         </div>
+      ) : (
+        <p>Aucun client trouvé.</p>
       )}
-      {search.length === 0 && (
+      {totalPages > 1 && (
         <ul className="flex flex-row gap-2">
           {pageNumbers.map(number => (
             <li key={number} className={`page-item ${currentPage === number ? 'active font-bold' : ''}`}>
