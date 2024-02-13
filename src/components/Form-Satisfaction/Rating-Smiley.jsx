@@ -2,9 +2,10 @@ import { useEffect, useContext } from "react";
 import { Rating, initTE } from "tw-elements";
 import RatingContext from "../../context/RatingContext";
 
+// eslint-disable-next-line react/prop-types
 const RatingSmiley = ({value, formID}) => {
  
-  const { rateArray, setRateArray, handleRatingSubmit, averageRating } = useContext(RatingContext);
+  const {  handleRatingSubmit } = useContext(RatingContext);
 
   const questionID = value;
 
