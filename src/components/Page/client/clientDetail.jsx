@@ -51,7 +51,7 @@ function ClientDetail() {
           {client.maininvoicingaddress_city} {client.maininvoicingaddress_state}
         </p>
         {client.maininvoicingcontact_email && (
-          <p className="pb-8">
+          <p className="">
           <strong>Email :</strong> 
           <a href={`mailto:${client.maininvoicingcontact_email}`} className="text-blue-strong hover:text-blue-light">
             {client.maininvoicingcontact_email}
