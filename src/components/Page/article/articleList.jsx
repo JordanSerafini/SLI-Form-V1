@@ -78,7 +78,7 @@ function ArticleList() {
                 <h3>{item.caption}</h3>
                 <p>Prix: HT <span className="font-bold">{item.salepricevatexcluded}</span> TTC: <span className="font-bold">{item.salepricevatincluded}</span></p>
                 <button
-                className="detail-button"
+                className="text-blue-light font-bold border-b-2 border-blue-light "
                 onClick={() => handleDetail(item.id)}
               >
                 Accéder au Détail
