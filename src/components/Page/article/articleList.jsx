@@ -28,7 +28,8 @@ function ArticleList() {
     };
 
     fetchItemList();
-  }, [showToast]);
+    console.log(itemList);
+  }, [showToast, itemList]);
 
   if (loading) {
     return <div>Chargement...</div>; 
@@ -36,12 +37,19 @@ function ArticleList() {
 
 
   return (
-    <div>
-      {itemList.length > 0 ? (
+    <div className="bg-cream h-full flex flex-col items-center justify-center">
+    {itemList.length > 0 ? (
         <ul>
         {itemList.map((item, index) => (
-          <li key={index}>
+          <li key={index}
+          className="
+            bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-24 w-9/10
+            md:w-4.5/10
+            sm:0 
+            "
+          >
             <h3>{item.caption}</h3>
+            <p>Prix: HT{item.salepricevatexcluded} TTC: {item.salepricevatincluded}</p>
           </li>
         ))}
       </ul>

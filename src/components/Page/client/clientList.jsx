@@ -106,7 +106,7 @@ return (
 
           >
             <p>
-              <strong>Nom :</strong> {client.name} / {client.MainInvoicingContact_Name} {client.MainInvoicingContact_FirstName} {client.Id}
+              <strong>Nom :</strong> {client.name} / {client.maininvoicingcontact_name} {client.maininvoicingcontact_firstname} {client.Id}
             </p>
             {(client.maininvoicingcontact_phone || client.maininvoicingcontact_cellphone) && (
               <div className="flex flex-col">
@@ -138,11 +138,11 @@ return (
               </div>
             )}
             <p>
-              <strong>Adresse:</strong> {client.MainInvoicingAddress_Address1} {client.MainInvoicingAddress_Address2} {client.MainInvoicingAddress_ZipCode} {client.MainInvoicingAddress_City} {client.MainInvoicingAddress_State}
+              <strong>Adresse:</strong> {client.maininvoicingaddress_address1} {client.maininvoicingaddress_address2} {client.maininvoicingaddress_zipCode} {client.maininvoicingaddress_city} {client.maininvoicingaddress_state}
             </p>
-            {client.MainInvoicingContact_Email && (
+            {client.maininvoicingcontact_email && (
               <p>
-                <strong>Email :</strong> {client.MainInvoicingContact_Email}
+                <strong>Email :</strong> {client.maininvoicingcontact_email}
               </p>
             )}
           </div>
