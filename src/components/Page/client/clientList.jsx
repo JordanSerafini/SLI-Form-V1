@@ -151,7 +151,7 @@ function ClientList() {
                 </p>
               )}
               <button
-                className="text-blue-light font-bold border-b-2 border-blue-light "
+                className="text-blue-light font-bold border-b-2 border-blue-light cursor-pointer hover:text-blue-strong hover:border-blue-strong transition-all duration-300 ease-in-out"
                 onClick={() => handleDetail(client.id)}
               >
                 Accéder au Détail
