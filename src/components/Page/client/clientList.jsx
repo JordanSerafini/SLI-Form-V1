@@ -15,8 +15,6 @@ function ClientList() {
 
   const clientsPerPage = 15;
 
-
-
   // Filtrage des clients basé sur la recherche délaiée
   const filteredClients = useMemo(
     () =>
@@ -62,18 +60,25 @@ function ClientList() {
 
   return (
     <div className="bg-cream h-full overflow-x-hidden flex flex-col items-center">
-      <h2>Liste des clients</h2>
-      <input
-        type="text"
-        placeholder="Rechercher un client..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="border-2 border-gray-300 rounded-lg p-2 m-4"
-      />
+      <div
+        className="fixed top-0 bg-blue-strong w-full flex justify-center box-shadow z-50"
+        style={{
+          boxShadow:
+            "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Rechercher un client..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className=" border-4 border-gray-300 rounded-lg p-2 m-4 z-10 bg-white"
+        />
+      </div>
       {loading ? (
         <p>Chargement...</p>
       ) : currentClients.length > 0 ? (
-        <div className="justify-center items-center text-center shadow-custom pt-4 pb-8 flex flex-row flex-wrap font-playfair w-full gap-4">
+        <div className="justify-center items-center text-center shadow-custom pt-4 pb-8 flex flex-row flex-wrap font-playfair w-full gap-4 mt-14">
           {currentClients.map((client, index) => (
             <div
               key={index}
