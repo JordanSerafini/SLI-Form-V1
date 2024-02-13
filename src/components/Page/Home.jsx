@@ -13,6 +13,9 @@ import logoTodo from "../../assets/logoTodo.png";
 function Home() {
   const { showToast } = useContext(RatingContext);
   const {helloFlag, setHelloFlag} = useContext(RatingContext);
+  const { setClientList} = useContext(RatingContext);
+  const { setLoading} = useContext(RatingContext);
+  const { setItemList} = useContext(RatingContext);
 
   const [userData, setUserData] = useState(null);
   const [showEmailInput, setShowEmailInput] = useState(false);
@@ -112,6 +115,49 @@ function Home() {
   const articleRedirect = () => {
     navigate("/article-list");
   };
+
+
+  // Fetch des données context
+  useEffect(() => {
+    const fetchClientList = async () => {
+      try {
+        const response = await axios.get(`${backUrl}/customerPG`);
+        //console.log("Liste des clients :", response.data.rows);
+        setClientList(response.data.rows);
+        //console.log("clientList fetched");
+        setLoading(false);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération de la liste des clients :",
+          error
+        );
+        showToast("Erreur lors de la récupération de la liste des clients", {
+          type: "error",
+        });
+        setLoading(false);
+      }
+    };
+
+    fetchClientList();
+  }, [ ]);
+
+  useEffect(() => {
+    const fetchItemList = async () => {
+      try {
+        const response = await axios.get(`${backUrl}/articlePG`);
+        setItemList(response.data.rows);
+        setLoading(false);
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la liste des articles :", error);
+        showToast("Erreur lors de la récupération de la liste des articles", {
+          type: "error",
+        });
+        setLoading(false);
+      }
+    };
+
+    fetchItemList();
+  }, []);
 
   return (
     <div className="bg-cream h-screen flex flex-col items-center">
