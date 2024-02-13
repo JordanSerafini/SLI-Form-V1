@@ -145,11 +145,7 @@ function ClientList() {
                 {client.maininvoicingaddress_city}{" "}
                 {client.maininvoicingaddress_state}
               </p>
-              {client.maininvoicingcontact_email && (
-                <p>
-                  <strong>Email :</strong> {client.maininvoicingcontact_email}
-                </p>
-              )}
+             
               <button
                 className="text-blue-light font-bold border-b-2 border-blue-light cursor-pointer hover:text-blue-strong hover:border-blue-strong transition-all duration-300 ease-in-out"
                 onClick={() => handleDetail(client.id)}

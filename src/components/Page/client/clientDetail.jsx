@@ -52,8 +52,11 @@ function ClientDetail() {
         </p>
         {client.maininvoicingcontact_email && (
           <p className="pb-8">
-            <strong>Email :</strong> {client.maininvoicingcontact_email}
-          </p>
+          <strong>Email :</strong> 
+          <a href={`mailto:${client.maininvoicingcontact_email}`} className="text-blue-strong hover:text-blue-light">
+            {client.maininvoicingcontact_email}
+          </a>
+        </p>
         )}
         < LeafletMap address={address} />
       </div>
