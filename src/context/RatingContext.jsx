@@ -12,6 +12,8 @@ export const RatingProvider = ({ children }) => {
   const [user , setUser] = useState({});
   const [clientList, setClientList] = useState([]);
   const [itemList, setItemList] = useState([]);
+  const [helloFlag, setHelloFlag] = useState(false);
+
 
 
   const handleRatingSubmit = (ratingData) => {
@@ -91,7 +93,7 @@ export const RatingProvider = ({ children }) => {
   };
 
   return (
-    <RatingContext.Provider value={{ user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList }}>
+    <RatingContext.Provider value={{ user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag }}>
       {children}
       <ToastContainer />
     </RatingContext.Provider>

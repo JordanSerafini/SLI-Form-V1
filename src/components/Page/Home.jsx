@@ -12,14 +12,16 @@ import logoTodo from "../../assets/logoTodo.png";
 
 function Home() {
   const { showToast } = useContext(RatingContext);
+  const {helloFlag, setHelloFlag} = useContext(RatingContext);
+
   const [userData, setUserData] = useState(null);
   const [showEmailInput, setShowEmailInput] = useState(false);
   const [emailToSend, setEmailToSend] = useState("");
   const [currentDate, setCurrentDate] = useState("");
   const token = localStorage.getItem("token");
 
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   // Récupération des données de l'utilisateur
   useEffect(() => {
     if (!token) {
@@ -47,13 +49,14 @@ function Home() {
 
   // Message de bienvenue
   useEffect(() => {
-    if (userData) {
+    if (userData && helloFlag===false) {
       showToast(`Bonjour ${userData.name} ,`, {
         position: "bottom-center",
         autoClose: 3000,
       });
+      setHelloFlag(true);
     }
-  }, [userData, showToast]);
+  }, [userData, showToast, helloFlag, setHelloFlag]);
 
   // Envoi du formulaire de satisfaction
   

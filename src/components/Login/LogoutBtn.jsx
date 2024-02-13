@@ -7,11 +7,15 @@ import RatingContext from "../../context/RatingContext";
 const LogoutBtn = () => {
     const navigate = useNavigate();
     const { showToast } = useContext(RatingContext);
+    const { setHelloFlag } = useContext(RatingContext);
 
     const handleLogout = () => {
         // Supprimez le token JWT
         localStorage.removeItem('token');
-
+        // Supprimez les données de l'utilisateur
+        localStorage.removeItem('userData');
+        // Supprimez le flag de bienvenue
+        setHelloFlag(false);
         // Affichez un message de déconnexion
         showToast('Vous avez été déconnecté avec succès' , { position: "bottom-right", autoClose: 1500});
 
