@@ -30,7 +30,6 @@ function ClientDetail() {
 
   return (
     <div className="bg-cream h-[100vh] overflow-x-hidden flex flex-col items-center p-4">
-      <h2>Détails du client</h2>
       <div className="bg-white h-9.5/10 rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2">
         <p>
           <strong>Nom :</strong> {client.name} /{" "}
@@ -38,10 +37,9 @@ function ClientDetail() {
           {client.maininvoicingcontact_firstname}
         </p>
         {client.maininvoicingcontact_phone && (
-          <p>
-            <strong>Téléphone :</strong>
+          <p className="">
             <a href={`tel:${client.maininvoicingcontact_phone}`}>
-              <img src={logoTel} alt="logoTel" className="h-6 w-6 inline" />
+              <img src={logoTel} alt="logoTel" className="h-6 w-6 inline mr-2" />
               {client.maininvoicingcontact_phone}
             </a>
           </p>
