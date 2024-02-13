@@ -59,7 +59,7 @@ function ClientList() {
   };
 
   return (
-    <div className="bg-cream h-full overflow-x-hidden flex flex-col items-center">
+    <div className="bg-cream h-[100vh] overflow-x-hidden flex flex-col items-center">
       <div
         className="fixed top-0 bg-gradient-to-r from-blue-light to-blue-strong w-full flex justify-center box-shadow z-50"
         style={{
@@ -78,7 +78,7 @@ function ClientList() {
       {loading ? (
         <p>Chargement...</p>
       ) : currentClients.length > 0 ? (
-        <div className="justify-center items-center text-center shadow-custom pt-4 pb-8 flex flex-row flex-wrap font-playfair w-full gap-4 mt-14">
+        <div className="justify-center items-center text-center shadow-custom pt-4 pb-8 flex flex-row flex-wrap font-playfair w-full gap-4 mt-16">
           {currentClients.map((client, index) => (
             <div
               key={index}

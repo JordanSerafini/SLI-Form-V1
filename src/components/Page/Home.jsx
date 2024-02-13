@@ -7,8 +7,9 @@ import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import LogoutBtn from "../Login/LogoutBtn";
 
-import logoForm from "../../assets/logoForm.png";
 import logoTodo from "../../assets/logoTodo.png";
+import clientLogo from "../../assets/clientLogo.png";
+import starGif from "../../assets/starGif.gif";
 
 function Home() {
   const { showToast } = useContext(RatingContext);
@@ -181,7 +182,7 @@ function Home() {
               onClick={() => setShowEmailInput(!showEmailInput)}
             >
               <img
-                src={logoForm}
+                src={starGif}
                 alt="Logo Formulaire"
                 className="w-6 h-6 mr-2"
               />{" "}
@@ -207,7 +208,7 @@ function Home() {
           className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10"
           onClick={handleRedirect}
         >
-          <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />
+          <img src={clientLogo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />
           Consulter mes clients
         </div>
         {/*------------------------ Encard Planing ----------------------------- */}
