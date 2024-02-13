@@ -38,6 +38,7 @@ function ArticleDetail() {
           </p>
           <p>Stock: {article.realstock}</p>
           <p><span className="font-bold">Description:</span>{article.descomclear}</p>
+          <p>Prix achat: {article.purchaseprice}</p>
         </div>
       </div>
       <HomeBtn />
