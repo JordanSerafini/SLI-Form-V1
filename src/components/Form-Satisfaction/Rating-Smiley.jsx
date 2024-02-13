@@ -38,7 +38,7 @@ const RatingSmiley = ({value, formID}) => {
       
           <span
             
-            className="w-full text-[#FF0000] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
+            className="w-full text-[#FF0000] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-8 sm:[&>svg]:w-8 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
             data-te-rating-icon-ref
             onClick={() => handleClick(1)} 
           >
@@ -52,7 +52,7 @@ const RatingSmiley = ({value, formID}) => {
         </li>
         <li>
           <span
-            className="text-[#ff8000] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
+            className="text-[#ff8000] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-8 sm:[&>svg]:w-8 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
             data-te-rating-icon-ref
             onClick={() => handleClick(2)} 
 
@@ -64,7 +64,7 @@ const RatingSmiley = ({value, formID}) => {
         </li>
         <li>
           <span
-            className="text-[#e0e04bdc] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
+            className="text-[#e0e04bdc] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-8 sm:[&>svg]:w-8 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
             data-te-rating-icon-ref
             onClick={() => handleClick(3)} 
           >
@@ -75,7 +75,7 @@ const RatingSmiley = ({value, formID}) => {
         </li>
         <li>
           <span
-            className="text-[#90EE90] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
+            className="text-[#90EE90] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-8 sm:[&>svg]:w-8 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
             data-te-rating-icon-ref
             onClick={() => handleClick(4)} 
           >
@@ -86,7 +86,7 @@ const RatingSmiley = ({value, formID}) => {
         </li>
         <li>
           <span
-            className="text-[#0ebd0ebe] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-10 sm:[&>svg]:w-10 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
+            className="text-[#0ebd0ebe] fill-current [&>svg]:h-6 [&>svg]:w-6 sm:[&>svg]:h-8 sm:[&>svg]:w-8 lg:[&>svg]:h-14 lg:[&>svg]:w-14"
             data-te-rating-icon-ref
             onClick={() => handleClick(5)} 
           >
