@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import RatingContext from "../../context/RatingContext";
 import backUrl from "../../Axios/backUrl";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import Header from "../Header/Header";
 import LogoutBtn from "../Login/LogoutBtn";
@@ -23,6 +23,12 @@ function Home() {
   const [emailToSend, setEmailToSend] = useState("");
   const [currentDate, setCurrentDate] = useState("");
   const token = localStorage.getItem("token");
+  const location = useLocation();
+  const { updateLastPath } = useContext(RatingContext);
+
+  useEffect(() => {
+    updateLastPath(location.pathname);
+  }, [location, updateLastPath]);
 
 
   const navigate = useNavigate();
@@ -116,6 +122,7 @@ function Home() {
   const articleRedirect = () => {
     navigate("/article-list");
   };
+
 
 
   // Fetch des données context

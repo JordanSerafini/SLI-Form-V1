@@ -1,6 +1,7 @@
-import { useContext, useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState, useMemo, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import RatingContext from "../../../context/RatingContext";
+
 import useDebounce from "../../../hooks/useDebounce";
 import HomeBtn from "../../Button/HomeBtn";
 import logoTel from "../../../assets/logoTel.png";
@@ -11,6 +12,14 @@ function ClientList() {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   const { setClientId } = useContext(RatingContext);
+
+  const location = useLocation();
+  const { updateLastPath } = useContext(RatingContext);
+
+  useEffect(() => {
+    updateLastPath(location.pathname);
+  }, [location, updateLastPath]);
+
   const navigate = useNavigate();
 
   const clientsPerPage = 15;
@@ -57,6 +66,8 @@ function ClientList() {
     setClientId(clientId);
     navigate(`/client-detail/${clientId}`);
   };
+
+
 
   return (
     <div className="bg-cream h-[100vh] overflow-x-hidden flex flex-col items-center">

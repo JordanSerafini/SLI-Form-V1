@@ -16,8 +16,14 @@ export const RatingProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [clientId, setClientId] = useState(0);
   const [articleId, setArticleId] = useState(0);
+  const [lastPath, setLastPath] = useState('/home'); 
+  const [backPath, setBackPath] = useState('/home');
 
-
+  const updateLastPath = (path) => {
+    setBackPath(lastPath);
+    
+    setLastPath(path);
+  };
 
   const handleRatingSubmit = (ratingData) => {
     // Vérifiez si l'objet avec le même questionID et formID existe déjà
@@ -96,7 +102,7 @@ export const RatingProvider = ({ children }) => {
   };
 
   return (
-    <RatingContext.Provider value={{ articleId, setArticleId, clientId, setClientId, user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag,loading, setLoading }}>
+    <RatingContext.Provider value={{ backPath, lastPath, updateLastPath, articleId, setArticleId, clientId, setClientId, user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag,loading, setLoading }}>
       {children}
       <ToastContainer />
     </RatingContext.Provider>

@@ -15,7 +15,6 @@ import ArticleDetail from "./components/Page/article/articleDetail";
 function App() {
   return (
     <RatingProvider>
-
     <Router>
       <Routes>
         <Route path="/" element={<PrivateRoute element={<Home />} />} />

@@ -1,10 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
+//import BackBtn from "../../Button/BackBtn";
+import { useLocation } from "react-router-dom";
 
 function ArticleDetail() {
   const { itemList } = useContext(RatingContext);
   const { articleId } = useContext(RatingContext);
+  const location = useLocation();
+  const { updateLastPath } = useContext(RatingContext);
+
+  useEffect(() => {
+    updateLastPath(location.pathname);
+  }, [location, updateLastPath]);
 
   // Trouvez l'article en fonction de l'ID
   const article = itemList.find((item) => item.id.toString() === articleId);
@@ -19,7 +27,7 @@ function ArticleDetail() {
         <h2 className="font-bold border-b-2 border-blue-strong pb-2 pt-2">
           {article.caption} 
         </h2>
-        <div>
+        <div className="pt-6 flex flex-col  items-center gap-2">
           <p>
             Prix HT:{" "}
             <span className="font-bold">{article.salepricevatexcluded}</span>

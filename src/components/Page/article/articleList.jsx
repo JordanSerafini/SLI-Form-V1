@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 
@@ -11,6 +11,12 @@ function ArticleList() {
   const [filteredItems, setFilteredItems] = useState([]);
   const { setArticleId } = useContext(RatingContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { updateLastPath } = useContext(RatingContext);
+
+  useEffect(() => {
+    updateLastPath(location.pathname);
+  }, [location, updateLastPath]);
 
   const handleDetail = (articleId) => {
     setArticleId(articleId);

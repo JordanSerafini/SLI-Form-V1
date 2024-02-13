@@ -1,25 +1,37 @@
-import { useContext } from 'react';
-import RatingContext from '../../../context/RatingContext';
-import HomeBtn from '../../Button/HomeBtn';
-import logoTel from '../../../assets/logoTel.png';
+import { useContext, useEffect } from "react";
+import RatingContext from "../../../context/RatingContext";
+import HomeBtn from "../../Button/HomeBtn";
+import logoTel from "../../../assets/logoTel.png";
+import { useLocation } from "react-router-dom";
+
+//import BackBtn from '../../Button/BackBtn';
 
 function ClientDetail() {
   const { clientList } = useContext(RatingContext);
   const { clientId } = useContext(RatingContext);
-  
+
+  const location = useLocation();
+  const { updateLastPath } = useContext(RatingContext);
+
+  useEffect(() => {
+    updateLastPath(location.pathname);
+  }, [location, updateLastPath]);
   // Trouver le client dans la liste par son ID
-  const client = clientList.find(client => client.id === clientId);
+  const client = clientList.find((client) => client.id === clientId);
 
   if (!client) {
     return <p>Client non trouvé.</p>;
   }
 
-
   return (
     <div className="bg-cream h-[100vh] overflow-x-hidden flex flex-col items-center p-4">
       <h2>Détails du client</h2>
       <div className="bg-white h-9.5/10 rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2">
-        <p><strong>Nom :</strong> {client.name} / {client.maininvoicingcontact_name} {client.maininvoicingcontact_firstname}</p>
+        <p>
+          <strong>Nom :</strong> {client.name} /{" "}
+          {client.maininvoicingcontact_name}{" "}
+          {client.maininvoicingcontact_firstname}
+        </p>
         {client.maininvoicingcontact_phone && (
           <p>
             <strong>Téléphone :</strong>
@@ -30,10 +42,15 @@ function ClientDetail() {
           </p>
         )}
         <p>
-          <strong>Adresse:</strong> {client.maininvoicingaddress_address1} {client.maininvoicingaddress_address2} {client.maininvoicingaddress_zipCode} {client.maininvoicingaddress_city} {client.maininvoicingaddress_state}
+          <strong>Adresse:</strong> {client.maininvoicingaddress_address1}{" "}
+          {client.maininvoicingaddress_address2}{" "}
+          {client.maininvoicingaddress_zipCode}{" "}
+          {client.maininvoicingaddress_city} {client.maininvoicingaddress_state}
         </p>
         {client.maininvoicingcontact_email && (
-          <p><strong>Email :</strong> {client.maininvoicingcontact_email}</p>
+          <p>
+            <strong>Email :</strong> {client.maininvoicingcontact_email}
+          </p>
         )}
       </div>
       <HomeBtn />
