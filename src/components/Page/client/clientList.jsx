@@ -1,27 +1,38 @@
-import { useContext, useState, useMemo } from 'react';
-import RatingContext from '../../../context/RatingContext';
-import useDebounce from '../../../hooks/useDebounce';
-import HomeBtn from '../../Button/HomeBtn';
-import logoTel from '../../../assets/logoTel.png';
+import { useContext, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import RatingContext from "../../../context/RatingContext";
+import useDebounce from "../../../hooks/useDebounce";
+import HomeBtn from "../../Button/HomeBtn";
+import logoTel from "../../../assets/logoTel.png";
 
 function ClientList() {
   const { clientList, loading } = useContext(RatingContext);
   const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
+  const { setClientId } = useContext(RatingContext);
+  const navigate = useNavigate();
 
   const clientsPerPage = 15;
 
+
+
   // Filtrage des clients basé sur la recherche délaiée
-  const filteredClients = useMemo(() => clientList.filter(client =>
-    client.name.toLowerCase().includes(debouncedSearch.toLowerCase())
-  ), [debouncedSearch, clientList]);
+  const filteredClients = useMemo(
+    () =>
+      clientList.filter((client) =>
+        client.name.toLowerCase().includes(debouncedSearch.toLowerCase())
+      ),
+    [debouncedSearch, clientList]
+  );
 
   // Pagination des clients après filtrage
   const indexOfLastClient = currentPage * clientsPerPage;
   const indexOfFirstClient = indexOfLastClient - clientsPerPage;
-  const currentClients = useMemo(() => filteredClients.slice(indexOfFirstClient, indexOfLastClient),
-    [indexOfFirstClient, indexOfLastClient, filteredClients]);
+  const currentClients = useMemo(
+    () => filteredClients.slice(indexOfFirstClient, indexOfLastClient),
+    [indexOfFirstClient, indexOfLastClient, filteredClients]
+  );
 
   // Calcul du nombre total de pages
   const totalPages = Math.ceil(filteredClients.length / clientsPerPage);
@@ -36,10 +47,18 @@ function ClientList() {
       startPage = Math.max(endPage - pageWindow + 1, 1);
     }
 
-    return Array.from({ length: (endPage - startPage) + 1 }, (_, index) => startPage + index);
+    return Array.from(
+      { length: endPage - startPage + 1 },
+      (_, index) => startPage + index
+    );
   }, [currentPage, totalPages]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleDetail = (clientId) => {
+    setClientId(clientId);
+    navigate(`/client-detail/${clientId}`);
+  };
 
   return (
     <div className="bg-cream h-full overflow-x-hidden flex flex-col items-center">
@@ -56,15 +75,17 @@ function ClientList() {
       ) : currentClients.length > 0 ? (
         <div className="justify-center items-center text-center shadow-custom pt-4 pb-8 flex flex-row flex-wrap font-playfair w-full gap-4">
           {currentClients.map((client, index) => (
-            
-             <div
+            <div
               key={index}
               className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-72 w-9/10 md:w-4.5/10 sm:0 sm:h-52"
             >
               <p>
-                <strong>Nom :</strong> {client.name} / {client.maininvoicingcontact_name} {client.maininvoicingcontact_firstname} {client.Id}
+                <strong>Nom :</strong> {client.name} /{" "}
+                {client.maininvoicingcontact_name}{" "}
+                {client.maininvoicingcontact_firstname} {client.Id}
               </p>
-              {(client.maininvoicingcontact_phone || client.maininvoicingcontact_cellphone) && (
+              {(client.maininvoicingcontact_phone ||
+                client.maininvoicingcontact_cellphone) && (
                 <div className="flex flex-col">
                   <strong>Téléphone :</strong>
                   <div className="flex flex-col flex-wrap gap-2">
@@ -74,7 +95,11 @@ function ClientList() {
                           src={logoTel}
                           alt="logoTel"
                           className="h-6 w-6"
-                          onClick={() => window.open(`tel:${client.maininvoicingcontact_phone}`)}
+                          onClick={() =>
+                            window.open(
+                              `tel:${client.maininvoicingcontact_phone}`
+                            )
+                          }
                         />
                         {client.maininvoicingcontact_phone}
                       </div>
@@ -85,7 +110,11 @@ function ClientList() {
                           src={logoTel}
                           alt="logoTel"
                           className="h-6 w-6"
-                          onClick={() => window.open(`tel:${client.maininvoicingcontact_cellphone}`)}
+                          onClick={() =>
+                            window.open(
+                              `tel:${client.maininvoicingcontact_cellphone}`
+                            )
+                          }
                         />
                         {client.maininvoicingcontact_cellphone}
                       </div>
@@ -94,13 +123,23 @@ function ClientList() {
                 </div>
               )}
               <p>
-                <strong>Adresse:</strong> {client.maininvoicingaddress_address1} {client.maininvoicingaddress_address2} {client.maininvoicingaddress_zipCode} {client.maininvoicingaddress_city} {client.maininvoicingaddress_state}
+                <strong>Adresse:</strong> {client.maininvoicingaddress_address1}{" "}
+                {client.maininvoicingaddress_address2}{" "}
+                {client.maininvoicingaddress_zipCode}{" "}
+                {client.maininvoicingaddress_city}{" "}
+                {client.maininvoicingaddress_state}
               </p>
               {client.maininvoicingcontact_email && (
                 <p>
                   <strong>Email :</strong> {client.maininvoicingcontact_email}
                 </p>
               )}
+              <button
+                className="detail-button"
+                onClick={() => handleDetail(client.id)}
+              >
+                Accéder au Détail
+              </button>
             </div>
           ))}
         </div>
@@ -109,9 +148,19 @@ function ClientList() {
       )}
       {totalPages > 1 && (
         <ul className="flex flex-row gap-2 pagination">
-          {pageNumbers.map(number => (
-            <li key={number} className={`page-item ${currentPage === number ? 'font-bold' : ''}`}>
-              <button onClick={() => paginate(number)} className={`page-link ${currentPage === number ? 'font-bold' : ''}`}>
+          {pageNumbers.map((number) => (
+            <li
+              key={number}
+              className={`page-item ${
+                currentPage === number ? "font-bold" : ""
+              }`}
+            >
+              <button
+                onClick={() => paginate(number)}
+                className={`page-link ${
+                  currentPage === number ? "font-bold" : ""
+                }`}
+              >
                 {number}
               </button>
             </li>

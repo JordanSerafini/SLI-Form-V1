@@ -8,6 +8,7 @@ import Home from "./components/Page/Home";
 import ClientList from "./components/Page/client/clientList";
 import TokenRoute from "./components/Middleware/TokenRoute";
 import ArticleList from "./components/Page/article/articleList";
+import ClientDetail from "./components/Page/client/clientDetail";
 //import { Link } from "react-router-dom";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />
         <Route path="/client-list" element={<PrivateRoute element={<ClientList />} />} />
         <Route path="/article-list" element={<ArticleList />} />
+        <Route path="/client-detail/:clientId" element={<ClientDetail />} />
       </Routes>
  
     </Router>
