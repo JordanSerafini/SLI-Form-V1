@@ -9,6 +9,7 @@ import ClientList from "./components/Page/client/clientList";
 import TokenRoute from "./components/Middleware/TokenRoute";
 import ArticleList from "./components/Page/article/articleList";
 import ClientDetail from "./components/Page/client/clientDetail";
+import ArticleDetail from "./components/Page/article/articleDetail";
 //import { Link } from "react-router-dom";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/client-list" element={<PrivateRoute element={<ClientList />} />} />
         <Route path="/article-list" element={<ArticleList />} />
         <Route path="/client-detail/:clientId" element={<ClientDetail />} />
+        <Route path="/article-detail/:articleId" element={<ArticleDetail />} />
       </Routes>
  
     </Router>

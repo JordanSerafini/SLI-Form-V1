@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 
@@ -8,6 +9,13 @@ function ArticleList() {
   const itemsPerPage = 15;
   const [search, setSearch] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
+  const { setArticleId } = useContext(RatingContext);
+  const navigate = useNavigate();
+
+  const handleDetail = (articleId) => {
+    setArticleId(articleId);
+    navigate(`/article-detail/${articleId}`);
+  };
 
   useEffect(() => {
     // Filtrage des articles basé sur la recherche
@@ -69,9 +77,17 @@ function ArticleList() {
               <li key={index} className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-28 md:w-4.5/10 w-9/10  mx-auto">
                 <h3>{item.caption}</h3>
                 <p>Prix: HT <span className="font-bold">{item.salepricevatexcluded}</span> TTC: <span className="font-bold">{item.salepricevatincluded}</span></p>
+                <button
+                className="detail-button"
+                onClick={() => handleDetail(item.id)}
+              >
+                Accéder au Détail
+              </button>
               </li>
             ))}
+            
           </ul>
+          
           {totalPages > 1 && (
         <ul className="flex flex-row gap-2">
           {pageNumbers.map((number) => (
