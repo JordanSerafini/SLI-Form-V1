@@ -18,14 +18,14 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<PrivateRoute element={<Home />} />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/form-satisfaction" element={<TokenRoute element={FormPage} />} />
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />
-        <Route path="/client-list" element={<PrivateRoute element={<ClientList />} />} />
-        <Route path="/article-list" element={<ArticleList />} />
-        <Route path="/client-detail/:clientId" element={<ClientDetail />} />
-        <Route path="/article-detail/:articleId" element={<ArticleDetail />} />
+        <Route path="/client-list" element={<PrivateRoute element={<ClientList />} />} />     
+        <Route path="/article-list" element={<PrivateRoute element={<ArticleList/>} />} />     
+        <Route path="/client-detail/:clientId" element={<PrivateRoute element={<ClientDetail />} />} />     
+        <Route path="/article-detail/:articleId" element={<PrivateRoute element={<ArticleDetail />} />} />     
       </Routes>
  
     </Router>
