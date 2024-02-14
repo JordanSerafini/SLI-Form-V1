@@ -5,6 +5,7 @@ import RatingContext from "../../../context/RatingContext";
 import useDebounce from "../../../hooks/useDebounce";
 import HomeBtn from "../../Button/HomeBtn";
 import logoTel from "../../../assets/logoTel.png";
+import clientLogo from "../../../assets/clientLogo.png";
 
 function ClientList() {
   const { clientList, loading } = useContext(RatingContext);
@@ -95,15 +96,15 @@ function ClientList() {
               key={index}
               className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-72 w-9/10 md:w-4.5/10 sm:0 sm:h-52"
             >
-              <p>
-                <strong>Nom :</strong> {client.name} -{" "}
+              <div className="flex gap-1">
+                <img className="h-8" src={clientLogo} alt="logo Client" />
+                <strong>{client.name} - {" "}</strong>
                 {client.maininvoicingcontact_name}{" "}
                 {client.maininvoicingcontact_firstname} {client.Id}
-              </p>
+              </div>
               {(client.maininvoicingcontact_phone ||
                 client.maininvoicingcontact_cellphone) && (
                 <div className="flex flex-col">
-                  <strong>Téléphone :</strong>
                   <div className="flex flex-col flex-wrap gap-2">
                     {client.maininvoicingcontact_phone && (
                       <div className="flex flex-row gap-2">
