@@ -63,7 +63,7 @@ function DevisDetail() {
         placeholder="Rechercher un article"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
-        className="mt-2 mb-2 p-2 w-6/10"
+        className="mt-4  p-2 w-6/10"
       />
       <select className="mt-2 w-6/10" value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
         <option>Sélectionner un article</option>
