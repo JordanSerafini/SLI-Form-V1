@@ -1,7 +1,13 @@
 // Exemple de données clients (latitude, longitude)
 const clients = [
-    {id: 1, name: 'Client A', lat: 48.8566, lng: 2.3522}, // Paris
+    {id: 1, name: 'Client A', lat: 43.3000, lng: 5.4000}, // Marseille
     {id: 2, name: 'Client B', lat: 43.6045, lng: 1.4440}, // Toulouse
+    {id: 3, name: 'Client C', lat: 50.8503, lng: 4.3517}, // Bruxelles
+    {id: 4, name: 'Client D', lat: 51.1657, lng: 10.4515}, // Allemagne
+    {id: 5, name: 'Client E', lat: 52.5200, lng: 13.4050}, // Berlin
+    {id: 6, name: 'Client F', lat: 41.9028, lng: 12.4964}, // Rome
+
+
     // Ajoutez d'autres clients ici
 ];
 
