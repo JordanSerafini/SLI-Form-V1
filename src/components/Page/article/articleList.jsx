@@ -120,7 +120,7 @@ function ArticleList() {
                   className="text-green-500 font-bold"
                   onClick={() => addToDevis(item)}
                 >
-                  ajouter
+                  Ajouter au devis
                 </button>
               </li>
             ))}
