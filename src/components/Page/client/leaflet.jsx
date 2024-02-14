@@ -52,7 +52,7 @@ function LeafletMap({ address }) {
 
   // Affiche un message si l'adresse n'est pas trouvée, sinon affiche la carte
   return addressFound ? (
-    <div id="map"  style={{ height: '400px', width: '100%' }}></div>
+    <div className="z-50" id="map"  style={{ height: '400px', width: '100%' }}></div>
   ) : (
     <div style={{ height: '400px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       Adresse non trouvée.
