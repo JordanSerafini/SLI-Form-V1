@@ -1,16 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 
 function DevisDetail() {
-  const { devis, removeItemFromDevis } = useContext(RatingContext);
+  const { devis, removeItemFromDevis, setDevis, itemList } = useContext(RatingContext);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+
+  useEffect(() => {
+    console.log(itemList);
+  }, [itemList]);
+
+  const addItem = () => {
+    return (
+      <input type="text" placeholder="Ajouter un article" />
+    );
+  };
 
   const handleRemoveItem = (index) => {
     removeItemFromDevis(index);
   };
 
-  const total = devis.items?.reduce((acc, item) => acc + parseFloat(item.salepricevatincluded), 0) || 0;
-
+  const total =
+    devis.items?.reduce(
+      (acc, item) => acc + parseFloat(item.salepricevatincluded),
+      0
+    ) || 0;
 
   return (
     <div className="bg-cream min-h-[100vh] overflow-x-hidden flex flex-col items-center p-4">
@@ -21,13 +36,14 @@ function DevisDetail() {
         {devis.items && devis.items.length > 0 ? (
           <ul className="flex flex-col gap-2 p-1">
             {devis.items.map((item, index) => (
-              <li 
-              key={index}
-              className="border-b-2 pb-2 border-blue-light flex-row flex items-center gap-2 justify-between  w-9.5/10 mx-auto "
+              <li
+                key={index}
+                className="border-b-2 pb-2 border-blue-light flex-row flex items-center gap-2 justify-between  w-9.5/10 mx-auto "
               >
-
-                <div className="border-r-2 border-blue-light p-1 w-6/10 overflow-auto">{item.caption}</div>
-                <div >{item.salepricevatincluded}</div>
+                <div className="border-r-2 border-blue-light p-1 w-6/10 overflow-auto">
+                  {item.caption}
+                </div>
+                <div>{item.salepricevatincluded}</div>
                 <button
                   onClick={() => handleRemoveItem(index)}
                   style={{ marginLeft: "10px" }}
@@ -41,10 +57,18 @@ function DevisDetail() {
         ) : (
           <p>Aucun article dans le devis.</p>
         )}
-        <div>
-          total: {total} €
-        </div>
+        <div>total: {total.toFixed(2)}€</div>
       </div>
+      <div className="" onClick={addItem}>+</div>
+      <select value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
+          <option value="">Sélectionner un article</option>
+          {itemList.map((item) => (
+            <option key={item.id} value={item}>
+              {item.caption} - {item.salepricevatincluded}
+            </option>
+          ))}
+        </select>
+      
       <HomeBtn />
     </div>
   );
