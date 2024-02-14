@@ -84,7 +84,7 @@ function ArticleList() {
             {currentItems.map((item, index) => (
               <li
                 key={index}
-                className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-28 md:w-4.5/10 w-9/10  mx-auto"
+                className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-32 md:w-4.5/10 w-9/10  mx-auto"
               >
                 <h3>{item.caption}</h3>
                 <p>
