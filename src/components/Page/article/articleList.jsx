@@ -24,6 +24,7 @@ function ArticleList() {
       ...currentDevis,
       items: [...currentDevis.items, newItem] 
     }));
+    alert("Article ajouté au devis");
   };
   
   
