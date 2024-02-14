@@ -57,6 +57,7 @@ function DevisDetail() {
         )}
         <div>total: {total.toFixed(2)}€</div>
       </div>
+      <div className="flex flex-col items-center">
       <input
         type="text"
         placeholder="Rechercher un article"
@@ -73,6 +74,7 @@ function DevisDetail() {
         ))}
       </select>
       <div className="" onClick={() => addToDevis(selectedItem)}>+</div>
+      </div>
       <HomeBtn />
     </div>
   );
