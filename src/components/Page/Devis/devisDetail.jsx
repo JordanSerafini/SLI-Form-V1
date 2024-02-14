@@ -9,6 +9,9 @@ function DevisDetail() {
     removeItemFromDevis(index);
   };
 
+  const total = devis.items?.reduce((acc, item) => acc + parseFloat(item.salepricevatincluded), 0) || 0;
+
+
   return (
     <div className="bg-cream min-h-[100vh] overflow-x-hidden flex flex-col items-center p-4">
       <h1 className="bg-white rounded-xl justify-center items-center w-9.5/10 border-brownperso border-4 p-1 shadow-custom mt-4 flex flex-col font-playfair  gap-4">
@@ -38,6 +41,9 @@ function DevisDetail() {
         ) : (
           <p>Aucun article dans le devis.</p>
         )}
+        <div>
+          total: {total} €
+        </div>
       </div>
       <HomeBtn />
     </div>
