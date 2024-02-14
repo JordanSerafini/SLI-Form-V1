@@ -55,14 +55,14 @@ function DevisDetail() {
         ) : (
           <p>Aucun article dans le devis.</p>
         )}
-        <div>total: {total.toFixed(2)}€</div>
+        <div className="self-end pt-2">total: {total.toFixed(2)}€</div>
       </div>
       <div className="flex flex-col items-center">
       <input
         type="text"
         placeholder="Rechercher un article"
         value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)} // Mettre à jour la valeur de recherche
+        onChange={(e) => setSearchInput(e.target.value)}
         className="mt-2 mb-2 p-2 w-6/10"
       />
       <select className="mt-2 w-6/10" value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
