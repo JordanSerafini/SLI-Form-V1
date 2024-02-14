@@ -56,10 +56,10 @@ function DevisDetail() {
         ) : (
           <p>Aucun article dans le devis.</p>
         )}
-        <div>total: {total.toFixed(2)}€</div>
+        <div className="">total: {total.toFixed(2)}€</div>
       </div>
       <select className="mt-2 w-6/10" value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
-          <option>Sélectionner un article</option>
+          <option value="">Sélectionner un article</option>
           {itemList.map((item, index) => (
             <option key={index} value={item.caption}>
               {item.caption} - {item.salepricevatincluded}

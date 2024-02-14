@@ -131,9 +131,11 @@ function Home() {
     navigate("/planing");
   };
 
+  /*
   const redirect = (path) => {
     navigate(path);
   };
+  */
 
 
 
