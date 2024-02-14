@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 
 function DevisDetail() {
   const { devis, removeItemFromDevis, setDevis, itemList } = useContext(RatingContext);
   const [selectedItem, setSelectedItem] = useState("");
-  const [searchInput, setSearchInput] = useState(""); // Ajout de l'état de la recherche
+  const [searchInput, setSearchInput] = useState(""); 
 
   const addToDevis = (selectedItem) => {
     const newItem = itemList.find((item) => item.caption === selectedItem);
