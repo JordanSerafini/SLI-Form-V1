@@ -39,7 +39,7 @@ function ArticleDetail() {
           {/* Élément cliquable pour afficher le prix d'achat */}
           <div onClick={() => setShowPurchasePrice(!showPurchasePrice)} className="cursor-pointer">
             <span className="font-bold">Prix achat:</span>
-            {showPurchasePrice ? ` ${article.purchaseprice}` : ' Cliquez pour afficher'}
+            {showPurchasePrice ? ` ${article.purchaseprice}` : 'Cliquez pour afficher'}
           </div>
         </div>
       </div>
