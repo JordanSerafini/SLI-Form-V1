@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 
 function DevisDetail() {
   const { devis, removeItemFromDevis, setDevis, itemList } = useContext(RatingContext);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState("");
+  const [searchInput, setSearchInput] = useState(""); // Ajout de l'état de la recherche
 
-  
   const addToDevis = (selectedItem) => {
     const newItem = itemList.find((item) => item.caption === selectedItem);
     setDevis((currentDevis) => ({
@@ -18,7 +18,6 @@ function DevisDetail() {
   const handleRemoveItem = (index) => {
     removeItemFromDevis(index);
   };
-
 
   const total =
     devis.items?.reduce(
@@ -56,19 +55,24 @@ function DevisDetail() {
         ) : (
           <p>Aucun article dans le devis.</p>
         )}
-        <div className="">total: {total.toFixed(2)}€</div>
+        <div>total: {total.toFixed(2)}€</div>
       </div>
+      <input
+        type="text"
+        placeholder="Rechercher un article"
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)} // Mettre à jour la valeur de recherche
+        className="mt-2 mb-2 p-2 w-6/10"
+      />
       <select className="mt-2 w-6/10" value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
-          <option value="">Sélectionner un article</option>
-          {itemList.map((item, index) => (
-            <option key={index} value={item.caption}>
-              {item.caption} - {item.salepricevatincluded}
-            </option>
-          ))}
-        </select>
-        <div className="" onClick={() =>addToDevis(selectedItem)}>+</div>
-
-      
+        <option>Sélectionner un article</option>
+        {itemList.filter((item) => item.caption.toLowerCase().includes(searchInput.toLowerCase())).map((item, index) => (
+          <option key={index} value={item.caption}>
+            {item.caption} - {item.salepricevatincluded}
+          </option>
+        ))}
+      </select>
+      <div className="" onClick={() => addToDevis(selectedItem)}>+</div>
       <HomeBtn />
     </div>
   );
