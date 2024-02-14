@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 
@@ -6,20 +6,18 @@ function DevisDetail() {
   const { devis, removeItemFromDevis, setDevis, itemList } = useContext(RatingContext);
   const [selectedItem, setSelectedItem] = useState(null);
 
-
-  useEffect(() => {
-    console.log(itemList);
-  }, [itemList]);
-
-  const addItem = () => {
-    return (
-      <input type="text" placeholder="Ajouter un article" />
-    );
+  const addToDevis = (selectedItem) => {
+    const newItem = itemList.find((item) => item.caption === selectedItem);
+    setDevis((currentDevis) => ({
+      ...currentDevis,
+      items: [...currentDevis.items, newItem],
+    }));
   };
 
   const handleRemoveItem = (index) => {
     removeItemFromDevis(index);
   };
+
 
   const total =
     devis.items?.reduce(
@@ -59,15 +57,16 @@ function DevisDetail() {
         )}
         <div>total: {total.toFixed(2)}€</div>
       </div>
-      <div className="" onClick={addItem}>+</div>
-      <select value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
-          <option value="">Sélectionner un article</option>
-          {itemList.map((item) => (
-            <option key={item.id} value={item}>
+      <select className="mt-2 w-6/10" value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
+          <option>Sélectionner un article</option>
+          {itemList.map((item, index) => (
+            <option key={index} value={item.caption}>
               {item.caption} - {item.salepricevatincluded}
             </option>
           ))}
         </select>
+        <div className="" onClick={() =>addToDevis(selectedItem)}>+</div>
+
       
       <HomeBtn />
     </div>
