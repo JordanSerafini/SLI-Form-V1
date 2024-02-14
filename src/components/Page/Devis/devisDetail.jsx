@@ -6,6 +6,7 @@ function DevisDetail() {
   const { devis, removeItemFromDevis, setDevis, itemList } = useContext(RatingContext);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  
   const addToDevis = (selectedItem) => {
     const newItem = itemList.find((item) => item.caption === selectedItem);
     setDevis((currentDevis) => ({
