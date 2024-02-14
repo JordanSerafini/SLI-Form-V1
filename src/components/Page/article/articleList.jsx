@@ -4,7 +4,7 @@ import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 
 function ArticleList() {
-  const { loading, itemList } = useContext(RatingContext);
+  const { loading, itemList, devis, setDevis } = useContext(RatingContext);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
   const [search, setSearch] = useState("");
@@ -12,8 +12,23 @@ function ArticleList() {
   const { setArticleId } = useContext(RatingContext);
   const navigate = useNavigate();
 
+/*
+  useEffect(() => {
+    console.log(devis);
+  }, [devis]);
+  */
 
-
+  
+  const addToDevis = (newItem) => {
+    setDevis(currentDevis => ({
+      ...currentDevis,
+      items: [...currentDevis.items, newItem] 
+    }));
+  };
+  
+  
+  
+  
 
   const handleDetail = (articleId) => {
     setArticleId(articleId);
@@ -28,8 +43,6 @@ function ArticleList() {
       )
     );
   }, [search, itemList]);
-
-
 
   // Pagination des articles après filtrage
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -60,6 +73,9 @@ function ArticleList() {
   if (loading) {
     return <div>Chargement...</div>;
   }
+
+
+  
 
   return (
     <div className="bg-cream h-[100vh] overflow-x-hidden flex flex-col items-center">
@@ -98,6 +114,12 @@ function ArticleList() {
                   onClick={() => handleDetail(item.id)}
                 >
                   Accéder au Détail
+                </button>
+                <button
+                  className="text-green-500 font-bold"
+                  onClick={() => addToDevis(item)}
+                >
+                  ajouter
                 </button>
               </li>
             ))}

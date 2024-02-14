@@ -123,6 +123,14 @@ function Home() {
     navigate("/article-list");
   };
 
+  const devisRedirect = () => {
+    navigate("/devis-detail");
+  };
+
+  const redirect = (path) => {
+    navigate(path);
+  };
+
 
 
   // Fetch des données context
@@ -185,7 +193,7 @@ function Home() {
         {userData && (
           <div className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair w-9.5/10">
             <div
-              className="text-sm flex items-center"
+              className="text-sm flex items-center cursor-pointer"
               onClick={() => setShowEmailInput(!showEmailInput)}
             >
               <img
@@ -205,25 +213,33 @@ function Home() {
                   value={emailToSend}
                   onChange={(e) => setEmailToSend(e.target.value)}
                 />
-                <button onClick={sendForm}>Envoyer</button>
+                <button className=" cursor-pointer" onClick={sendForm}>Envoyer</button>
               </div>
             )}
           </div>
         )}
         {/*------------------------ Encard Clients ----------------------------- */}
         <div
-          className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10"
+          className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer"
           onClick={handleRedirect}
         >
           <img src={clientLogo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />
           Consulter mes clients
         </div>
         {/*------------------------ Encard Planing ----------------------------- */}
-        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10" 
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer" 
         onClick={articleRedirect}
         >
           <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
           Accéder aux articles
+        </div>
+
+          {/*------------------------ Encard Devis ----------------------------- */}
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer" 
+        onClick={devisRedirect}
+        >
+          <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
+          Accéder aux devis
         </div>
       </div>
 

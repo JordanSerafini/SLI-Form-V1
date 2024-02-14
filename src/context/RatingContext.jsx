@@ -18,6 +18,25 @@ export const RatingProvider = ({ children }) => {
   const [articleId, setArticleId] = useState(0);
   const [lastPath, setLastPath] = useState('/home'); 
   const [backPath, setBackPath] = useState('/home');
+  const [devisList, setDevisList] = useState([]);
+  const [devis, setDevis] = useState({
+    nom: '', // Initialiser avec une chaîne vide ou une valeur par défaut
+    items: [] // Initialiser avec un tableau vide
+  });
+  
+ 
+  const removeItemFromDevis = (itemIndex) => {
+    setDevis(currentDevis => ({
+      ...currentDevis,
+      items: currentDevis.items.filter((_, index) => index !== itemIndex),
+    }));
+  };
+  
+
+  const updateDevisList = (devis) => {
+    setDevisList(currentDevisList => [...currentDevisList, devis]);
+  };
+  
 
   const updateLastPath = (path) => {
     setBackPath(lastPath);
@@ -102,7 +121,7 @@ export const RatingProvider = ({ children }) => {
   };
 
   return (
-    <RatingContext.Provider value={{ backPath, lastPath, updateLastPath, articleId, setArticleId, clientId, setClientId, user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag,loading, setLoading }}>
+    <RatingContext.Provider value={{ removeItemFromDevis, devis, setDevis, devisList, updateDevisList, backPath, lastPath, updateLastPath, articleId, setArticleId, clientId, setClientId, user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag,loading, setLoading }}>
       {children}
       <ToastContainer />
     </RatingContext.Provider>
