@@ -127,6 +127,10 @@ function Home() {
     navigate("/devis-detail");
   };
 
+  const planingRedirect = () => {
+    navigate("/planing");
+  };
+
   const redirect = (path) => {
     navigate(path);
   };
@@ -239,7 +243,16 @@ function Home() {
         onClick={devisRedirect}
         >
           <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
-          Accéder aux devis
+          Accéder a la page devis
+        </div>
+      
+      
+      {/*------------------------ Encard Planing ----------------------------- */}
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer" 
+        onClick={planingRedirect}
+        >
+          <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
+          Accéder au planing
         </div>
       </div>
 

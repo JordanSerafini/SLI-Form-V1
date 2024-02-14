@@ -11,6 +11,7 @@ import ArticleList from "./components/Page/article/articleList";
 import ClientDetail from "./components/Page/client/clientDetail";
 import ArticleDetail from "./components/Page/article/articleDetail";
 import DevisDetail from "./components/Page/Devis/devisDetail";
+import PlaningPage from "./components/Page/planing/planingPage";
 //import { Link } from "react-router-dom";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/client-detail/:clientId" element={<PrivateRoute element={<ClientDetail />} />} />     
         <Route path="/article-detail/:articleId" element={<PrivateRoute element={<ArticleDetail />} />} />     
         <Route path="/devis-detail" element={<PrivateRoute element={<DevisDetail />} />} />
+        <Route path="/planing" element={<PrivateRoute element={<PlaningPage />} />} />
       </Routes>
  
     </Router>
