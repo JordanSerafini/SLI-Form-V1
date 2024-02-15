@@ -4,6 +4,7 @@ import HomeBtn from "../../Button/HomeBtn";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Modal from "../../modals/planingModal";
+import BackUrl from "../../../Axios/backUrl";
 
 function PlaningPage() {
   const { eventList, showToast, fetchEventList } = useContext(RatingContext);
@@ -17,7 +18,7 @@ function PlaningPage() {
   const handleDeleteEvent = async (eventId) => {
     try {
         // Appeler votre API back-end pour supprimer l'événement avec l'ID spécifié
-        await fetch(`/deleteEvent/${eventId}`, {
+        await fetch(`${BackUrl}/deleteEvent/${eventId}`, {
             method: 'DELETE'
         });
         fetchEventList();
