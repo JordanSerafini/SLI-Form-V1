@@ -94,7 +94,7 @@ function ClientList() {
           {currentClients.map((client, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-72 w-9/10 md:w-4.5/10 sm:0 sm:h-52"
+              className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-64 w-9/10 md:w-4.5/10 sm:0 sm:h-52"
             >
               <div className="flex gap-1">
                 <img className="h-8" src={clientLogo} alt="logo Client" />
