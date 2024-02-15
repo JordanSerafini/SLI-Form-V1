@@ -89,7 +89,7 @@ function PlaningPage() {
           <p className="text-xs font-bold w-3/10 transform -rotate-45 text-2c ">
             {event.xx_type_tache}
           </p>
-          <div className="text-center text-gray-700 text-gray-300">
+          <div className="text-center  text-gray-100">
             <p className="border-b-2 border-6c pb-2 mb-2 text-center text-lg font-bold ">
               {event.caption}
             </p>
