@@ -6,7 +6,7 @@ import "react-calendar/dist/Calendar.css";
 import Modal from "../../modals/planingModal";
 
 function PlaningPage() {
-  const { eventList, showToast } = useContext(RatingContext);
+  const { eventList, showToast, fetchEventList } = useContext(RatingContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -14,6 +14,18 @@ function PlaningPage() {
     setIsModalOpen(false);
   };
 
+  const handleDeleteEvent = async (eventId) => {
+    try {
+        // Appeler votre API back-end pour supprimer l'événement avec l'ID spécifié
+        await fetch(`/deleteEvent/${eventId}`, {
+            method: 'DELETE'
+        });
+        fetchEventList();
+    } catch (error) {
+        console.error("Erreur lors de la suppression de l'événement :", error);
+        // Afficher un message d'erreur ou gérer l'erreur d'une autre manière
+    }
+};
 
   useEffect(() => {
     // Filtrer les événements pour la date sélectionnée
@@ -108,6 +120,20 @@ function PlaningPage() {
               Du {formattedStartDate} au {formattedEndDate}{" "}
             </p>
             <p>{event.workingduration_editedduration}</p>
+            <button onClick={() => handleDeleteEvent(event.id)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-red-500 cursor-pointer"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 11-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
           </div>
         </div>
       </div>
