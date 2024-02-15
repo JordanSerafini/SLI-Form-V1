@@ -42,10 +42,12 @@ function PlaningPage() {
     const formattedEndDate = formatDate(endDate);
 
     return (
-      <div key={event.id} className="bg-white m-2 p-2 rounded-xl">
-        <p>{event.caption}</p>
-        <p>Date de début: {formattedStartDate}</p>
-        <p>Date de fin: {formattedEndDate}</p>
+      <div key={event.id} className="bg-white m-2 p-2 rounded-xl ">
+        <p className="border-b-2 border-blue-light pb-2 mb-2">{event.caption}</p>
+        <p>Du {formattedStartDate} au {formattedEndDate} </p>
+        <p>Temps estimé: {event.workingduration_editedduration}</p>
+        <p>{event.xx_type_tache } {event.xx_theme}</p>
+        
       </div>
     );
   });
@@ -60,7 +62,9 @@ function PlaningPage() {
         />
       </div>
       <div className="w-9.5/10">
-        <h2>Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}</h2>
+        <h2 className="text-center text-white p-4 border-red-300 border-2 w-10/10 mx-auto bg-blue-dark rounded-xl m-4 
+        "
+        >Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}</h2>
         {eventItems.length > 0 ? (
           eventItems
         ) : (
