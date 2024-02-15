@@ -70,10 +70,10 @@ function PlaningPage() {
         className="bg-4c border-2 border-5c m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10"
       >
         <div className="flex flex-row justify-start">
-          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-1c">
+          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-2c">
             {event.xx_type_tache}
           </p>
-          <div className="text-center">
+          <div className="text-center text-gray-700">
             <p className="border-b-2 border-5c pb-2 mb-2 text-center text-lg font-bold ">
               {event.caption}
             </p>
