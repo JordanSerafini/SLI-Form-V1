@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import RatingContext from "../../context/RatingContext";
 import backUrl from "../../Axios/backUrl";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Header from "../Header/Header";
 import LogoutBtn from "../Login/LogoutBtn";
@@ -23,16 +23,13 @@ function Home() {
   const [emailToSend, setEmailToSend] = useState("");
   const [currentDate, setCurrentDate] = useState("");
   const token = localStorage.getItem("token");
-  const location = useLocation();
-  const { updateLastPath } = useContext(RatingContext);
 
-  useEffect(() => {
-    updateLastPath(location.pathname);
-  }, [location, updateLastPath]);
+
 
 
   const navigate = useNavigate();
-  // Récupération des données de l'utilisateur
+
+  // Vérication du token
   useEffect(() => {
     if (!token) {
       console.error("Token non trouvé dans le localStorage");
@@ -68,8 +65,7 @@ function Home() {
     }
   }, [userData, showToast, helloFlag, setHelloFlag]);
 
-  // Envoi du formulaire de satisfaction
-  
+  // Date du jour
   useEffect(() => {
     if (userData) {
       const currentDate = new Date().toLocaleDateString("fr-FR");
@@ -77,6 +73,7 @@ function Home() {
     }
   }, [userData]);
   
+    // Envoi du formulaire de satisfaction
   const sendForm = async () => {
     if (!emailToSend || emailToSend === "") {
       showToast("Veuillez entrer une adresse e-mail.", {
@@ -115,6 +112,7 @@ function Home() {
     }
   };
 
+  // Redirections
   const handleRedirect = () => {
     navigate("/client-list");
   };
@@ -130,17 +128,16 @@ function Home() {
   const planingRedirect = () => {
     navigate("/planing");
   };
-
   /*
   const redirect = (path) => {
     navigate(path);
   };
   */
+console.log("charge");
 
-
-
-  // Fetch des données context
-  useEffect(() => {
+// Fetch des données clients et items
+useEffect(() => {
+    // Fetch des données clients
     const fetchClientList = async () => {
       try {
         const response = await axios.get(`${backUrl}/customerPG`);
@@ -160,10 +157,8 @@ function Home() {
       }
     };
 
-    fetchClientList();
-  }, [ ]);
+      // Fetch des données items
 
-  useEffect(() => {
     const fetchItemList = async () => {
       try {
         const response = await axios.get(`${backUrl}/articlePG`);
@@ -177,10 +172,13 @@ function Home() {
         setLoading(false);
       }
     };
-
     fetchItemList();
-  }, []);
+    fetchClientList();
+  }, [ ]);
 
+
+
+  
   return (
     <div className="bg-cream h-screen flex flex-col items-center">
       <Header />

@@ -28,7 +28,7 @@ function DevisDetail() {
   return (
     <div className="bg-cream min-h-[100vh] overflow-x-hidden flex flex-col items-center p-4">
       <h1 className="bg-white rounded-xl justify-center items-center w-9.5/10 border-brownperso border-4 p-1 shadow-custom mt-4 flex flex-col font-playfair  gap-4">
-        Mr Robert David
+        Mr John Doe
       </h1>
       <div className="bg-white rounded-xl min-h-[80vh] w-9.5/10 border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair text-sm">
         {devis.items && devis.items.length > 0 ? (
@@ -63,7 +63,7 @@ function DevisDetail() {
         placeholder="Rechercher un article"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
-        className="mt-4  p-2 w-6/10"
+        className="mt-4 p-2 w-6/10"
       />
       <select className="mt-2 w-6/10" value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
         <option>Sélectionner un article</option>
