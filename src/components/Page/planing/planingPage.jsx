@@ -64,13 +64,29 @@ function PlaningPage() {
     const formattedStartDate = formatDate(startDate);
     const formattedEndDate = formatDate(endDate);
 
+    // Définir la classe de couleur en fonction du type de tâche
+    let cardColorClass = "";
+    switch (event.xx_type_tache) {
+      case "rendez-vous":
+        cardColorClass = "bg-green-300";
+        break;
+      case "intervention":
+        cardColorClass = "bg-2c";
+        break;
+      case "formation":
+        cardColorClass = "bg-5c";
+        break;
+      default:
+        cardColorClass = "bg-gray-300";
+    }
+
     return (
       <div
         key={event.id}
-        className="bg-4c border-2 border-5c m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10"
+        className={`border-2 border-5c m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10 ${cardColorClass}`}
       >
         <div className="flex flex-row justify-start">
-          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-2c">
+          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-2c ml-4">
             {event.xx_type_tache}
           </p>
           <div className="text-center text-gray-700">
