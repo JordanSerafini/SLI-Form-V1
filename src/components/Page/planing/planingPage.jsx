@@ -138,7 +138,6 @@ function PlaningPage() {
           )}
       </div>
       <HomeBtn />
-      <button className="btn btn-primary" onClick={handleAddEvent}>Ajouter un événement</button>
       {isModalOpen && <Modal onClose={handleCloseModal} />}
     </div>
   );

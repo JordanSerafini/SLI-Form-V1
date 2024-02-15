@@ -11,32 +11,26 @@ function Modal({ onClose }) {
     achievedDuration: "",
     colleagueId: "",
     notesClear: "",
-    xxTypeTache: "",
+    xx_type_tache: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Vérifier que tous les champs sont remplis
-    if (
-      !eventInfo.caption ||
-      !eventInfo.startDateTime ||
-      !eventInfo.endDateTime ||
-      !eventInfo.expectedDuration ||
-      !eventInfo.achievedDuration ||
-      !eventInfo.colleagueId ||
-      !eventInfo.notesClear ||
-      !eventInfo.xxTypeTache
-    ) {
-      alert("Veuillez remplir tous les champs");
-      return;
+    for (const key in eventInfo) {
+      if (!eventInfo[key]) {
+        alert("Veuillez remplir tous les champs");
+        return;
+      }
     }
 
     try {
-      const response = await axios.post(`${BackUrl}/inserteven`, eventInfo);
+      const response = await axios.post(`${BackUrl}/insertEvent`, eventInfo);
       
       if (response.status === 200) {
         // Si la requête a réussi, fermer le modal
+        alert("Événement ajouté avec succès.");
         onClose();
       } else {
         // Si la requête a échoué, afficher une erreur
@@ -115,8 +109,8 @@ function Modal({ onClose }) {
           />
           <input
             type="text"
-            name="xxTypeTache"
-            value={eventInfo.xxTypeTache}
+            name="xx_type_tache"
+            value={eventInfo.xx_type_tache}
             onChange={handleChange}
             placeholder="Type de tâche"
           />
