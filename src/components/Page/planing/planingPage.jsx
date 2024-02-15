@@ -110,7 +110,7 @@ function PlaningPage() {
         className={`overflow-y-auto border-2 border-10c  m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10 ${cardColorClass}`}
       >
         <div className="flex flex-row justify-start">
-          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-2c ">
+          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-4c ml-2">
             {event.xx_type_tache}
           </p>
           <div className="text-center  text-gray-100">
