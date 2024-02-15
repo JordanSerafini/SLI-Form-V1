@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import RatingContext from "../../../context/RatingContext";
+import RatingContext from "../../context/RatingContext";
 
 function Modal() {
   const { onClose } = useContext(RatingContext);

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 import Calendar from "react-calendar";
@@ -8,6 +8,7 @@ import Modal from "../../modals/planingModal";
 function PlaningPage() {
   const { eventList, showToast } = useContext(RatingContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // Filtrer les événements pour la date sélectionnée
@@ -32,7 +33,6 @@ function PlaningPage() {
       [setSelectedDate]
     );
   });
-
 
   const handleAddEvent = () => {
     setIsModalOpen(true);
@@ -69,8 +69,6 @@ function PlaningPage() {
     // Formater les dates au format souhaité
     const formattedStartDate = formatDate(startDate);
     const formattedEndDate = formatDate(endDate);
-
-    
 
     // Définir la classe de couleur en fonction du type de tâche
     let cardColorClass = "";
@@ -135,7 +133,8 @@ function PlaningPage() {
           )}
       </div>
       <HomeBtn />
-      
+      <button className="btn btn-primary" onClick={handleAddEvent}>Ajouter un événement</button>
+      {isModalOpen && <Modal />}
     </div>
   );
 }
