@@ -44,6 +44,13 @@ export default {
         'whiteperso': '#ECF8F6',
         'cream': '#709CA7',
         'brownperso': '#B8CBD0',
+
+        '1c': '#18534F',
+        '2c': '#226D68',
+        '3c': '#ECF8F6',
+        '4c': '#FEEAA1',
+        '5c': '#D6955B',
+
       },
       fontFamily: {
         'lato': ['Lato', 'sans-serif'],
