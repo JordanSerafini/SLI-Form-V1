@@ -133,7 +133,7 @@ export const RatingProvider = ({ children }) => {
   };
 
   return (
-    <RatingContext.Provider value={{ isModalOpen, openModal, closeModal, eventList, setEventList, setIsPassHome, isPassHome, removeItemFromDevis, devis, setDevis, devisList, updateDevisList, backPath, lastPath, updateLastPath, articleId, setArticleId, clientId, setClientId, user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag,loading, setLoading }}>
+    <RatingContext.Provider value={{ isModalOpen, setIsModalOpen , openModal, closeModal, eventList, setEventList, setIsPassHome, isPassHome, removeItemFromDevis, devis, setDevis, devisList, updateDevisList, backPath, lastPath, updateLastPath, articleId, setArticleId, clientId, setClientId, user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag,loading, setLoading }}>
       {children}
       <ToastContainer />
     </RatingContext.Provider>
