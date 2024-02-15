@@ -83,7 +83,7 @@ function PlaningPage() {
     return (
       <div
         key={event.id}
-        className={`border-2 border-5c m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10 ${cardColorClass}`}
+        className={`overflow-y-auto border-2 border-5c m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10 ${cardColorClass}`}
       >
         <div className="flex flex-row justify-start">
           <p className="text-xs font-bold w-3/10 transform -rotate-45 text-2c ml-4">
@@ -105,25 +105,26 @@ function PlaningPage() {
 
   return (
     <div className="bg-3c h-[100vh] overflow-x-hidden flex flex-col items-center">
-      <div className="w-9.5/10 mt-4">
+      <h2 className="text-center  border-5c border-2 w-9.5/10 mx-auto bg-blue-dark rounded-xl mt-2 bg-white">
+          Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}
+        </h2>
+      <div className="w-9.5/10 mt-4 h-4.5/10">
         <Calendar
           onChange={setSelectedDate}
           value={selectedDate}
           locale="fr-FR"
           className={
-            "bg-white p-4 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px]"
+            "bg-white p-4 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] mb-2"
           }
         />
       </div>
-      <div className="w-9.5/10">
-        <h2 className="text-center  p-0 border-5c border-2 w-10/10 mx-auto bg-blue-dark rounded-xl mt-2 bg-white">
-          Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}
-        </h2>
-        {eventItems.length > 0 ? (
-          eventItems
-        ) : (
-          <p>Aucun événement prévu pour cette date.</p>
-        )}
+        
+        <div className="">
+          {eventItems.length > 0 ? (
+            eventItems
+          ) : (
+            <p>Aucun événement prévu pour cette date.</p>
+          )}
       </div>
       <HomeBtn />
     </div>
