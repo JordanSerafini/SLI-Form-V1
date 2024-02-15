@@ -30,7 +30,7 @@ function App() {
         <Route path="/devis-detail" element={<PrivateRoute element={<DevisDetail />} />} />
         <Route path="/planing" element={<PrivateRoute element={<PlaningPage />} />} />
       </Routes>
- 
+    
     </Router>
     </RatingProvider>
   );

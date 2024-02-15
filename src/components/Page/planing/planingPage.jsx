@@ -3,6 +3,7 @@ import RatingContext from "../../../context/RatingContext";
 import HomeBtn from "../../Button/HomeBtn";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import Modal from "../../modals/planingModal";
 
 function PlaningPage() {
   const { eventList, showToast } = useContext(RatingContext);
@@ -31,6 +32,11 @@ function PlaningPage() {
       [setSelectedDate]
     );
   });
+
+
+  const handleAddEvent = () => {
+    setIsModalOpen(true);
+  };
 
   // Fonction pour formater une date
   const formatDate = (date) => {
@@ -63,6 +69,8 @@ function PlaningPage() {
     // Formater les dates au format souhaité
     const formattedStartDate = formatDate(startDate);
     const formattedEndDate = formatDate(endDate);
+
+    
 
     // Définir la classe de couleur en fonction du type de tâche
     let cardColorClass = "";
@@ -127,6 +135,7 @@ function PlaningPage() {
           )}
       </div>
       <HomeBtn />
+      
     </div>
   );
 }
