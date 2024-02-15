@@ -105,7 +105,7 @@ function PlaningPage() {
 
   return (
     <div className="bg-3c h-[100vh] overflow-x-hidden flex flex-col items-center">
-      <h2 className="text-center  border-5c border-2 w-9.5/10 mx-auto bg-blue-dark rounded-xl mt-2 bg-white">
+      <h2 className="text-center  border-7c border-2 w-9.5/10 mx-auto bg-blue-dark rounded-xl mt-2 bg-white">
           Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}
         </h2>
       <div className="w-9.5/10 mt-4 h-4.5/10">
