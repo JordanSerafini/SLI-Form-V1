@@ -1,80 +1,73 @@
+import React, { useState } from "react";
 import { useContext } from "react";
-
 import RatingContext from "../../../context/RatingContext";
-
 import HomeBtn from "../../Button/HomeBtn";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 function PlaningPage() {
   const { eventList } = useContext(RatingContext);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Vérifiez d'abord si eventList est défini et s'il contient des lignes
-  if (!eventList || !eventList.rows || eventList.rows.length === 0) {
-    return <div>Aucune donnée des événements disponible pour le moment.</div>;
-  }
+  // Fonction pour formater une date
+  const formatDate = (date) => {
+    return date.toLocaleString("fr-FR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+  };
+
+  // Filtrer les événements pour afficher uniquement ceux de la date sélectionnée
+  const filteredEvents = eventList.rows.filter((event) => {
+    const eventDate = new Date(event.startdatetime);
+    return (
+      eventDate.getFullYear() === selectedDate.getFullYear() &&
+      eventDate.getMonth() === selectedDate.getMonth() &&
+      eventDate.getDate() === selectedDate.getDate()
+    );
+  });
 
   // Mappez les données de chaque événement dans des éléments JSX
-  const eventItems = eventList.rows.map((event) => {
+  const eventItems = filteredEvents.map((event) => {
     // Convertir la date de début et la date de fin en objets Date
     const startDate = new Date(event.startdatetime);
     const endDate = new Date(event.enddatetime);
-    const nextreminder = new Date(event.nextreminder);
 
-    // Formater les dates au format souhaité (par exemple, "YYYY-MM-DD HH:mm:ss")
-    const formattedStartDate = startDate.toLocaleString("fr-FR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-    const formattedEndDate = endDate.toLocaleString("fr-FR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-
-    const formattedNextReminder = nextreminder.toLocaleString("fr-FR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-
-    // Vérifier si la date de début est dans les deux prochains jours
-
-    //const today = new Date();
-    const today = new Date("2016-10-20");
-    const twoDaysLater = new Date(today);
-    twoDaysLater.setDate(today.getDate() + 2);
-    const isStartDateNear = startDate <= twoDaysLater;
+    // Formater les dates au format souhaité
+    const formattedStartDate = formatDate(startDate);
+    const formattedEndDate = formatDate(endDate);
 
     return (
-      <div
-        key={event.id}
-        className={`bg-white m-2 w-9.5/10 h-32 p-2 rounded-xl text-blue-strong overflow-auto ${
-          isStartDateNear ? 'text-red-500 text-bold border-2 border-red-700' : ''
-        }`}
-      >
-        <p className="text-center p-2"> {event.caption}</p>
+      <div key={event.id} className="bg-white m-2 p-2 rounded-xl">
+        <p>{event.caption}</p>
         <p>Date de début: {formattedStartDate}</p>
         <p>Date de fin: {formattedEndDate}</p>
-        <p>Prochain Rappel: {formattedNextReminder}</p>
       </div>
     );
   });
 
   return (
     <div className="bg-blue-light h-[100vh] overflow-x-hidden flex flex-col items-center">
-      <h2 className="">Liste des événements</h2>
-      <div className="w-9.5/10">
-        {eventItems}
+      <div className="w-9.5/10 mt-4">
+        <Calendar
+          onChange={setSelectedDate}
+          value={selectedDate}
+          locale="fr-FR"
+        />
       </div>
+      <div className="w-9.5/10">
+        <h2>Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}</h2>
+        {eventItems.length > 0 ? (
+          eventItems
+        ) : (
+          <p>Aucun événement prévu pour cette date.</p>
+        )}
+      </div>
+      
       <HomeBtn />
     </div>
   );
