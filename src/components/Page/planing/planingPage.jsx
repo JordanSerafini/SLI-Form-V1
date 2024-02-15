@@ -10,6 +10,11 @@ function PlaningPage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
     // Filtrer les événements pour la date sélectionnée
     const filteredEvents = eventList.rows.filter((event) => {
@@ -134,7 +139,7 @@ function PlaningPage() {
       </div>
       <HomeBtn />
       <button className="btn btn-primary" onClick={handleAddEvent}>Ajouter un événement</button>
-      {isModalOpen && <Modal />}
+      {isModalOpen && <Modal onClose={handleCloseModal} />}
     </div>
   );
 }
