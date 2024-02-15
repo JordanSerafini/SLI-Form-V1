@@ -15,6 +15,7 @@ function Home() {
   const { showToast } = useContext(RatingContext);
   const {helloFlag, setHelloFlag} = useContext(RatingContext);
   const { setClientList} = useContext(RatingContext);
+  const { setEventList} = useContext(RatingContext);
   const { setLoading} = useContext(RatingContext);
   const { setItemList} = useContext(RatingContext);
 
@@ -133,7 +134,6 @@ function Home() {
     navigate(path);
   };
   */
-console.log("charge");
 
 // Fetch des données clients et items
 useEffect(() => {
@@ -172,6 +172,22 @@ useEffect(() => {
         setLoading(false);
       }
     };
+
+    const fetchEventList = async () => {
+      try {
+        const response = await axios.get(`${backUrl}/event`);
+        setEventList(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la liste des événements :", error);
+        showToast("Erreur lors de la récupération de la liste des événements", {
+          type: "error",
+        });
+        setLoading(false);
+      }
+    };
+
+    fetchEventList();
     fetchItemList();
     fetchClientList();
   }, [ ]);
