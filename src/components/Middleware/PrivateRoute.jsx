@@ -14,6 +14,15 @@ function PrivateRoute({ element }) {
     }
   }, [jwt, showToast]);
   
+  /*
+  if (jwt && !itemList.length || !clientList.length || !eventList.length) {
+    // Si le token est présent et que les données ne sont pas chargées, les charger
+    fetchItemList();
+    fetchClientList();
+    fetchEventList();
+    console.log("fetching data");
+  }
+  */
 
   // Fonction pour effectuer la redirection vers la page de connexion
   const navigateToLogin = () => {
