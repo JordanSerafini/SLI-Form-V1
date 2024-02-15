@@ -13,6 +13,7 @@ function PrivateRoute({ element }) {
       navigateToLogin(); // Redirection vers la page de connexion
     }
   }, [jwt, showToast]);
+  
 
   // Fonction pour effectuer la redirection vers la page de connexion
   const navigateToLogin = () => {

@@ -5,16 +5,15 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Modal from "../../modals/planingModal";
 
-
 function PlaningPage() {
   const { eventList, showToast } = useContext(RatingContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
 
   useEffect(() => {
     // Filtrer les événements pour la date sélectionnée
@@ -36,7 +35,7 @@ function PlaningPage() {
         position: "top-right",
         autoClose: 1500,
       },
-      [setSelectedDate]
+      []
     );
   });
 
@@ -118,8 +117,8 @@ function PlaningPage() {
   return (
     <div className="bg-3c h-[100vh] overflow-x-hidden flex flex-col items-center">
       <h2 className="text-center  border-7c border-2 w-9.5/10 mx-auto bg-blue-dark rounded-xl mt-2 bg-white">
-          Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}
-        </h2>
+        Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}
+      </h2>
       <div className="w-9.5/10 mt-4 h-4.5/10">
         <Calendar
           onChange={setSelectedDate}
@@ -130,16 +129,20 @@ function PlaningPage() {
           }
         />
       </div>
-        
-        <div className="">
-          {eventItems.length > 0 ? (
-            eventItems
-          ) : (
-            <p>Aucun événement prévu pour cette date.</p>
-          )}
+
+      <div className="">
+        {eventItems.length > 0 ? (
+          eventItems
+        ) : (
+          <p>Aucun événement prévu pour cette date.</p>
+        )}
       </div>
       <HomeBtn />
-      <button className="btn btn-primary" onClick={handleAddEvent}>Ajouter un événement</button>
+      <button 
+            className="border-2 border-9c bg-white p-2 shadow-lg fixed  transform -translate-x-1/2 left-6 bottom-4 rounded-full "
+            onClick={handleAddEvent}>
+        +
+      </button>
       {isModalOpen && <Modal onClose={handleCloseModal} />}
     </div>
   );

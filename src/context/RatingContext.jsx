@@ -1,7 +1,9 @@
 import  { createContext, useState, useMemo } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import  axios from 'axios';
 
+import BackUrl from '../Axios/backUrl';
 
 const RatingContext = createContext();
 
@@ -27,6 +29,55 @@ export const RatingProvider = ({ children }) => {
 
   const [isPassHome, setIsPassHome] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  // Fetch des données clients
+  const fetchClientList = async () => {
+    try {
+      const response = await axios.get(`${BackUrl}/customerPG`);
+      setClientList(response.data.rows);
+      //console.log("clientList fetched");
+      setLoading(false);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération de la liste des clients :",
+        error
+      );
+      showToast("Erreur lors de la récupération de la liste des clients", {
+        type: "error",
+      });
+      setLoading(false);
+    }
+  };
+
+    // Fetch des données items
+  const fetchItemList = async () => {
+    try {
+      const response = await axios.get(`${BackUrl}/articlePG`);
+      setItemList(response.data.rows);
+      setLoading(false);
+    } catch (error) {
+      console.error("Erreur lors de la récupération de la liste des articles :", error);
+      showToast("Erreur lors de la récupération de la liste des articles", {
+        type: "error",
+      });
+      setLoading(false);
+    }
+  };
+
+  const fetchEventList = async () => {
+    try {
+      const response = await axios.get(`${BackUrl}/event`);
+      setEventList(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Erreur lors de la récupération de la liste des événements :", error);
+      showToast("Erreur lors de la récupération de la liste des événements", {
+        type: "error",
+      });
+      setLoading(false);
+    }
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -133,7 +184,7 @@ export const RatingProvider = ({ children }) => {
   };
 
   return (
-    <RatingContext.Provider value={{ isModalOpen, setIsModalOpen , openModal, closeModal, eventList, setEventList, setIsPassHome, isPassHome, removeItemFromDevis, devis, setDevis, devisList, updateDevisList, backPath, lastPath, updateLastPath, articleId, setArticleId, clientId, setClientId, user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag,loading, setLoading }}>
+    <RatingContext.Provider value={{ fetchItemList, fetchClientList, fetchEventList ,isModalOpen, setIsModalOpen , openModal, closeModal, eventList, setEventList, setIsPassHome, isPassHome, removeItemFromDevis, devis, setDevis, devisList, updateDevisList, backPath, lastPath, updateLastPath, articleId, setArticleId, clientId, setClientId, user, setUser, rateArray, setRateArray, handleRatingSubmit, averageRating, commentArray, setCommentArray, handleCommentSubmit, handleUserSubmit, showToast, clientList, setClientList, itemList,setItemList, helloFlag, setHelloFlag,loading, setLoading }}>
       {children}
       <ToastContainer />
     </RatingContext.Provider>

@@ -12,7 +12,6 @@ import ClientDetail from "./components/Page/client/clientDetail";
 import ArticleDetail from "./components/Page/article/articleDetail";
 import DevisDetail from "./components/Page/Devis/devisDetail";
 import PlaningPage from "./components/Page/planing/planingPage";
-import OpenPlaningInsertModal from "./components/Button/openPlaningInsertModal";
 //import { Link } from "react-router-dom";
 
 function App() {
@@ -53,7 +52,6 @@ function App() {
           />
         </Routes>
       </Router>
-      <OpenPlaningInsertModal />
     </RatingProvider>
   );
 }

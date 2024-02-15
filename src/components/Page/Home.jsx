@@ -12,12 +12,8 @@ import clientLogo from "../../assets/clientLogo.png";
 import starGif from "../../assets/starGif.gif";
 
 function Home() {
-  const { showToast } = useContext(RatingContext);
+  const { showToast, fetchItemList, fetchClientList, fetchEventList } = useContext(RatingContext);
   const {helloFlag, setHelloFlag} = useContext(RatingContext);
-  const { setClientList} = useContext(RatingContext);
-  const { setEventList} = useContext(RatingContext);
-  const { setLoading} = useContext(RatingContext);
-  const { setItemList} = useContext(RatingContext);
 
   const [userData, setUserData] = useState(null);
   const [showEmailInput, setShowEmailInput] = useState(false);
@@ -25,10 +21,15 @@ function Home() {
   const [currentDate, setCurrentDate] = useState("");
   const token = localStorage.getItem("token");
 
-
-
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+
+    fetchEventList();
+    fetchItemList();
+    fetchClientList();
+  }, []);
+
 
   // Vérication du token
   useEffect(() => {
@@ -135,6 +136,9 @@ function Home() {
   };
   */
 
+
+
+  /*
 // Fetch des données clients et items
 useEffect(() => {
     // Fetch des données clients
@@ -191,7 +195,7 @@ useEffect(() => {
     fetchItemList();
     fetchClientList();
   }, [ ]);
-
+*/
 
 
   
