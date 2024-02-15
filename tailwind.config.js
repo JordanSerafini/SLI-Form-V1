@@ -51,6 +51,12 @@ export default {
         '4c': '#FEEAA1',
         '5c': '#D6955B',
 
+        '6c': '#137C8B',
+        '7c': '#709CA7',
+        '8c': '#B8CBD0',
+        '9c': '#7A90A4',
+        '10c': '#344D59',
+
       },
       fontFamily: {
         'lato': ['Lato', 'sans-serif'],

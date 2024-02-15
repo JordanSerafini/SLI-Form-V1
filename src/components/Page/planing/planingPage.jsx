@@ -68,29 +68,29 @@ function PlaningPage() {
     let cardColorClass = "";
     switch (event.xx_type_tache) {
       case "rendez-vous":
-        cardColorClass = "bg-green-300";
+        cardColorClass = "bg-7c";
         break;
       case "intervention":
-        cardColorClass = "bg-2c";
+        cardColorClass = "bg-8c";
         break;
       case "formation":
-        cardColorClass = "bg-5c";
+        cardColorClass = "bg-9c";
         break;
       default:
-        cardColorClass = "bg-gray-300";
+        cardColorClass = "bg-10c";
     }
 
     return (
       <div
         key={event.id}
-        className={`overflow-y-auto border-2 border-5c m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10 ${cardColorClass}`}
+        className={`overflow-y-auto border-2 border-10c  m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10 ${cardColorClass}`}
       >
         <div className="flex flex-row justify-start">
-          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-2c ml-4">
+          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-2c ">
             {event.xx_type_tache}
           </p>
-          <div className="text-center text-gray-700">
-            <p className="border-b-2 border-5c pb-2 mb-2 text-center text-lg font-bold ">
+          <div className="text-center text-gray-700 text-gray-300">
+            <p className="border-b-2 border-6c pb-2 mb-2 text-center text-lg font-bold ">
               {event.caption}
             </p>
             <p>
