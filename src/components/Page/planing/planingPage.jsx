@@ -137,7 +137,7 @@ function PlaningPage() {
         >
           {/* ---------------------------------------------------------  CARD IMAGE --------------------------------------------------------------------- */}
           <div className="w-8/10 flex flex-row items-center justify-center p-2">
-            <img src={image} alt="" className=" w-10/10" />
+            <img src={image} alt="" className=" w-10/10 h-7/10 border-2 border-3c" />
           </div>
           {/* ------------------------------------------------  CARD  --------------------------------------------------------------------- */}
           <div className=" text-gray-100 text-center text-xs flex flex-col items-center justify-center ">
@@ -151,9 +151,10 @@ function PlaningPage() {
 
             {/* ------------------------------------------------  DEL BUTTON  --------------------------------------------------------------------- */}
 
-            <button 
-            className="mt-4"
-            onClick={() => handleDeleteEvent(event.id)}>
+            <button
+              className="mt-4"
+              onClick={() => handleDeleteEvent(event.id)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-red-500 cursor-pointer"
