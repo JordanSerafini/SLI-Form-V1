@@ -105,7 +105,7 @@ function PlaningPage() {
     const formattedEndDate = formatDate(endDate);
 
     // Déterminer si la carte est retournée ou non
-    const flipClass = isFlipBool ? "flip " : "unflip";
+    const flipClass = isFlip[event.id] ? "flip" : "unflip";
   
 
     let image = "";
