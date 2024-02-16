@@ -137,70 +137,9 @@ function Home() {
   */
 
 
-
-  /*
-// Fetch des données clients et items
-useEffect(() => {
-    // Fetch des données clients
-    const fetchClientList = async () => {
-      try {
-        const response = await axios.get(`${backUrl}/customerPG`);
-        //console.log("Liste des clients :", response.data.rows);
-        setClientList(response.data.rows);
-        //console.log("clientList fetched");
-        setLoading(false);
-      } catch (error) {
-        console.error(
-          "Erreur lors de la récupération de la liste des clients :",
-          error
-        );
-        showToast("Erreur lors de la récupération de la liste des clients", {
-          type: "error",
-        });
-        setLoading(false);
-      }
-    };
-
-      // Fetch des données items
-
-    const fetchItemList = async () => {
-      try {
-        const response = await axios.get(`${backUrl}/articlePG`);
-        setItemList(response.data.rows);
-        setLoading(false);
-      } catch (error) {
-        console.error("Erreur lors de la récupération de la liste des articles :", error);
-        showToast("Erreur lors de la récupération de la liste des articles", {
-          type: "error",
-        });
-        setLoading(false);
-      }
-    };
-
-    const fetchEventList = async () => {
-      try {
-        const response = await axios.get(`${backUrl}/event`);
-        setEventList(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Erreur lors de la récupération de la liste des événements :", error);
-        showToast("Erreur lors de la récupération de la liste des événements", {
-          type: "error",
-        });
-        setLoading(false);
-      }
-    };
-
-    fetchEventList();
-    fetchItemList();
-    fetchClientList();
-  }, [ ]);
-*/
-
-
   
   return (
-    <div className="bg-cream h-screen flex flex-col items-center">
+    <div className="bg-3c h-screen flex flex-col items-center gap-8">
       <Header />
 
       <div className="bg-white  text-center shadow-custom pt-4 pb-8 flex flex-col font-playfair w-10/10 gap-4 ">
@@ -212,7 +151,7 @@ useEffect(() => {
         <div className="text-sm">Que souhaitez vous faire?</div>
       </div>
 
-      <div className="flex flex-row flex-wrap gap-4 justify-center">
+      <div className="flex flex-row flex-wrap gap-4 justify-center items-center mt-2">
         {/*------------------------ Encard envoi formsend ----------------------------- */}
         {userData && (
           <div className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair w-9.5/10">

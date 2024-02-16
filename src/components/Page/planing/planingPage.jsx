@@ -143,6 +143,7 @@ function PlaningPage() {
     }
 
     return (
+      // ----------------------------------------Carte d'événement ---------------------------------------
       <div
         key={event.id}
         className={`overflow-x-auto border-2 border-10c rounded-xl shrink-0 flex w-72 h-52 ${cardColorClass} ${flipClass}`}
@@ -151,7 +152,7 @@ function PlaningPage() {
         onClick={() => handleFlip(event.id)}
       >
         {isFlip[event.id] ? (
-          // Contenu quand la carte est retournée
+          // ------------------------Contenu quand la carte est retournée
           <div className={`w-8/10 flex flex-row items-center justify-center p-2 ${flipClass} `}>
             {event.workingduration_editedduration && (
               <div>durée prévu: {event.workingduration_editedduration}</div>
@@ -159,7 +160,7 @@ function PlaningPage() {
             <div className="text-white">Note: {event.notesclear}</div>
           </div>
         ) : (
-          // Contenu quand la carte est à l'endroit
+          // ------------------------Contenu quand la carte est à l'endroit
           <>
             <div className="w-8/10 flex flex-row items-center justify-center p-2 ">
               <img
@@ -176,6 +177,8 @@ function PlaningPage() {
                 Du {formattedStartDate} au {formattedEndDate}
               </p>
               <p>{event.workingduration_editedduration}</p>
+
+              {/* ------------------------Bouton de suppression d'événement ---------------------------------------*/}
               <button
                 className="mt-4"
                 onClick={(e) => {

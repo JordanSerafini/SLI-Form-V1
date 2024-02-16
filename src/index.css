@@ -31,7 +31,7 @@
 }
 
 .flip {
-  transition: transform 0.8s;
+  transition: transform 1.1s;
   transform-style: preserve-3d;
   transform: rotateX(180deg);
 }
