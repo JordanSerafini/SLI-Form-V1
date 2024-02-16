@@ -27,7 +27,7 @@ function Modal({ onClose }) {
 
     try {
       const response = await axios.post(`${BackUrl}/insertEvent`, eventInfo);
-      
+
       if (response.status === 200) {
         // Si la requête a réussi, fermer le modal
         alert("Événement ajouté avec succès.");
@@ -55,8 +55,8 @@ function Modal({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-cream"> 
-      <div className="w-9.5/10 bg-white p-8 rounded-lg shadow-lg">
+    <div className="fixed inset-0 flex items-center justify-center bg-cream">
+      <div className="w-9.5/10 bg-white p-8 rounded-lg shadow-lg border-2 border-10c">
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -114,8 +114,17 @@ function Modal({ onClose }) {
             onChange={handleChange}
             placeholder="Type de tâche"
           />
-          <button type="submit">Ajouter</button>
-          <button type="button" onClick={handleCloseClickModal}>Annuler</button>
+          <div className="flex flex-row  items-center justify-evenly mt-4">
+            <button
+              className=" text-3c border-2 border-9c p-2 bg-2c rounded-md"
+              type="submit"
+            >
+              Ajouter
+            </button>
+            <button className="text-10c border-2 border-10c p-2 rounded-md" type="button" onClick={handleCloseClickModal}>
+              Annuler
+            </button>
+          </div>
         </form>
       </div>
     </div>
