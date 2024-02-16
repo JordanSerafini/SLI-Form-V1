@@ -130,7 +130,7 @@ function PlaningPage() {
           overflow-y-auto border-2 border-10c rounded-xl 
           shrink-0
           flex flex-row 
-          w-72 h-36
+          w-72 h-44
           ${cardColorClass}
           
           `}
@@ -211,7 +211,7 @@ function PlaningPage() {
       {/* ------------------------------------------------  ADD BTN   --------------------------------------------------------------------- */}
 
       <button
-        className="border-2 border-9c bg-white p-2 shadow-lg fixed  transform -translate-x-1/2 left-6 bottom-4 rounded-full "
+        className="border-2 border-9c bg-white p-2 shadow-lg fixed  transform -translate-x-1/2 left-1/2 bottom-4 rounded-full "
         onClick={handleAddEvent}
       >
         +
