@@ -11,10 +11,12 @@ function PlaningPage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // ---------------------------------------------  Fonction fermeture de la modal  ---------------------------------------------------------------------
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
+  //--------------------------- ------------------ Fonction Suppresion d'un événement  ---------------------------------------------------------------------
   const handleDeleteEvent = async (eventId) => {
     try {
       // Appeler votre API back-end pour supprimer l'événement avec l'ID spécifié
@@ -27,6 +29,8 @@ function PlaningPage() {
       // Afficher un message d'erreur ou gérer l'erreur d'une autre manière
     }
   };
+
+    //--------------------------- ------------------ Filtre éléments et toast annonce ---------------------------------------------------------------------
 
   useEffect(() => {
     // Filtrer les événements pour la date sélectionnée
@@ -41,22 +45,23 @@ function PlaningPage() {
 
     // Afficher le toast avec le nombre d'événements correspondant à la date sélectionnée
     showToast(
-      `Vous avez ${
-        filteredEvents.length
-      } rdv le ${selectedDate.toLocaleDateString("fr-FR")}`,
-      {
-        position: "top-right",
-        autoClose: 1500,
-      },
-      []
-    );
+      <div>
+      Vous avez <strong>{filteredEvents.length}</strong> rdv le {selectedDate.toLocaleDateString("fr-FR")}
+    </div>,
+    {
+      position: "top-right",
+      autoClose: 1000,
+    }
+  );
   });
+
+      //--------------------------- ------------------ Add un évenement ---------------------------------------------------------------------
 
   const handleAddEvent = () => {
     setIsModalOpen(true);
   };
 
-  // Fonction pour formater une date
+  // --------------------------------------------- Fonction pour formater une date-------------------------------------------------
   const formatDate = (date) => {
     return date.toLocaleString("fr-FR", {
       year: "numeric",
@@ -68,7 +73,7 @@ function PlaningPage() {
     });
   };
 
-  // Filtrer les événements pour afficher uniquement ceux de la date sélectionnée
+  //----------------------------- Filtrer les événements pour afficher uniquement ceux de la date sélectionnée -------------------------
   const filteredEvents = eventList.rows.filter((event) => {
     const eventDate = new Date(event.startdatetime);
     return (
@@ -78,7 +83,7 @@ function PlaningPage() {
     );
   });
 
-  // Mappez les données de chaque événement dans des éléments JSX
+  //------------------------------------ Mappez les données de chaque événement dans des éléments JSX--------------------------------------
   const eventItems = filteredEvents.map((event) => {
     // Convertir la date de début et la date de fin en objets Date
     const startDate = new Date(event.startdatetime);
