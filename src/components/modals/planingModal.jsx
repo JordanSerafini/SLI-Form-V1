@@ -56,11 +56,11 @@ function Modal({ onClose }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-cream">
-      <div className="w-9.5/10 bg-white p-8 rounded-lg shadow-lg border-2 border-10c">
+      <div className="w-9.5/10 bg-white p-2 rounded-lg shadow-lg border-2 border-10c">
         <h3 className="text-center mb-4 text-10c border-b-2 pb-4 border-10c">
           Ajout d&apos;un évenement
         </h3>
-        <form onSubmit={handleSubmit} className="border-2 border-10c p-2 ">
+        <form onSubmit={handleSubmit} className="p-2 ">
           <input
             type="text"
             name="caption"
