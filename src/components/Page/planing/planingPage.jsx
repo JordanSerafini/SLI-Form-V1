@@ -138,7 +138,7 @@ function PlaningPage() {
       <div
         key={event.id}
         className={`overflow-y-auto border-2 border-10c rounded-xl shrink-0 flex flex-row w-72 h-52 ${cardColorClass}
-    transition-transform duration-500 ease-in-out transform ${isFlip ? 'rotate-x-180' : 'rotate-x-0'}
+    transition-transform duration-500 ease-in-out transform ${isFlip ? 'rotate-180' : 'rotate-x-0'}
   `}
         onClick={() => handleFlip(event.id)}
 
