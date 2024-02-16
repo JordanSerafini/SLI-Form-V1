@@ -128,18 +128,18 @@ function PlaningPage() {
           key={event.id}
           className={`
           overflow-y-auto border-2 border-10c m-2 p-2 rounded-xl 
-          flex flex-row h-2/10
+          flex flex-row h-4/10
           shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${cardColorClass}
           
           `}
         >
             {/* ---------------------------------------------------------  CARD IMAGE --------------------------------------------------------------------- */}
             <div className="w-9.5/10 flex flex-row items-center justify-center">
-              <img src={image} alt="" className="h-10/10 w-6/10" />
+              <img src={image} alt="" className="h-10/10 w-9.5/10" />
             </div>
                         {/* ------------------------------------------------  CARD  --------------------------------------------------------------------- */}
-            <div className="text-center  text-gray-100">
-              <p className="border-b-2 border-6c pb-2 mb-2 text-center text-xs font-bold ">
+            <div className=" text-gray-100 text-center text-xs flex flex-col items-center justify-center ">
+              <p className="border-b-2 border-6c pb-2 mb-2 font-bold ">
                 {event.caption}
               </p>
               <p>
@@ -174,6 +174,7 @@ function PlaningPage() {
       <h2 className="text-center  border-7c border-2 w-9.5/10 mx-auto bg-blue-dark rounded-xl mt-2 bg-white">
         Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}
       </h2>
+    {/* ------------------------------------------------  CALENDAR  --------------------------------------------------------------------- */}
       <div className="w-9.5/10 mt-4 h-4.5/10">
         <Calendar
           onChange={setSelectedDate}
@@ -185,14 +186,18 @@ function PlaningPage() {
         />
       </div>
 
-      <div className="">
+    {/* ------------------------------------------------  EVENT CARD LIST   --------------------------------------------------------------------- */}
         {eventItems.length > 0 ? (
+          
           eventItems
         ) : (
           <p>Aucun événement prévu pour cette date.</p>
         )}
-      </div>
+
+       {/* ------------------------------------------------  HOME BUTTON   --------------------------------------------------------------------- */}
       <HomeBtn />
+        {/* ------------------------------------------------  ADD BTN   --------------------------------------------------------------------- */}
+
       <button
         className="border-2 border-9c bg-white p-2 shadow-lg fixed  transform -translate-x-1/2 left-6 bottom-4 rounded-full "
         onClick={handleAddEvent}
