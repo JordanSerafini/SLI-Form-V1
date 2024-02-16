@@ -151,7 +151,7 @@ function Home() {
         <div className="text-sm">Que souhaitez vous faire?</div>
       </div>
 
-      <div className="flex flex-row flex-wrap gap-4 justify-center items-center mt-2">
+      <div className="flex flex-row flex-wrap gap-4 justify-center items-center ">
         {/*------------------------ Encard envoi formsend ----------------------------- */}
         {userData && (
           <div className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair w-9.5/10">
