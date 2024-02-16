@@ -139,7 +139,7 @@ function Home() {
 
   
   return (
-    <div className="bg-3c h-screen flex flex-col items-center gap-8">
+    <div className="bg-3c h-screen flex flex-col items-center8">
       <Header />
 
       <div className="bg-white  text-center shadow-custom pt-4 pb-8 flex flex-col font-playfair w-10/10 gap-4 ">
@@ -151,7 +151,7 @@ function Home() {
         <div className="text-sm">Que souhaitez vous faire?</div>
       </div>
 
-      <div className="flex flex-row flex-wrap gap-4 justify-center items-center ">
+      <div className="flex flex-row flex-wrap gap-4 justify-center items-center h-4/10">
         {/*------------------------ Encard envoi formsend ----------------------------- */}
         {userData && (
           <div className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair w-9.5/10">
