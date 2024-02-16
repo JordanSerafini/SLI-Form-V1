@@ -20,3 +20,17 @@
 .card-container {
   perspective: 1000px;
 }
+
+.card {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card.flipped {
+  transform: rotateX(180deg);
+}
+
+.flip {
+  transform: rotateX(180deg);
+
+}

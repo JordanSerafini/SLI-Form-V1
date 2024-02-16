@@ -133,36 +133,33 @@ function PlaningPage() {
     }
 
     return (
-      
-      /*----------------------------------------------------------- Card  -------------------------------------*/ 
+      /*----------------------------------------------------------- 1 Card Container -------------------------------------*/
       <div
         key={event.id}
-        className={`overflow-y-auto border-2 border-10c rounded-xl shrink-0 flex flex-row w-72 h-52 ${cardColorClass}
-    transition-transform duration-500 ease-in-out transform ${isFlip ? 'rotate-180' : 'rotate-x-0'}
-  `}
-        onClick={() => handleFlip(event.id)}
+        className={`overflow-y-auto border-2 border-10c rounded-xl shrink-0 flex w-72 h-52 ${cardColorClass} card ${isFlip ? "flipped" : ""}`}
 
+        onClick={() => handleFlip(event.id)}
       >
         {isFlip ? (
           // ----------------------------------------------------- Contenu TRUE -------------------------------------
-          <div className="w-8/10 flex flex-row items-center justify-center p-2">
-            {event.workingduration_editedduration && <div>durée prévu: {event.workingduration_editedduration}</div> }
+          <div className={`w-8/10 flex flex-row items-center justify-center p-2 ${isFlip ? "flip" : ""}`}>
+            {event.workingduration_editedduration && (
+              <div>durée prévu: {event.workingduration_editedduration}</div>
+            )}
             <div className="text-white">Note: {event.notesclear}</div>
           </div>
         ) : (
           // ----------------------------------------------------- Contenu FALSE -------------------------------------
           <>
-            <div
-              className="w-8/10 flex flex-row items-center justify-center p-2 "
-            >
-              { /*----------------------------------------------------- Card Image -------------------------------------*/ }
+            <div className="w-8/10 flex flex-row items-center justify-center p-2 ">
+              {/*----------------------------------------------------- Card Image -------------------------------------*/}
               <img
                 src={image}
                 alt={event.caption}
                 className="w-full h-7/10 border-2 border-3c"
               />
             </div>
-            { /*----------------------------------------------------- Card  content-------------------------------------*/ }
+            {/*----------------------------------------------------- Card  content-------------------------------------*/}
 
             <div className="text-gray-100 text-center text-xs flex flex-col items-center justify-center">
               <p className="border-b-2 border-6c pb-2 mb-2 font-bold">
@@ -172,7 +169,7 @@ function PlaningPage() {
                 Du {formattedStartDate} au {formattedEndDate}
               </p>
               <p>{event.workingduration_editedduration}</p>
-              { /*----------------------------------------------------- DEL BTN -------------------------------------*/ }
+              {/*----------------------------------------------------- DEL BTN -------------------------------------*/}
               <button
                 className="mt-4"
                 onClick={() => handleDeleteEvent(event.id)}

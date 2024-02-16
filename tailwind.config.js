@@ -6,6 +6,8 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundColor: ['active'],
+      
       width: {
         '0.5/10': '5%',
         '1/10': '10%',
@@ -70,5 +72,8 @@ export default {
       
     },
   },
-  plugins: [],
+  plugins: [
+    
+
+  ],
 }
