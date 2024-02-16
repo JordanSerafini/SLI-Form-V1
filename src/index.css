@@ -17,7 +17,6 @@
   }
 }
 
-.perspective {
+.card-container {
   perspective: 1000px;
 }
-

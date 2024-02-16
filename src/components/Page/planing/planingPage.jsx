@@ -137,7 +137,9 @@ function PlaningPage() {
       /*----------------------------------------------------------- Card  -------------------------------------*/ 
       <div
         key={event.id}
-        className={`overflow-y-auto border-2 border-10c rounded-xl shrink-0 flex flex-row w-72 h-52 ${cardColorClass}`}
+        className={`overflow-y-auto border-2 border-10c rounded-xl shrink-0 flex flex-row w-72 h-52 ${cardColorClass}
+    transition-transform duration-500 ease-in-out transform ${isFlip ? 'rotate-x-180' : 'rotate-x-0'}
+  `}
         onClick={() => handleFlip(event.id)}
 
       >
@@ -222,7 +224,7 @@ function PlaningPage() {
       </div>
 
       {/* ------------------------------------------------  EVENT CARD LIST   --------------------------------------------------------------------- */}
-      <div className="flex flex-row w-full overflow-x-auto py-4 gap-4 p-2">
+      <div className="flex flex-row w-full overflow-x-auto py-4 gap-4 p-2 card-container">
         {eventItems.length > 0 ? (
           eventItems
         ) : (
