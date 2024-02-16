@@ -121,15 +121,15 @@ function Modal({ onClose }) {
             <option value="formation">Formation</option>
             <option value="rdv tel">Rdv tel</option>
           </select>
-          <div className="flex flex-row  items-center justify-evenly mt-4">
+          <div className="flex flex-row  items-center justify-between mt-4 gap-">
             <button
-              className=" text-3c border-2 border-9c p-2 bg-2c rounded-md"
+              className=" text-3c border-2 border-9c p-2 bg-2c rounded-md w-4/10"
               type="submit"
             >
               Ajouter
             </button>
             <button
-              className="text-10c border-2 border-10c p-2 rounded-md"
+              className="text-10c border-2 border-10c p-2 rounded-md w-4/10"
               type="button"
               onClick={handleCloseClickModal}
             >
