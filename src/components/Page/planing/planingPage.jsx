@@ -130,14 +130,14 @@ function PlaningPage() {
           overflow-y-auto border-2 border-10c rounded-xl 
           shrink-0
           flex flex-row 
-          w-72 h-44
+          w-72 h-52
           ${cardColorClass}
           
           `}
         >
           {/* ---------------------------------------------------------  CARD IMAGE --------------------------------------------------------------------- */}
-          <div className="w-8/10 h/8.10 flex flex-row items-center justify-center p-2">
-            <img src={image} alt="" className=" w-9.5/10" />
+          <div className="w-8/10 flex flex-row items-center justify-center p-2">
+            <img src={image} alt="" className=" w-10/10" />
           </div>
           {/* ------------------------------------------------  CARD  --------------------------------------------------------------------- */}
           <div className=" text-gray-100 text-center text-xs flex flex-col items-center justify-center ">
@@ -151,7 +151,9 @@ function PlaningPage() {
 
             {/* ------------------------------------------------  DEL BUTTON  --------------------------------------------------------------------- */}
 
-            <button onClick={() => handleDeleteEvent(event.id)}>
+            <button 
+            className="mt-4"
+            onClick={() => handleDeleteEvent(event.id)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-red-500 cursor-pointer"
@@ -175,7 +177,7 @@ function PlaningPage() {
     /* ------------------------------------------------  RETURN PRINCIPAL  --------------------------------------------------------------------- */
   }
   return (
-    <div className="bg-3c h-[100vh] overflow-x-hidden flex flex-col items-center justify-start">
+    <div className="bg-3c h-[100vh] w-[100vw] overflow-x-hidden flex flex-col items-center justify-start">
       {/* ------------------------------------------------  ENTETE  --------------------------------------------------------------------- */}
 
       <h2
@@ -192,7 +194,7 @@ function PlaningPage() {
           value={selectedDate}
           locale="fr-FR"
           className={
-            "bg-white p-4 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] mb-2"
+            "bg-white p-4 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] mb-2 w-10/10"
           }
         />
       </div>
