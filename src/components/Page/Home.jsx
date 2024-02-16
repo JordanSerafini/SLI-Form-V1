@@ -183,14 +183,14 @@ function Home() {
         )}
         {/*------------------------ Encard Clients ----------------------------- */}
         <div
-          className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer"
+          className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer items-center justify-center"
           onClick={handleRedirect}
         >
           <img src={clientLogo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />
           Consulter mes clients
         </div>
         {/*------------------------ Encard Planing ----------------------------- */}
-        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer" 
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer  items-center justify-center" 
         onClick={articleRedirect}
         >
           <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
@@ -198,7 +198,7 @@ function Home() {
         </div>
 
           {/*------------------------ Encard Devis ----------------------------- */}
-        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer" 
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer  items-center justify-center" 
         onClick={devisRedirect}
         >
           <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
@@ -207,7 +207,7 @@ function Home() {
       
       
       {/*------------------------ Encard Planing ----------------------------- */}
-        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer" 
+        <div className="bg-white rounded-xl border-brownperso text-sm border-4 p-2 shadow-custom mt-4 flex flex-row font-playfair w-4.5/10 cursor-pointer  items-center justify-center" 
         onClick={planingRedirect}
         >
           <img src={logoTodo} alt="Logo Formulaire" className="w-6 h-6 mr-2" />{" "}
