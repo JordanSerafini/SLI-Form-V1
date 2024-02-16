@@ -26,7 +26,6 @@ function ArticleList() {
     alert("Article ajouté au devis");
   };
 
-  console.log(itemList);
 
   const handleDetail = (articleId) => {
     setArticleId(articleId);
@@ -98,17 +97,18 @@ function ArticleList() {
         <>
           {/*--------------------------------------------------------------------    CARDS        -------------------------------------------------------------------------------*/}
           <div className="flex flex-col md:flex-row md:flex-wrap mt-20">
-              {currentItems.map((item, index) => (             
-                <div
-                  key={index}
-                  className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-32 md:w-4.5/10 w-9.5/10  mx-auto"
-                >
-          {/*--------------------------------------------------------------------   MAP CARD        -------------------------------------------------------------------------------*/}
-                <div>
-                <img src={item.image_url} alt="Matériel Informatique Logo" />
-
+            {currentItems.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-row items-center gap-2 bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 font-playfairgap-2 overflow-y-auto h-32 md:w-4.5/10 w-9.5/10  mx-auto"
+              >
+                {/*--------------------------------------------------------------------    CARD IMAGE        -------------------------------------------------------------------------------*/}
+                <div className="w-5/10">
+                  <img src={item.image_url} alt="Matériel Informatique Logo" className="w-10/10" />
                 </div>
+                                {/*--------------------------------------------------------------------   MAP CARD        -------------------------------------------------------------------------------*/}
 
+                <div className=" flex flex-col items-center justify-center w-5/10 text-xs">
                   <h3>{item.caption}</h3>
                   <p>
                     Prix: HT{" "}
@@ -132,10 +132,10 @@ function ArticleList() {
                   >
                     Ajouter au devis
                   </button>
-                  
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
 
           {/*--------------------------------------------------------------------    PAGINATION        -------------------------------------------------------------------------------*/}
 
