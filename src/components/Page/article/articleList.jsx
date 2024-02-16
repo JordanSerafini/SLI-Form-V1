@@ -80,6 +80,8 @@ function ArticleList() {
 
   return (
     <div className="bg-cream h-[100vh] overflow-x-hidden flex flex-col items-center">
+              {/*--------------------------------------------------------------------    HEADER DE RECHERCHE        -------------------------------------------------------------------------------*/}
+
       <div
         className="fixed top-0 bg-gradient-to-r from-blue-light to-blue-strong w-full flex justify-center box-shadow z-50"
         style={{
@@ -87,6 +89,7 @@ function ArticleList() {
             "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
         }}
       >
+        {/*--------------------------------------------------------------------    INPUT DE RECHERCHE        -------------------------------------------------------------------------------*/}
         <input
           type="text"
           placeholder="Rechercher un article..."
@@ -95,9 +98,13 @@ function ArticleList() {
           className=" border-4 border-gray-300 rounded-lg p-2 m-4 z-10 bg-white"
         />
       </div>
+              {/*--------------------------------------------------------------------    CARDS CONTAINER        -------------------------------------------------------------------------------*/}
+
       {currentItems.length > 0 ? (
         <>
           <ul className="flex flex-col md:flex-row md:flex-wrap mt-20">
+                          {/*--------------------------------------------------------------------    CARDS        -------------------------------------------------------------------------------*/}
+
             {currentItems.map((item, index) => (
               <li
                 key={index}
@@ -125,6 +132,7 @@ function ArticleList() {
               </li>
             ))}
           </ul>
+              {/*--------------------------------------------------------------------    PAGINATION        -------------------------------------------------------------------------------*/}
 
           {totalPages > 1 && (
             <ul className="flex flex-row gap-2">
@@ -147,6 +155,8 @@ function ArticleList() {
               ))}
             </ul>
           )}
+                        {/*--------------------------------------------------------------------    HOME_BUTTON       -------------------------------------------------------------------------------*/}
+
           <HomeBtn />
         </>
       ) : (
