@@ -11,6 +11,7 @@ function PlaningPage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFlip, setIsFlip] = useState({});
+  const [isFlipBool, setIsFlipBool] = useState(false);
 
   // ---------------------------------------------  Fonction fermeture de la modal  ---------------------------------------------------------------------
   const handleCloseModal = () => {
@@ -86,8 +87,13 @@ function PlaningPage() {
   });
 
   //----------------------------- Handle le retournement de la carte -------------------------
-  const handleFlip = () => {
-    setIsFlip(!isFlip);
+  const handleFlip = (eventId) => {
+    setIsFlipBool(!isFlipBool);
+
+    setIsFlip((currentFlips) => ({
+      ...currentFlips,
+      [eventId]: !currentFlips[eventId],
+    }));
   };
   //------------------------------------ Mappez les données de chaque événement dans des éléments JSX--------------------------------------
   const eventItems = filteredEvents.map((event) => {
@@ -97,6 +103,10 @@ function PlaningPage() {
     // Formater les dates au format souhaité
     const formattedStartDate = formatDate(startDate);
     const formattedEndDate = formatDate(endDate);
+
+    // Déterminer si la carte est retournée ou non
+    const flipClass = isFlipBool ? "flip " : "unflip";
+  
 
     let image = "";
     switch (event.xx_type_tache) {
@@ -133,34 +143,31 @@ function PlaningPage() {
     }
 
     return (
-      /*----------------------------------------------------------- 1 Card Container -------------------------------------*/
       <div
         key={event.id}
-        className={`overflow-y-auto border-2 border-10c rounded-xl shrink-0 flex w-72 h-52 ${cardColorClass} card ${isFlip ? "flipped" : ""}`}
+        className={`overflow-x-auto border-2 border-10c rounded-xl shrink-0 flex w-72 h-52 ${cardColorClass} ${flipClass}`}
+        style={{ transformStyle: 'preserve-3d' }} 
 
         onClick={() => handleFlip(event.id)}
       >
-        {isFlip ? (
-          // ----------------------------------------------------- Contenu TRUE -------------------------------------
-          <div className={`w-8/10 flex flex-row items-center justify-center p-2 ${isFlip ? "flip" : ""}`}>
+        {isFlip[event.id] ? (
+          // Contenu quand la carte est retournée
+          <div className={`w-8/10 flex flex-row items-center justify-center p-2 ${flipClass} `}>
             {event.workingduration_editedduration && (
               <div>durée prévu: {event.workingduration_editedduration}</div>
             )}
             <div className="text-white">Note: {event.notesclear}</div>
           </div>
         ) : (
-          // ----------------------------------------------------- Contenu FALSE -------------------------------------
+          // Contenu quand la carte est à l'endroit
           <>
             <div className="w-8/10 flex flex-row items-center justify-center p-2 ">
-              {/*----------------------------------------------------- Card Image -------------------------------------*/}
               <img
                 src={image}
                 alt={event.caption}
                 className="w-full h-7/10 border-2 border-3c"
               />
             </div>
-            {/*----------------------------------------------------- Card  content-------------------------------------*/}
-
             <div className="text-gray-100 text-center text-xs flex flex-col items-center justify-center">
               <p className="border-b-2 border-6c pb-2 mb-2 font-bold">
                 {event.caption}
@@ -169,10 +176,12 @@ function PlaningPage() {
                 Du {formattedStartDate} au {formattedEndDate}
               </p>
               <p>{event.workingduration_editedduration}</p>
-              {/*----------------------------------------------------- DEL BTN -------------------------------------*/}
               <button
                 className="mt-4"
-                onClick={() => handleDeleteEvent(event.id)}
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  handleDeleteEvent(event.id);
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -192,6 +201,7 @@ function PlaningPage() {
         )}
       </div>
     );
+    
   });
 
   {
