@@ -16,3 +16,8 @@
     box-shadow: 0 0 10px #226D68; 
   }
 }
+
+.perspective {
+  perspective: 1000px;
+}
+

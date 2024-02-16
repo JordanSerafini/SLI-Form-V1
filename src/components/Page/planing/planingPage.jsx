@@ -10,6 +10,7 @@ function PlaningPage() {
   const { eventList, showToast, fetchEventList } = useContext(RatingContext);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFlip, setIsFlip] = useState(false);
 
   // ---------------------------------------------  Fonction fermeture de la modal  ---------------------------------------------------------------------
   const handleCloseModal = () => {
@@ -30,7 +31,7 @@ function PlaningPage() {
     }
   };
 
-    //--------------------------- ------------------ Filtre éléments et toast annonce ---------------------------------------------------------------------
+  //--------------------------- ------------------ Filtre éléments et toast annonce ---------------------------------------------------------------------
 
   useEffect(() => {
     // Filtrer les événements pour la date sélectionnée
@@ -46,16 +47,17 @@ function PlaningPage() {
     // Afficher le toast avec le nombre d'événements correspondant à la date sélectionnée
     showToast(
       <div>
-      Vous avez <strong>{filteredEvents.length}</strong> rdv le {selectedDate.toLocaleDateString("fr-FR")}
-    </div>,
-    {
-      position: "top-right",
-      autoClose: 1000,
-    }
-  );
+        Vous avez <strong>{filteredEvents.length}</strong> rdv le{" "}
+        {selectedDate.toLocaleDateString("fr-FR")}
+      </div>,
+      {
+        position: "top-right",
+        autoClose: 1000,
+      }
+    );
   });
 
-      //--------------------------- ------------------ Add un évenement ---------------------------------------------------------------------
+  //--------------------------- ------------------ Add un évenement ---------------------------------------------------------------------
 
   const handleAddEvent = () => {
     setIsModalOpen(true);
@@ -83,6 +85,10 @@ function PlaningPage() {
     );
   });
 
+  //----------------------------- Handle le retournement de la carte -------------------------
+  const handleFlip = () => {
+    setIsFlip(!isFlip);
+  };
   //------------------------------------ Mappez les données de chaque événement dans des éléments JSX--------------------------------------
   const eventItems = filteredEvents.map((event) => {
     // Convertir la date de début et la date de fin en objets Date
@@ -127,55 +133,65 @@ function PlaningPage() {
     }
 
     return (
-      <>
-        {/* -------------------------------------------  CARD CONTAINER  --------------------------------------------------------------------- */}
-        <div
-          key={event.id}
-          className={`
-          overflow-y-auto border-2 border-10c rounded-xl 
-          shrink-0
-          flex flex-row 
-          w-72 h-52
-          ${cardColorClass}
-          
-          `}
-        >
-          {/* ---------------------------------------------------------  CARD IMAGE --------------------------------------------------------------------- */}
+      
+      /*----------------------------------------------------------- Card  -------------------------------------*/ 
+      <div
+        key={event.id}
+        className={`overflow-y-auto border-2 border-10c rounded-xl shrink-0 flex flex-row w-72 h-52 ${cardColorClass}`}
+        onClick={() => handleFlip(event.id)}
+
+      >
+        {isFlip ? (
+          // ----------------------------------------------------- Contenu TRUE -------------------------------------
           <div className="w-8/10 flex flex-row items-center justify-center p-2">
-            <img src={image} alt="" className=" w-10/10 h-7/10 border-2 border-3c" />
+            {event.workingduration_editedduration && <div>durée prévu: {event.workingduration_editedduration}</div> }
+            <div className="text-white">Note: {event.notesclear}</div>
           </div>
-          {/* ------------------------------------------------  CARD  --------------------------------------------------------------------- */}
-          <div className=" text-gray-100 text-center text-xs flex flex-col items-center justify-center ">
-            <p className="border-b-2 border-6c pb-2 mb-2 font-bold ">
-              {event.caption}
-            </p>
-            <p>
-              Du {formattedStartDate} au {formattedEndDate}{" "}
-            </p>
-            <p>{event.workingduration_editedduration}</p>
-
-            {/* ------------------------------------------------  DEL BUTTON  --------------------------------------------------------------------- */}
-
-            <button
-              className="mt-4"
-              onClick={() => handleDeleteEvent(event.id)}
+        ) : (
+          // ----------------------------------------------------- Contenu FALSE -------------------------------------
+          <>
+            <div
+              className="w-8/10 flex flex-row items-center justify-center p-2 "
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-red-500 cursor-pointer"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+              { /*----------------------------------------------------- Card Image -------------------------------------*/ }
+              <img
+                src={image}
+                alt={event.caption}
+                className="w-full h-7/10 border-2 border-3c"
+              />
+            </div>
+            { /*----------------------------------------------------- Card  content-------------------------------------*/ }
+
+            <div className="text-gray-100 text-center text-xs flex flex-col items-center justify-center">
+              <p className="border-b-2 border-6c pb-2 mb-2 font-bold">
+                {event.caption}
+              </p>
+              <p>
+                Du {formattedStartDate} au {formattedEndDate}
+              </p>
+              <p>{event.workingduration_editedduration}</p>
+              { /*----------------------------------------------------- DEL BTN -------------------------------------*/ }
+              <button
+                className="mt-4"
+                onClick={() => handleDeleteEvent(event.id)}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 11-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-red-500 cursor-pointer"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 11-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     );
   });
 
