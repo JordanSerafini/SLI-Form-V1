@@ -17,16 +17,16 @@ function PlaningPage() {
 
   const handleDeleteEvent = async (eventId) => {
     try {
-        // Appeler votre API back-end pour supprimer l'événement avec l'ID spécifié
-        await fetch(`${BackUrl}/deleteEvent/${eventId}`, {
-            method: 'DELETE'
-        });
-        fetchEventList();
+      // Appeler votre API back-end pour supprimer l'événement avec l'ID spécifié
+      await fetch(`${BackUrl}/deleteEvent/${eventId}`, {
+        method: "DELETE",
+      });
+      fetchEventList();
     } catch (error) {
-        console.error("Erreur lors de la suppression de l'événement :", error);
-        // Afficher un message d'erreur ou gérer l'erreur d'une autre manière
+      console.error("Erreur lors de la suppression de l'événement :", error);
+      // Afficher un message d'erreur ou gérer l'erreur d'une autre manière
     }
-};
+  };
 
   useEffect(() => {
     // Filtrer les événements pour la date sélectionnée
@@ -83,10 +83,27 @@ function PlaningPage() {
     // Convertir la date de début et la date de fin en objets Date
     const startDate = new Date(event.startdatetime);
     const endDate = new Date(event.enddatetime);
-
     // Formater les dates au format souhaité
     const formattedStartDate = formatDate(startDate);
     const formattedEndDate = formatDate(endDate);
+
+    let image = "";
+    switch (event.xx_type_tache) {
+      case "rendez-vous":
+        image = "/planing/rdvLogo.webp";
+        break;
+      case "intervention":
+        image = "/planing/interventionLogo.webp";
+        break;
+      case "formation":
+        image = "/planing/rdvLogo.webp";
+        break;
+      case "rdv tel":
+        image = "/planing/rdvtelLogo.webp";
+        break;
+      default:
+        image = "/planing/rdvLogo.webp";
+    }
 
     // Définir la classe de couleur en fonction du type de tâche
     let cardColorClass = "";
@@ -105,39 +122,50 @@ function PlaningPage() {
     }
 
     return (
-      <div
-        key={event.id}
-        className={`overflow-y-auto border-2 border-10c  m-2 p-2 rounded-xl shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] flex pl-10 ${cardColorClass}`}
-      >
-        <div className="flex flex-row justify-start">
-          <p className="text-xs font-bold w-3/10 transform -rotate-45 text-4c ml-2">
-            {event.xx_type_tache}
-          </p>
-          <div className="text-center  text-gray-100">
-            <p className="border-b-2 border-6c pb-2 mb-2 text-center text-lg font-bold ">
-              {event.caption}
-            </p>
-            <p>
-              Du {formattedStartDate} au {formattedEndDate}{" "}
-            </p>
-            <p>{event.workingduration_editedduration}</p>
-            <button onClick={() => handleDeleteEvent(event.id)}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-red-500 cursor-pointer"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 11-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
+      <>
+                         {/* -------------------------------------------  CARD CONTAINER  --------------------------------------------------------------------- */}
+        <div
+          key={event.id}
+          className={`
+          overflow-y-auto border-2 border-10c m-2 p-2 rounded-xl 
+          flex flex-row h-2/10
+          shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${cardColorClass}
+          
+          `}
+        >
+            {/* ---------------------------------------------------------  CARD IMAGE --------------------------------------------------------------------- */}
+            <div className="w-9.5/10 flex flex-row items-center justify-center">
+              <img src={image} alt="" className="h-10/10 w-6/10" />
+            </div>
+                        {/* ------------------------------------------------  CARD  --------------------------------------------------------------------- */}
+            <div className="text-center  text-gray-100">
+              <p className="border-b-2 border-6c pb-2 mb-2 text-center text-xs font-bold ">
+                {event.caption}
+              </p>
+              <p>
+                Du {formattedStartDate} au {formattedEndDate}{" "}
+              </p>
+              <p>{event.workingduration_editedduration}</p>
+
+                    {/* ------------------------------------------------  DEL BUTTON  --------------------------------------------------------------------- */}
+
+              <button onClick={() => handleDeleteEvent(event.id)}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-red-500 cursor-pointer"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 11-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
           </div>
         </div>
-      </div>
+      </>
     );
   });
 
@@ -165,9 +193,10 @@ function PlaningPage() {
         )}
       </div>
       <HomeBtn />
-      <button 
-            className="border-2 border-9c bg-white p-2 shadow-lg fixed  transform -translate-x-1/2 left-6 bottom-4 rounded-full "
-            onClick={handleAddEvent}>
+      <button
+        className="border-2 border-9c bg-white p-2 shadow-lg fixed  transform -translate-x-1/2 left-6 bottom-4 rounded-full "
+        onClick={handleAddEvent}
+      >
         +
       </button>
       {isModalOpen && <Modal onClose={handleCloseModal} />}
