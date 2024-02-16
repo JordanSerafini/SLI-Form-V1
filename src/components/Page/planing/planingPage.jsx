@@ -123,58 +123,69 @@ function PlaningPage() {
 
     return (
       <>
-                         {/* -------------------------------------------  CARD CONTAINER  --------------------------------------------------------------------- */}
+        {/* -------------------------------------------  CARD CONTAINER  --------------------------------------------------------------------- */}
         <div
           key={event.id}
           className={`
-          overflow-y-auto border-2 border-10c m-2 p-2 rounded-xl 
-          flex flex-row h-4/10
-          shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${cardColorClass}
+          overflow-y-auto border-2 border-10c rounded-xl 
+          shrink-0
+          flex flex-row 
+          w-72 h-36
+          ${cardColorClass}
           
           `}
         >
-            {/* ---------------------------------------------------------  CARD IMAGE --------------------------------------------------------------------- */}
-            <div className="w-9.5/10 flex flex-row items-center justify-center">
-              <img src={image} alt="" className="h-10/10 w-9.5/10" />
-            </div>
-                        {/* ------------------------------------------------  CARD  --------------------------------------------------------------------- */}
-            <div className=" text-gray-100 text-center text-xs flex flex-col items-center justify-center ">
-              <p className="border-b-2 border-6c pb-2 mb-2 font-bold ">
-                {event.caption}
-              </p>
-              <p>
-                Du {formattedStartDate} au {formattedEndDate}{" "}
-              </p>
-              <p>{event.workingduration_editedduration}</p>
+          {/* ---------------------------------------------------------  CARD IMAGE --------------------------------------------------------------------- */}
+          <div className="w-8/10 h/8.10 flex flex-row items-center justify-center p-2">
+            <img src={image} alt="" className=" w-9.5/10" />
+          </div>
+          {/* ------------------------------------------------  CARD  --------------------------------------------------------------------- */}
+          <div className=" text-gray-100 text-center text-xs flex flex-col items-center justify-center ">
+            <p className="border-b-2 border-6c pb-2 mb-2 font-bold ">
+              {event.caption}
+            </p>
+            <p>
+              Du {formattedStartDate} au {formattedEndDate}{" "}
+            </p>
+            <p>{event.workingduration_editedduration}</p>
 
-                    {/* ------------------------------------------------  DEL BUTTON  --------------------------------------------------------------------- */}
+            {/* ------------------------------------------------  DEL BUTTON  --------------------------------------------------------------------- */}
 
-              <button onClick={() => handleDeleteEvent(event.id)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-red-500 cursor-pointer"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 11-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
+            <button onClick={() => handleDeleteEvent(event.id)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-red-500 cursor-pointer"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 11-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       </>
     );
   });
 
+  {
+    /* ------------------------------------------------  RETURN PRINCIPAL  --------------------------------------------------------------------- */
+  }
   return (
-    <div className="bg-3c h-[100vh] overflow-x-hidden flex flex-col items-center">
-      <h2 className="text-center  border-7c border-2 w-9.5/10 mx-auto bg-blue-dark rounded-xl mt-2 bg-white">
+    <div className="bg-3c h-[100vh] overflow-x-hidden flex flex-col items-center justify-start">
+      {/* ------------------------------------------------  ENTETE  --------------------------------------------------------------------- */}
+
+      <h2
+        className="
+      text-center border-7c border-2 w-9.5/10 mx-auto bg-blue-dark rounded-xl mt-2 bg-white
+      "
+      >
         Liste des événements du {selectedDate.toLocaleDateString("fr-FR")}
       </h2>
-    {/* ------------------------------------------------  CALENDAR  --------------------------------------------------------------------- */}
+      {/* ------------------------------------------------  CALENDAR  --------------------------------------------------------------------- */}
       <div className="w-9.5/10 mt-4 h-4.5/10">
         <Calendar
           onChange={setSelectedDate}
@@ -186,17 +197,18 @@ function PlaningPage() {
         />
       </div>
 
-    {/* ------------------------------------------------  EVENT CARD LIST   --------------------------------------------------------------------- */}
+      {/* ------------------------------------------------  EVENT CARD LIST   --------------------------------------------------------------------- */}
+      <div className="flex flex-row w-full overflow-x-auto py-4 gap-4 p-2">
         {eventItems.length > 0 ? (
-          
           eventItems
         ) : (
           <p>Aucun événement prévu pour cette date.</p>
         )}
+      </div>
 
-       {/* ------------------------------------------------  HOME BUTTON   --------------------------------------------------------------------- */}
+      {/* ------------------------------------------------  HOME BUTTON   --------------------------------------------------------------------- */}
       <HomeBtn />
-        {/* ------------------------------------------------  ADD BTN   --------------------------------------------------------------------- */}
+      {/* ------------------------------------------------  ADD BTN   --------------------------------------------------------------------- */}
 
       <button
         className="border-2 border-9c bg-white p-2 shadow-lg fixed  transform -translate-x-1/2 left-6 bottom-4 rounded-full "
