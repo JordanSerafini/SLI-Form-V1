@@ -12,24 +12,21 @@ function ArticleList() {
   const { setArticleId } = useContext(RatingContext);
   const navigate = useNavigate();
 
-/*
+  /*
   useEffect(() => {
     console.log(devis);
   }, [devis]);
   */
 
-  
   const addToDevis = (newItem) => {
-    setDevis(currentDevis => ({
+    setDevis((currentDevis) => ({
       ...currentDevis,
-      items: [...currentDevis.items, newItem] 
+      items: [...currentDevis.items, newItem],
     }));
     alert("Article ajouté au devis");
   };
-  
-  
-  
-  
+
+  console.log(itemList);
 
   const handleDetail = (articleId) => {
     setArticleId(articleId);
@@ -75,12 +72,9 @@ function ArticleList() {
     return <div>Chargement...</div>;
   }
 
-
-  
-
   return (
     <div className="bg-cream h-[100vh] overflow-x-hidden flex flex-col items-center">
-              {/*--------------------------------------------------------------------    HEADER DE RECHERCHE        -------------------------------------------------------------------------------*/}
+      {/*--------------------------------------------------------------------    HEADER DE RECHERCHE        -------------------------------------------------------------------------------*/}
 
       <div
         className="fixed top-0 bg-gradient-to-r from-blue-light to-blue-strong w-full flex justify-center box-shadow z-50"
@@ -98,41 +92,52 @@ function ArticleList() {
           className=" border-4 border-gray-300 rounded-lg p-2 m-4 z-10 bg-white"
         />
       </div>
-              {/*--------------------------------------------------------------------    CARDS CONTAINER        -------------------------------------------------------------------------------*/}
+      {/*--------------------------------------------------------------------    CARDS CONTAINER        -------------------------------------------------------------------------------*/}
 
       {currentItems.length > 0 ? (
         <>
-          <ul className="flex flex-col md:flex-row md:flex-wrap mt-20">
-                          {/*--------------------------------------------------------------------    CARDS        -------------------------------------------------------------------------------*/}
+          {/*--------------------------------------------------------------------    CARDS        -------------------------------------------------------------------------------*/}
+          <div className="flex flex-col md:flex-row md:flex-wrap mt-20">
+              {currentItems.map((item, index) => (             
+                <div
+                  key={index}
+                  className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-32 md:w-4.5/10 w-9.5/10  mx-auto"
+                >
+          {/*--------------------------------------------------------------------   MAP CARD        -------------------------------------------------------------------------------*/}
+                <div>
+                <img src={item.image_url} alt="Matériel Informatique Logo" />
 
-            {currentItems.map((item, index) => (
-              <li
-                key={index}
-                className="bg-white rounded-xl border-brownperso border-4 p-2 shadow-custom mt-4 flex flex-col font-playfair items-center justify-start gap-2 overflow-y-auto h-32 md:w-4.5/10 w-9/10  mx-auto"
-              >
-                <h3>{item.caption}</h3>
-                <p>
-                  Prix: HT{" "}
-                  <span className="font-bold">{item.salepricevatexcluded}</span>{" "}
-                  TTC:{" "}
-                  <span className="font-bold">{item.salepricevatincluded}</span>
-                </p>
-                <button
-                  className="text-blue-light font-bold border-b-2 border-blue-light "
-                  onClick={() => handleDetail(item.id)}
-                >
-                  Accéder au Détail
-                </button>
-                <button
-                  className="text-green-500 font-bold"
-                  onClick={() => addToDevis(item)}
-                >
-                  Ajouter au devis
-                </button>
-              </li>
-            ))}
-          </ul>
-              {/*--------------------------------------------------------------------    PAGINATION        -------------------------------------------------------------------------------*/}
+                </div>
+
+                  <h3>{item.caption}</h3>
+                  <p>
+                    Prix: HT{" "}
+                    <span className="font-bold">
+                      {item.salepricevatexcluded}
+                    </span>{" "}
+                    TTC:{" "}
+                    <span className="font-bold">
+                      {item.salepricevatincluded}
+                    </span>
+                  </p>
+                  <button
+                    className="text-blue-light font-bold border-b-2 border-blue-light "
+                    onClick={() => handleDetail(item.id)}
+                  >
+                    Accéder au Détail
+                  </button>
+                  <button
+                    className="text-green-500 font-bold"
+                    onClick={() => addToDevis(item)}
+                  >
+                    Ajouter au devis
+                  </button>
+                  
+                </div>
+              ))}
+            </div>
+
+          {/*--------------------------------------------------------------------    PAGINATION        -------------------------------------------------------------------------------*/}
 
           {totalPages > 1 && (
             <ul className="flex flex-row gap-2">
@@ -155,7 +160,7 @@ function ArticleList() {
               ))}
             </ul>
           )}
-                        {/*--------------------------------------------------------------------    HOME_BUTTON       -------------------------------------------------------------------------------*/}
+          {/*--------------------------------------------------------------------    HOME_BUTTON       -------------------------------------------------------------------------------*/}
 
           <HomeBtn />
         </>
