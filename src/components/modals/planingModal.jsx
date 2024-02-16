@@ -57,6 +57,9 @@ function Modal({ onClose }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-cream">
       <div className="w-9.5/10 bg-white p-8 rounded-lg shadow-lg border-2 border-10c">
+        <h3 className="text-center mb-4 text-10c border-b-2 pb-4 border-10c">
+          Ajout d&apos;un évenement
+        </h3>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -98,7 +101,7 @@ function Modal({ onClose }) {
             name="colleagueId"
             value={eventInfo.colleagueId}
             onChange={handleChange}
-            placeholder="ID du collègue"
+            placeholder="ID/Nom collègue"
           />
           <input
             type="text"
@@ -107,13 +110,17 @@ function Modal({ onClose }) {
             onChange={handleChange}
             placeholder="Notes"
           />
-          <input
-            type="text"
+          <select
             name="xx_type_tache"
             value={eventInfo.xx_type_tache}
             onChange={handleChange}
-            placeholder="Type de tâche"
-          />
+          >
+            <option value="">Sélectionnez le type de tâche</option>
+            <option value="rendez-vous">Rendez-vous</option>
+            <option value="intervention">Intervention</option>
+            <option value="formation">Formation</option>
+            <option value="rdv tel">Rdv tel</option>
+          </select>
           <div className="flex flex-row  items-center justify-evenly mt-4">
             <button
               className=" text-3c border-2 border-9c p-2 bg-2c rounded-md"
@@ -121,7 +128,11 @@ function Modal({ onClose }) {
             >
               Ajouter
             </button>
-            <button className="text-10c border-2 border-10c p-2 rounded-md" type="button" onClick={handleCloseClickModal}>
+            <button
+              className="text-10c border-2 border-10c p-2 rounded-md"
+              type="button"
+              onClick={handleCloseClickModal}
+            >
               Annuler
             </button>
           </div>
